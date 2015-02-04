@@ -1,0 +1,13 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+DBCS=Yes
+LCID=0x409 0x0 0x0 ; English (United States)
+REPORT=Yes
+HLP=..\e93.hlp
+
+[FILES]
+e93help.rtf
+
+[WINDOWS]
+e93help="",(653,102,360,600),21252,(r14876671),(r12632256),f3

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Scripting and Tasks</TITLE>
+
+<SUMMARY>
+Using Tcl in e93
+</SUMMARY>
+
+<BODY>
+
+<P>e93 utilizes the Tcl scripting language. This allows it great
+flexibility. Users of e93 are able to write scripts to perform complex
+editing tasks, as well as use them to configure the editor to personal
+taste.</P>
+
+<P>When e93 starts, it attempts to locate a file with the name
+e93rc.tcl (some implementations use slightly different names). This
+file is meant to contain a Tcl script. The script is charged with the
+task of setting up all menus, key bindings, and defaults that will be
+available when the editor starts. It is also the responsibility of
+this script to interpret all of the command line parameters passed to
+e93. That includes opening any files present on the command line.
+Without this script, e93 would not do very much. Therefore, if the
+script cannot be located at startup, e93 will complain, and quit.</P>
+
+<P>This script is the primary means by which e93 is customized to the
+taste of the user. Given the number of things defined by this script,
+a fair amount of customization is available, but at the cost of some
+complexity. See <a href="startup.html">Tcl startup script</a> for
+information on how to customize e93 at startup time.</P>
+
+<H3>
+<A NAME="Keys"></A>
+Return Key vs. the Keypad Enter Key
+</H3>
+
+<P>Once e93 has started, Tcl commands may be executed by typing them
+into any window, and pressing the enter key on the numeric keypad 
+(<A HREF="keynames.html#KeyPad">KP_Enter</A>). The results of the
+command (if they are not piped elsewhere) are then
+placed into the window.</P>
+
+<P>If you are viewing this file from within e93, do the following:
+Place the cursor anywhere on the following line, and press keypad
+enter:</P>
+
+<PRE><CODE>beep; okdialog {Hmmm, that was interesting}</CODE></PRE>
+
+<P>You should hear a beep, and then a dialog should pop up with a
+useless message in it. This works, because the e93rc.tcl script has
+bound the keypad enter key to a function that grabs the line the
+cursor is on (or the currently selected text), and sends it to Tcl for
+processing.</P>
+
+
+<P>It's very helpful to understand how e93 deals with Tcl commands. 
+e93 treats the "Return" key, which is with the main section of keys,
+and (<A HREF="keynames.html#KeyPad">KP_Enter</A>) key differently.
+Forget the fact that your keyboard may have "Enter" written on both keys.
+To differentiate them for our purposes "Return" is the normal new line key (Return)
+and "Enter" is the one on the numeric keypad (<A HREF="keynames.html#KeyPad">KP_Enter</A>).</P>
+
+<P>The Return key will simply insert a new line in the text, whereas
+<A HREF="keynames.html#KeyPad">KP_Enter</A> has been designated by e93's
+configuration file to perform whatever Tcl command is on the current line.</P>
+
+<P>The Tcl interpreter in e93 deals with commands in the following way:<BR/>
+Tcl looks for any Tcl procedures (procs) that have been defined in
+Tcl, if that fails it will then search for built-in commands in either
+Tcl or e93. If Tcl fails to find any Tcl procs or built-in commands to
+execute it calls its "unknown" proc. The unknown proc will attempt to
+pass the command on to the operating system's shell. At this point
+executing the command is equivalent to using the Tcl "exec" command. If
+you understand Tcl, all that should be fairly clear to you. If not,
+you'll get the idea soon enough.</P>
+
+<P><FONT color='red'>It's important to note </FONT>
+that if Tcl executes a shell command for you in this manner, that
+command is running synchronously. You will not see any output from the
+shell command in the e93 window until after the command has completed.
+Commands that take a long time to complete will lock e93 up for the
+duration, while e93 is waiting for the command to finish. Because of
+this, no interactive commands can be executed in this manner. This is
+because Tcl would be suspended (waiting for the interactive command to
+finish). If Tcl is suspended, then e93 is also suspended (waiting for
+the Tcl command to finish). As a result, there is no way that e93
+could provide input to an interactive command. Because of all that,
+the interactive command would be suspended (waiting for input that it
+can never receive) and e93 will deadlock. Therefore, interactive
+commands should be run as "<A HREF="commands/task.html">tasks</A>".</P>
+
+<P>Which brings up the point that you should understand the difference
+between a Tcl command and a <A HREF="commands/task.html">task</A>.
+
+The e93rc.tcl script has defined a menu
+item called "Execute Shell Task" and assigned the <A HREF="keynames.html#KeyPad">KP_Enter</A> as its menu
+shortcut. So by holding down the "<A HREF="standardkeyboardlayout.html">command key</A>" and pressing <A HREF="keynames.html#KeyPad">KP_Enter</A> 
+you bypass Tcl and send the command directly to the shell
+asynchronously. In this case you will see the output of the shell
+command as it is produced because the command is actually
+running in a separate subprocess. The "<A HREF="standardkeyboardlayout.html">command key</A>" used for menu
+shortcut is Ctrl. on Windows and is Alt. on XWindows.</P>
+
+<P>This is illustrated pretty clearly with the "cd" command. Using
+<A HREF="keynames.html#KeyPad">KP_Enter</A>  on a line with say "cd /tmp" on it will cause e93 to change
+its (Tcl's) working directory to /tmp. Using <A HREF="keynames.html#KeyPad">KP_Enter</A>  along with the
+<A HREF="standardkeyboardlayout.html">command key</A> will spawn a sub-shell, which will change its working
+directory to /tmp and then die leaving e93's working directory
+unchanged. So there isn't much point in tasking cd, unless it's part
+of a string of shell commands you want executed in some directory.</P>
+
+<P>Here is an illustration, which may possibly help make things clear, of how
+the interaction between e93'sTcl interpreter and the OS shell works.</P>
+
+<P><CENTER><IMG SRC="e93_Interaction.gif" ALT="e93 Interaction Diagram" BORDER='0'/></CENTER></P>
+
+
+</BODY>
+</CHAPTER>

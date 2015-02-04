@@ -1,0 +1,12 @@
+CC=cl
+LINK32=link
+DEBUGGING=ON
+!IF  "$(DEBUGGING)" == "ON"
+CCOPTS=/Zp8 /nologo /c /TP /GA /Gd /W3 /D _fprintf=PrintMessage /D "WIN32" /D "_WINDOWS" /Fo$*.obj /Fd$*.pdb /D "_DEBUG" /FR /Zi /EHsc
+LINK32OPTS=/NODEFAULTLIB:msvcrt.lib /NOLOGO /OUT:$(NAME).exe /MACHINE:IX86 /INCREMENTAL:no /PDB:$(NAME).pdb /DEBUG /MAP:$(NAME).map
+!ELSE
+CCOPTS=/Zp8 /nologo /c /TP /GA /Gs /Gy /Ox /W3 /D _fprintf=PrintMessage /D "WIN32" /D "_WINDOWS" /D "STRICT" /Fo$*.obj /EHsc
+LINK32OPTS= /NODEFAULTLIB:msvcrt.lib /NOLOGO /RELEASE /OUT:$(NAME).exe /MACHINE:IX86 /INCREMENTAL:no
+!ENDIF
+CCOPTS=$(CCOPTS) -I"$(TCL_DIR)\include"
+CCOPTS=$(CCOPTS) -D_CRT_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE

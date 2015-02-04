@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>getchannelbuffer</NAME>
+    <SUMMARY>Return the name of any buffer that might be attached to a Tcl channel</SUMMARY>
+   <PARAMETER>
+      <NAME>channelId</NAME>
+Identifies the channel for which the query is being applied.
+</PARAMETER>
+   <DESCRIPTION>
+Return the name of any buffer that might be attached to a Tcl channel.
+	This can be any Tcl output channel, e.g. stderr or stdout.
+</DESCRIPTION>
+   <OUTPUT>
+The buffer name.
+</OUTPUT>
+   <STATUS>
+The getchannelbuffer command will return an error in the following cases:<BR/>
+	No Tcl channel matching <VAR>channelId</VAR> is found.<BR/>
+	No buffer is attached to <VAR>channelId</VAR>.
+</STATUS>
+   <SEEALSO>
+      <A HREF="setchannelbuffer.html">setchannelbuffer</A>
+   </SEEALSO>
+</COMMAND>

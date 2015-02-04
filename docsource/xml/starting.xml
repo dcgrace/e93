@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Starting e93</TITLE>
+
+<SUMMARY>
+Launching the e93 application
+</SUMMARY>
+
+<BODY>
+<P>To start e93 from a command line interface (if your machine/OS has one), type:</P>
+
+<P><CODE>e93 &lt;fileToEdit&gt; &lt;fileToEdit&gt; ...</CODE></P>
+
+<P>e93 will start up, and open all of the specified files for editing.
+There are no command line options, just filenames.</P>
+</BODY>
+</CHAPTER>

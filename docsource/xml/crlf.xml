@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Carriage returns and line feeds</TITLE>
+
+<SUMMARY>
+Newline character issues on MS Windows
+</SUMMARY>
+
+<BODY>
+
+<P>The MS-DOS/Windows environment uses both a carriage return (CR) and a line feed (LF) to denote a newline.
+Internally, the editor uses just LF, and as such, will strip any CRs it sees that are followed by LFs in its input.
+Likewise, any text that the editor is exporting to the system will have CRs added to the LFs.
+This  process is not guaranteed to leave binary files intact, so care should be taken when editing them.
+File translation can be turned on or off by setting the <CODE>filetranslationmode</CODE> Tcl boolean variable.</P>
+</BODY>
+</CHAPTER>

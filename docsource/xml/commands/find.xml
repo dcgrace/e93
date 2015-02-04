@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>find</NAME>
+   <PARAMETER>
+      <NAME>searchInBuffer</NAME>
+      The name of the buffer that the search will be performed in.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>findBuffer</NAME>
+      The buffer that contains the pattern e93 is to search for.
+   </PARAMETER>
+	<OPTION optional="true">
+         <NAME>-backward</NAME>
+		search backwards
+	</OPTION>
+      <OPTION optional="true">
+         <NAME>-wrap</NAME>
+		wraps the search or replace around the end of <VAR>searchInBuffer</VAR>
+	</OPTION>
+      <OPTION optional="true">
+         <NAME>-regex</NAME>
+		treats <VAR>findbuffer</VAR> as a regular expression
+	</OPTION>
+      <OPTION optional="true">
+         <NAME>-ignorecase</NAME>
+		ignores case duringthe search
+	</OPTION>
+
+	<SUMMARY>
+	Search for text in a buffer
+	</SUMMARY>
+
+   <DESCRIPTION>
+	<P>Attempt to locate the text contained in <VAR>findbuffer</VAR> in
+	<VAR>searchInBuffer</VAR>.</P>
+	
+	<P><B>NOTE:</B> when limiting the search scope by the selected text of
+	<VAR>searchInBuffer</VAR>  the regular expression characters ^, and $
+	will match the ends of a selection segment. </P>
+	
+   </DESCRIPTION>
+
+	<STATUS>
+		This command will return an error in the following cases:
+		<P><VAR>searchInBuffer</VAR> is not provided.<BR/>
+		<VAR>searchInBuffer</VAR> is not an e93 buffer.</P>
+		
+		<P><VAR>findBuffer</VAR> is not provided.<BR/>
+		<VAR>findBuffer</VAR> is not an e93 buffer.</P>
+		
+		<P><VAR>relativeMode</VAR> is not provided, or is not an understood value.</P>
+		
+	</STATUS>
+
+   <SEEALSO>
+      <CODE>
+         <A HREF="findall.html">findall</A>
+         <A HREF="replace.html">replace</A>
+         <A HREF="replaceall.html">replaceall</A>
+         <A HREF="searchdialog.html">searchdialog</A>
+      </CODE>
+   </SEEALSO>
+
+</COMMAND>

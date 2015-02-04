@@ -1,0 +1,38 @@
+e93 INSTALLATION INSTRUCTIONS FOR WINDOWS:
+
+NOTE: Before proceeding, please read "LICENSE.TXT".
+
+Installing e93:
+---------- ---
+
+First: you will need to get Tcl/Tk 8.3 from Scriptics and install it.
+	http://dev.scriptics.com/download/tcl/tcl8_3/tcl832.exe
+
+
+Second: Unzip the contents of e93-1.3r3WinBin.zip into 
+	C:/Program Files/e93/ or another location if you prefer. 
+
+
+Third: You must set the TCL_LIBRARY environment variable.
+
+	On Windows NT 
+
+		Bring up the Control Panel
+			(e.g., by selecting Settings|Control Panel off the Start menu),
+		and select System. Go to the Environment tab, and
+		enter TCL_LIBRARY as the Variable, and the name of the directory
+		containing init.tcl for the Value, e.g., 
+
+		%SystemDrive%\Program Files\Tcl\lib\tcl8.3
+
+		Click Set and OK to finish. 
+
+	On Windows 95/98 
+
+		Edit the file autoexec.bat. Add a line such as the following: 
+
+		set TCL_LIBRARY=C:\Program Files\Tcl\lib\tcl8.3
+
+		...and then reboot
+
+	

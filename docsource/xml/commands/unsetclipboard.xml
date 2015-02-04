@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>unsetclipboard</NAME>
+   <DESCRIPTION>
+Make it so that there is no current clipboard.<BR/>
+   </DESCRIPTION>
+</COMMAND>

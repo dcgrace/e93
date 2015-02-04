@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>
+Regular Expressions
+</TITLE>
+
+<SUMMARY>
+Information about RegEx
+</SUMMARY>
+
+<BODY>
+<P>This material is derived from The GNU Emacs Manual, 9th edition.
+Copyright 1985, 1986, 1987, 1993 Free Software Foundation, Inc.
+and from the GNU regex library version 0.11.
+Copyright 1992 Free Software Foundation, Inc.</P>
+
+<P>The Free Software Foundation gives permission for the use of this
+material in e93, with different distribution terms from those stated
+in the Emacs manual, because e93 is free software, and thus worthy
+of cooperation.</P>
+
+<P><B>NOTE:</B> this has been modified to reflect e93's syntax.
+1/22/00 TMS <A href="mailto:squirest@e93.org">squirest@e93.org</A></P>
+
+<HR WIDTH="100%" />
+
+<H2>
+Contents
+</H2>
+
+<A HREF="#Overview"><H3>
+Overview
+</H3></A>
+
+<A HREF="#Syntax"><H3>
+Regular Expression Syntax
+</H3></A>
+
+<A HREF="#Backslash"><H3>
+The Backslash Character
+</H3></A>
+
+<A HREF="#Common"><H3>
+Common Operators
+</H3></A>
+<BLOCKQUOTE>
+	<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+		<TR><TD WIDTH="50%"><A HREF="#MatchSelf">Match-self Operator</A></TD>			<TD>Ordinary characters</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#MatchAny">Match-any-character Operator</A></TD>	<TD>.</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Concatenation">Concatenation Operator</A></TD>	<TD>Juxtaposition</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Repetition">Repetition Operators</A></TD>			<TD>* + ? {}</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Alternation">Alternation Operator</A></TD>		<TD>|</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#List">List Operators</A></TD>						<TD>[...] [^...]</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Grouping">Grouping Operators</A></TD>				<TD>(...)</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Back">Back-reference Operator</A></TD>			<TD>&#092;digit</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Anchoring">Anchoring Operators</A></TD>			<TD> ^ $ &lt; &gt;</TD></TR>
+	</TABLE>
+	<H3>
+	Repetition Operators
+	</H3>
+	<BLOCKQUOTE>
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+			<TR><TD WIDTH="50%"><A HREF="#Match-zero-or-more">Match-zero-or-more Operator</A></TD>	<TD>*</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-one-or-more">Match-one-or-more Operator</A></TD>	<TD>+</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-zero-or-one">Match-zero-or-one Operator</A></TD>	<TD>?</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Interval">Interval Operators</A></TD>						<TD>{}</TD></TR>
+		</TABLE>
+	</BLOCKQUOTE>
+	<H3>
+	List Operators ('[' ... ']' and '[^' ... ']')
+	</H3>
+	<BLOCKQUOTE>
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+			<TR><TD WIDTH="50%"><A HREF="#Range">Range Operator</A></TD>	<TD>start-end</TD></TR>
+		</TABLE>
+	</BLOCKQUOTE>
+	<H3>
+	Anchoring Operators
+	</H3>
+	<BLOCKQUOTE>
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+			<TR><TD WIDTH="50%"><A HREF="#Match-beginning-of-word">Match-beginning-of-word Operator</A></TD>	<TD>&lt;</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-end-of-word">Match-end-of-word Operator</A></TD>	<TD>&gt;</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-beginning-of-line">Match-beginning-of-line Operator</A></TD>	<TD>^</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-end-of-line">Match-end-of-line Operator</A></TD>	<TD>$</TD></TR>
+		</TABLE>
+	</BLOCKQUOTE>
+</BLOCKQUOTE>
+<HR WIDTH="100%" />
+
+<A NAME="Overview"></A>
+<H2>
+Overview
+</H2>
+<BLOCKQUOTE>
+<P>A "regular expression" (or "regexp", or "pattern") is a text string
+that describes some (mathematical) set of strings. A regexp R
+"matches" a string S if S is in the set of strings described by R.</P>
+
+<P>Some regular expressions match only one string, i.e., the set they
+describe has only one member. For example, the regular expression
+'foo' matches the string 'foo' and no others. Other regular
+expressions match more than one string, i.e., the set they describe has
+more than one member. For example, the regular expression 'f*' matches
+the set of strings made up of any number (including zero) of 'f's. As
+you can see, some characters in regular expressions match themselves
+(such as 'f') and some don't (such as '*'); the ones that don't match
+themselves instead let you specify patterns that describe many
+different strings.</P>
+</BLOCKQUOTE>
+
+<A NAME="Syntax"></A>
+<H2>
+Regular Expression Syntax
+</H2>
+<BLOCKQUOTE>
+<P>"Characters" are things you can type. "Operators" are things in a
+regular expression that match one or more characters. You compose
+regular expressions from operators, which in turn you specify using one
+or more characters.</P>
+
+<P>Most characters represent what we call the match-self operator, i.e.,
+they match themselves; we call these characters "ordinary". Other
+characters represent either all or parts of fancier operators; e.g.,
+'.' represents what we call the match-any-character operator (which, no
+surprise, matches any character); we call these characters
+"special".</P>
+</BLOCKQUOTE>
+
+
+<P>In the following sections, we describe these things in more detail.</P>
+
+<A NAME="Backslash"></A>
+<H2>
+The Backslash Character
+</H2>
+<BLOCKQUOTE>
+	<P>The '&#092;' character quotes (makes ordinary, if it's special,
+	 or possibly special if it's ordinary) the next character.</P>
+
+	<P>'&#092;' sequences:</P>
+	<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+		<TR><TD WIDTH="50%">&#092;n</TD>			<TD>stands for new line (0x0A).</TD></TR>
+		<TR><TD WIDTH="50%">&#092;b</TD>			<TD>stands for backspace (0x08).</TD></TR>
+		<TR><TD WIDTH="50%">&#092;r</TD>			<TD>stands for return (0x0D).</TD></TR>
+		<TR><TD WIDTH="50%">&#092;t</TD>			<TD>stands for tab (0x09).</TD></TR>
+		<TR><TD WIDTH="50%">&#092;x##</TD>		<TD>allows specification of arbitrary characters in hex (for example &#092;x0A is equivalent to &#092;n.)</TD></TR>
+		<TR><TD WIDTH="50%">&#092;&#092;0 to &#092;&#092;9</TD>	<TD>backreference to register (not valid within [])</TD></TR>
+	</TABLE>
+</BLOCKQUOTE>
+
+<A NAME="Common"></A>
+<H2>
+Common Operators
+</H2>
+<BLOCKQUOTE>
+	<P>You compose regular expressions from operators. In the following
+	sections, we describe the regular expression operators.</P>
+	
+	<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+		<TR><TD WIDTH="50%"><A HREF="#MatchSelf">Match-self Operator</A></TD>			<TD>Ordinary characters</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#MatchAny">Match-any-character Operator</A></TD>	<TD>.</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Concatenation">Concatenation Operator</A></TD>	<TD>Juxtaposition</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Repetition">Repetition Operators</A></TD>			<TD>* + ? {}</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Alternation">Alternation Operator</A></TD>		<TD>|</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#List">List Operators</A></TD>						<TD>[...] [^...]</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Grouping">Grouping Operators</A></TD>				<TD>(...)</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Back">Back-reference Operator</A></TD>			<TD>&#092;digit</TD></TR>
+		<TR><TD WIDTH="50%"><A HREF="#Anchoring">Anchoring Operators</A></TD>			<TD>^ $ &lt; &gt;</TD></TR>
+	</TABLE>
+
+	<A NAME="MatchSelf"></A>
+	<H3>
+	The Match-self Operator (ORDINARY CHARACTER)
+	</H3>
+	<BLOCKQUOTE>
+		<P>This operator matches the character itself.  All ordinary characters
+		represent this operator.  For example, 'f' is always an ordinary character,
+		so the regular expression 'f' matches only the string 'f'.
+		In particular, it does *not* match the string 'ff'.</P>
+	</BLOCKQUOTE>
+
+	<A NAME="MatchAny"></A>
+	<H3>
+	The Match-any-character Operator ('.')
+	</H3>
+	<BLOCKQUOTE>
+		<P>This operator matches any single printing or nonprinting character except
+		newline (it is equivalent to '[^&#092;n]').</P>
+
+		<P><B>NOTE:</B> if you wish to match absolutely anything, use '[-]', or '[^]'.</P>
+
+		<P>The '.' (period) character represents this operator.  For example,
+		'a.b' matches any three-character string beginning with 'a' and ending
+		with 'b'.</P>
+	</BLOCKQUOTE>
+
+	<A NAME="Concatenation"></A>
+	<H3>
+	The Concatenation Operator
+	</H3>
+	<BLOCKQUOTE>
+		<P>This operator concatenates two regular expressions A and B. No
+		character represents this operator; you simply put B after A.  The
+		result is a regular expression that will match a string if A matches
+		its first part and B matches the rest.  For example, 'xy' (two
+		match-self operators) matches 'xy'.</P>
+	</BLOCKQUOTE>
+
+	<A NAME="Repetition"></A>
+	<H3>
+	Repetition Operators
+	</H3>
+	<BLOCKQUOTE>
+		<P>Repetition operators repeat the preceding regular expression a
+		specified number of times.</P>
+
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+			<TR><TD WIDTH="50%"><A HREF="#Match-zero-or-more">Match-zero-or-more Operator</A></TD>	<TD>*</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-one-or-more">Match-one-or-more Operator</A></TD>	<TD>+</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-zero-or-one">Match-zero-or-one Operator</A></TD>	<TD>?</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Interval">Interval Operators</A></TD>						<TD>{}</TD></TR>
+		</TABLE>
+
+		<A NAME="Match-zero-or-more"></A>
+		<H3>
+		The Match-zero-or-more Operator ('*')
+		</H3>
+		<BLOCKQUOTE>
+			<P>This operator repeats the smallest possible preceding regular
+			expression as many times as necessary (including zero) to match the
+			pattern. '*' represents this operator.  For example, 'o*' matches any
+			string made up of zero or more 'o's.  Since this operator operates on
+			the smallest preceding regular expression, 'fo*' has a repeating 'o',
+			not a repeating 'fo'.  So, 'fo*' matches 'f', 'fo', 'foo', and so on.</P>
+
+			<P>Since the match-zero-or-more operator is a suffix operator, it may
+			not be applied when no regular expression precedes it.  This is the
+			case when it:</P>
+
+			<UL>
+			<LI>is first in a regular expression, or</LI>
+
+			 <LI>follows a match-beginning-of-line, match-end-of-line, open-group,
+				 or alternation operator.</LI>
+			</UL>
+
+			<P>The matcher processes a match-zero-or-more operator by first matching
+			as many repetitions of the smallest preceding regular expression as it
+			can. Then it continues to match the rest of the pattern.</P>
+
+			<P>If it can't match the rest of the pattern, it backtracks (as many
+			times as necessary), each time discarding one of the matches until it
+			can either match the entire pattern or be certain that it cannot get a
+			match.  For example, when matching 'ca*ar' against 'caaar', the matcher
+			first matches all three 'a's of the string with the 'a*' of the regular
+			expression.  However, it cannot then match the final 'ar' of the
+			regular expression against the final 'r' of the string.  So it
+			backtracks, discarding the match of the last 'a' in the string.  It can
+			then match the remaining 'ar'.</P>
+		</BLOCKQUOTE>
+
+		<A NAME="Match-one-or-more"></A>
+		<H3>
+		The Match-one-or-more Operator ('+')
+		</H3>
+		<BLOCKQUOTE>
+			<P>This operator is similar to the match-zero-or-more operator except
+			that it repeats the preceding regular expression at least once; *note
+			Match-zero-or-more Operator::., for what it operates on, and how Regex
+			backtracks to match it.</P>
+
+			<P>For example, supposing that '+' represents the match-one-or-more
+			operator; then 'ca+r' matches, e.g., 'car' and 'caaaar', but not 'cr'.</P>
+		</BLOCKQUOTE>
+
+		<A NAME="Match-zero-or-one"></A>
+		<H3>
+		The Match-zero-or-one Operator ('?')
+		</H3>
+		<BLOCKQUOTE>
+			<P>This operator is similar to the match-zero-or-more operator except
+			that it repeats the preceding regular expression once or not at all;
+			*note Match-zero-or-more Operator::., to see what it operates on, and
+			how Regex backtracks to match it.</P>
+
+			<P>For example, supposing that '?' represents the match-zero-or-one
+			operator; then 'ca?r' matches both 'car' and 'cr', but nothing else.</P>
+		</BLOCKQUOTE>
+
+		<A NAME="Interval"></A>
+		<H3>
+		Interval Operators ('{' ... '}')
+		</H3>
+		<BLOCKQUOTE>
+			<P>Supposing that '{' and '}' represent the open-interval
+			and close-interval operators; then:</P>
+
+			<P>'{COUNT}'</P>
+				<BLOCKQUOTE>
+				     <P>matches exactly COUNT occurrences of the preceding regular
+				     expression.</P>
+				</BLOCKQUOTE>
+			<P>'{MIN,}'</P>
+				<BLOCKQUOTE>
+				     <P>matches MIN or more occurrences of the preceding regular
+				     expression.</P>
+				</BLOCKQUOTE>
+			<P>'{MIN, MAX}'</P>
+				<BLOCKQUOTE>
+				    <P> matches at least MIN but no more than MAX occurrences of the
+				     preceding regular expression.</P>
+				</BLOCKQUOTE>
+		<P>The interval expression (but not necessarily the regular expression
+		that contains it) is invalid if:</P>
+
+		<UL>
+			<LI>MIN is greater than MAX</LI>
+		</UL>
+		   
+		</BLOCKQUOTE>
+	</BLOCKQUOTE>
+
+	<A NAME="Alternation"></A>
+	<H3>
+	The Alternation Operator ('|')
+	</H3>
+	<BLOCKQUOTE>
+		<P>Alternatives match one of a choice of regular expressions: if you put
+		the character(s) representing the alternation operator between any two
+		regular expressions A and B, the result matches the union of the
+		strings that A and B match.  For example, supposing that '|' is the
+		alternation operator, then 'foo|bar|quux' would match any of 'foo',
+		'bar' or 'quux'.</P>
+
+		<P>The alternation operator operates on the *largest* possible
+		surrounding regular expressions.  (Put another way, it has the lowest
+		precedence of any regular expression operator.) Thus, the only way you
+		can delimit its arguments is to use grouping.  For example, if '(' and
+		')' are the open and close-group operators, then 'fo(o|b)ar' would
+		match either 'fooar' or 'fobar'.  ('foo|bar' would match 'foo' or
+		'bar'.)</P>
+
+		<P>The matcher tries each combination of alternatives in order until it
+		is able to make a match.</P>
+
+	</BLOCKQUOTE>
+	
+	<A NAME="List"></A>
+	<H3>
+	List Operators ('[' ... ']' and '[^' ... ']')
+	</H3>
+	<BLOCKQUOTE>
+		<P>"Lists", also called "bracket expressions", are a set of zero or more
+		items.  An "item" is a character, or a range expression.</P>
+
+		<P>A "matching list" matches a single character represented by one of
+		the list items.  You form a matching list by enclosing one or more items
+		within an "open-matching-list operator" (represented by '[') and a
+		"close-list operator" (represented by ']').</P>
+
+		<P>For example, '[ab]' matches either 'a' or 'b'. '[ad]*' matches the
+		empty string and any string composed of just 'a's and 'd's in any
+		order.  Regex considers invalid a regular expression with a '[' but no
+		matching ']'.</P>
+
+		<P>"Nonmatching lists" are similar to matching lists except that they
+		match a single character *not* represented by one of the list items.
+		You use an "open-nonmatching-list operator" (represented by '[^')
+		instead of an open-matching-list operator to start a nonmatching list.</P>
+
+		<P>For example, '[^ab]' matches any character except 'a' or 'b'.</P>
+
+		<P>Most characters lose any special meaning inside a list.  The special
+		characters inside a list follow.</P>
+
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+			<TR><TD WIDTH="50%">']'</TD>	<TD>ends the list unless quoted by '&#092;'.</TD></TR>
+			<TR><TD WIDTH="50%">'&#092;'</TD>	<TD>quotes the next character.</TD></TR>
+			<TR><TD WIDTH="50%">'-'</TD>	<TD>represents the range operator unless quoted by '&#092;'.</TD></TR>
+		</TABLE>
+
+		<P>All other characters are ordinary.  For example, '[.*]' matches '.' and
+		'*'.</P>
+
+		<A NAME="Range"></A>
+		<H3>
+		The Range Operator ('-')
+		</H3>
+		<BLOCKQUOTE>
+			<P>Regex recognizes "range expressions" inside a list. They represent
+			those characters that fall between two elements in the current
+			collating sequence.  You form a range expression by putting a "range
+			operator" between two characters. '-' represents the range operator.
+			 For example, 'a-f' within a list represents all the characters from 'a'
+			through 'f' inclusively.</P>
+
+			<P>Since '-' represents the range operator, if you want to make a '-'
+			character itself a list item, you must quote it with '&#092;'.</P>
+
+			<P>Ranges do not need a start and end, if the start is omitted
+			for example, '[-a]' matches all characters through lowercase 'a';
+			if the end is omitted: '[a-]' matches lowercase 'a' through 0xFF;
+			[-] matches all characters.</P>
+		</BLOCKQUOTE>
+	</BLOCKQUOTE>
+
+	<A NAME="Grouping"></A>
+	<H3>
+	Grouping Operators ('(' ... ')')
+	</H3>
+	<BLOCKQUOTE>
+		<P>A "group", also known as a "subexpression", consists of an
+		"open-group operator", any number of other operators, and a
+		"close-group operator".  Regex treats this sequence as a unit, just as
+		mathematics and programming languages treat a parenthesized expression
+		as a unit. Groups can be empty.</P>
+
+		<P>Therefore, using "groups", you can:</P>
+
+		<UL>
+			<LI>
+				delimit the argument(s) to an alternation operator (*note
+				Alternation Operator::.) or a repetition operator (*note
+				Repetition Operators::.).
+			</LI>
+			<LI>
+				keep track of the indices of the substring that matched a given
+				group. *Note Using Registers::, for a precise explanation. This
+				lets you:
+			</LI>
+		</UL>
+		<BLOCKQUOTE>
+			<UL>
+				<LI>
+			        use the back-reference operator (*note Back-reference
+			        Operator::.).
+				</LI>
+				<LI>
+			        use registers (*note Using Registers::.).
+				</LI>
+			</UL>
+		</BLOCKQUOTE>
+	</BLOCKQUOTE>
+	
+	<A NAME="Back"></A>
+	<H3>
+	The Back-reference Operator ("&#092;"DIGIT)
+	</H3>
+	<BLOCKQUOTE>
+		<P>A back reference matches a specified preceding group.
+		The back reference operator is represented by '&#092;DIGIT' anywhere after
+		the end of a regular expression's DIGIT-th group (*note Grouping
+		Operators::.).</P>
+
+		<P>DIGIT must be between '0' and '9'.  The matcher assigns numbers 0
+		through 9 to the first ten groups it encounters.  By using one of '&#092;&#092;0'
+		through '&#092;&#092;9' after the corresponding group's close-group operator, you
+		can match a substring identical to the one that the group does.</P>
+
+		<P>Back references match according to the following (in all examples
+		below, '(' represents the open-group, ')' the close-group, '{' the
+		open-interval and '}' the close-interval operator):</P>
+
+			<UL>
+				<LI>
+				   If the group matches a substring, the back reference matches an
+				   identical substring.  For example, '(a)&#092;&#092;0' matches 'aa' and
+				   '(bana)na&#092;&#092;0bo&#092;&#092;0' matches 'bananabanabobana'.  Likewise, '(.*)&#092;&#092;0'
+				   matches any string that is composed of two identical halves; the '(.*)'
+				   matches the first half and the '&#092;&#092;0' matches the second half.
+				</LI>
+
+				<LI>
+				   If the group matches more than once (as it might if followed by,
+				   e.g., a repetition operator), then the back reference matches the
+				   substring the group *last* matched.  For example, '((a*)b)*&#092;&#092;0&#092;&#092;1'
+				   matches 'aabababa'; first group 0 (the outer one) matches 'aab'
+				   and group 1 (the inner one) matches 'aa'.  Then group 0 matches
+				   'ab' and group 1 matches 'a'.  So, '&#092;&#092;0' matches 'ab' and '&#092;&#092;1'
+				   matches 'a'.
+				</LI>
+
+				<LI>
+				   If the group doesn't participate in a match, i.e., it is part of an
+				   alternative not taken or a repetition operator allows zero
+				   repetitions of it, then the back reference makes the whole match
+				   fail.
+				</LI>
+			</UL>
+
+		 <P>You can use a back reference as an argument to a repetition operator.
+		 For example, '(a(b))&#092;&#092;1*' matches 'a' followed by one or more 'b's.
+		Similarly, '(a(b))&#092;&#092;1{3}' matches 'abbbb'.</P>
+
+		 <P>If there is no preceding DIGIT-th subexpression, the regular
+		expression is invalid.</P>
+	</BLOCKQUOTE>
+
+	<A NAME="Anchoring"></A>
+	<H3>
+	Anchoring Operators
+	</H3>
+	<BLOCKQUOTE>
+		<P>These operators can appear anywhere (except lists) within a pattern
+		and force that point in the pattern to match only at the beginning or end of a word or line.</P>
+
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+			<TR><TD WIDTH="50%"><A HREF="#Match-beginning-of-word">Match-beginning-of-word Operator</A></TD>	<TD>&lt;</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-end-of-word">Match-end-of-word Operator</A></TD>	<TD>&gt;</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-beginning-of-line">Match-beginning-of-line Operator</A></TD>	<TD>^</TD></TR>
+			<TR><TD WIDTH="50%"><A HREF="#Match-end-of-line">Match-end-of-line Operator</A></TD>	<TD>$</TD></TR>
+		</TABLE>
+
+		<A NAME="Match-beginning-of-word"></A>
+		<H3>
+			The Match-beginning-of-word Operator ('&lt;')
+		</H3>
+		<BLOCKQUOTE>
+			<P>This operator can match the empty string either at the beginning of
+			the text or the beginning of a word. Thus, it is said to "anchor" the
+			pattern to the beginning of a word.</P>
+		</BLOCKQUOTE>
+
+		<A NAME="Match-end-of-word"></A>
+		<H3>
+			The Match-end-of-word Operator ('&gt;')
+		</H3>
+		<BLOCKQUOTE>
+			<P>This operator can match the empty string either at the end of the text
+			or the end of a word. Thus, it is said to "anchor" the pattern to the
+			end of a word.</P>
+		</BLOCKQUOTE>
+
+		<A NAME="Match-beginning-of-line"></A>
+		<H3>
+			The Match-beginning-of-line Operator ('^')
+		</H3>
+		<BLOCKQUOTE>
+			<P>This operator can match the empty string either at the beginning of
+			the text or after a newline character.  Thus, it is said to "anchor"
+			the pattern to the beginning of a line.</P>
+		</BLOCKQUOTE>
+
+		<A NAME="Match-end-of-line"></A>
+		<H3>
+			The Match-end-of-line Operator ('$')
+		</H3>
+		<BLOCKQUOTE>
+			<P>This operator can match the empty string either at the end of the
+			text or before a newline character in the text.  Thus, it is said
+			to "anchor" the pattern to the end of a line.</P>
+		</BLOCKQUOTE>
+	</BLOCKQUOTE>
+</BLOCKQUOTE>
+</BODY>
+</CHAPTER>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>textinfo</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <DESCRIPTION>
+      <P>Return the total number of lines and characters contained in <VAR>bufferName</VAR>.</P>
+      <P>
+         <B>NOTE:</B> the total number of lines is actually the total number of newline characters.</P>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:<BR/>
+      <VAR>bufferName</VAR> is not provided.<BR/>
+      <VAR>bufferName</VAR> is not an e93 buffer.
+</STATUS>
+</COMMAND>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>setclipboard</NAME>
+   <PARAMETER>
+      <NAME>clipboardbuffer</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Set the current clipboard as the buffer given by <VAR>clipboardbuffer</VAR>
+      <BR/>
+   </DESCRIPTION>
+</COMMAND>

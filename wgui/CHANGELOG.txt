@@ -1,0 +1,470 @@
+December 31 2002 - Release 2.8r2 
+Changes Since  2.8r1
+------- ----- -----
+Maximizing a MDI window with a double click on the bar was not being save.
+My thanks to Philippe Chaintreuil for the bug report.
+
+December 6 2002 - Release 2.8r1 
+Changes Since  2.8
+------- ----- -----
+Hyper autoscroll was calmed.
+
+The position of the out MDI frame window was not being save and reused at startup.
+
+e93 remembers if the MDI windows were maximized.
+
+Two new procs were added: windowsgetframewindowplacement and windowssetframewindowplacement.
+
+Bug that was eating 100% of the CPU time on some machines seems to really have been crushed.
+
+The task command has had a new optional parameter added called ?completionProc?
+
+November 25 2002 - Release 2.8 
+Changes Since  2.7
+------- ----- -----
+Changed some stuff. 
+
+September 21 2002 - Release 2.7 
+Changes Since  2.6r1
+------- ----- -----
+
+February 19 2002 - Release 2.6r1 
+Changes Since  2.6
+------- ----- -----
+
+wingui/events.c 
+e93 was calling SetDoubleClickSpeed() I do not know why that was being done. It was causing problems. It is not doing that anymore. I haven't noticed any ill effects.
+
+Events weren't all setting "handled" to true. This may have been causing some looping that was eating 100% of the CPU time on some machines.
+
+events.c makes me want to rewrite e93 for Windows from scratch! 
+
+February 26 2002 - Release 2.6
+
+Changes Since  2.6
+------- ----- -----
+wingui/events.c
+	e93 was calling SetDoubleClickSpeed()
+	I do not know why that was being done.
+	It was causing problems.
+	It is not doing that anymore.
+	I haven't noticed any ill effects.
+
+	Events weren't all setting "handled" to true.
+	This may have been causing some looping that was eating 100% of the CPU time on some machines.
+
+events.c makes me want to rewrite e93 for Windows from scratch!
+
+Removed outdated windows help file. HTML help only now.
+
+
+February 19 2002 - Release 2.6
+
+Changes Since  2.5.r4
+------- ----- -----
+	Based on 1.3r3X from e93.org
+
+
+February 13 2002 - Release 2.5.r4
+
+Changes Since  2.5.r3
+------- ----- -----
+channels.c
+	Fix a channels issue under Windows2000 
+
+edit.c
+	Reverting a document was not setting "dirty" to false.
+	The status bar was being update too soon in the process.
+	
+	In:
+		bool ClearBuffer(EDITORBUFFER *theBuffer)
+		bool LoadBuffer(EDITORBUFFER *theBuffer,char *thePath)
+	moved:
+		EditorEndReplace(theBuffer);
+		
+	to the end of the function.
+
+
+
+March 18 2001 2.5.r3
+
+Changes Since  2.5.r2
+------- ----- -----
+shell.c
+	InitTclAndTk is done earlier and undone later,
+	e93 could still call Tcl until very late in the quit process.
+	If the Tcl interpreter is gone this is a bad thing.
+
+	Using the "tcl_rcFileName" to set the e93 rc file and the:
+	Tcl_SourceRCFile(theInterpreter);
+	function to load it, by the book.
+
+	Re-enabled abort handling,
+	so far no problems on Windows.
+	(abort is Escape on UNIX and  Break Windows)
+
+	Changed Tk init to one line:
+	"-use %s -geometry 0x0+0+0"
+
+shellcmd.c
+	a new command detatchtask has been added
+
+	*((bool *)theVariable)=(optionValue != 0);
+	to stop compiler warning
+
+buffer.c:75
+	tasks are now killed if a buffer is closed
+	a new command "detatchtask" has been added
+
+detatchtask.xml
+	documentation source for the new command
+
+wgui/tasks.c
+	major changes to the way tasks are handled.
+	Tasks are now all sent through a tclsh sub-process.
+	The syntax is what the Tcl exec command specifies.
+	This provides pipe, re-directs, background tasks, etc...
+
+	closing a buffer now kills any task it may have
+
+added:
+	wgui/kill.c
+	wgui/kill.h
+	wgui/psapi.h
+	PSAPI.DLL
+
+		When the root task, tclsh, is kill e93 goes through major pains
+		to kill all the child processes. Much like what might have happened
+		if Windows NT was a real OS. Read kill.c to learn what crap must be done
+		to do this on all versions of Windows.
+
+wgui/dialogs.c
+	change to account for dialog behavior on Windows 2000 to force it to show
+	open/save panels starting in the current directory
+	+ more cleanup
+
+wgui/docwin.c
+	fixed problem that caused maximized MDI windows to restore when brought forward.
+
+	Iconified windows that are brought to the top now un-iconify automatically
+	SetTopWindow always uniconifies windows, like on UNIX
+
+wgui/events.c
+	major cleanup, however it's still ugly and untrustworthy code
+
+	TK was unmaxmizing the frame window as startup, because it uses it as is "." window.
+	I now create a new hidden window for Tk "." with the frame window as its parent.
+
+
+wgui/includes.h
+	#include	"kill.h"
+
+wgui/init.c
+	no more need to init tasks
+
+wgui/printer.c
+	lineheight += lineheight/4;
+	to stop compiler warning
+
+wgui/wgui.h
+	actually remembered, again, to change the GUI_VERSION string (need to automate this)
+
+e93lib/e93rc.tcl
+	detatchtask
+	taskcompleted
+
+e93lib/packages/additions.tcl
+	KP_Subtract
+	KP_Add
+	more changes to mtime on buffers for revert
+
+e93lib/packages/c.tcl
+	added catch in the event that the INCLUDES env VAR is not set on a users system
+
+e93lib/packages/clearcase.tcl
+e93lib/packages/html.tcl
+e93lib/packages/java.tcl
+e93lib/packages/scratch.tcl
+e93lib/packages/tk.tcl
+e93lib/packages/windows.tcl
+e93lib/packages/xslt.tcl
+
+
+February 26 2001 2.5.r2
+
+Changes Since  2.5.r1
+------- ----- -----
+channels.c
+	added support for the new channel type coming out with Tcl 8.4
+
+wgui/dialogs.c
+	open panel was overwriting memory that didn't belong to it
+
+wgui/events.c
+wgui/docwin.c
+	general cleanup changes to how "minimized" windows are handled
+
+	I'm not letting buffers with task keep the task if the window is closed,
+	this may not be the correct thing to do. However, until I have a better way to manage tasks
+	this is what I want.
+	KillBufferTask(theWindow->theBuffer);
+
+wgui/includes.h
+	add reference to ..\docwin.h
+
+wgui/misc.c
+	LocateStartupScript wasn't. It was looking for files in the current working directory,
+	not near the executable. Changed it to one line of TCL. Added theTclInterpreter.
+
+wgui/printer.c
+wgui/wintcl.c
+	re-enabled printing
+
+wgui/wgui.h
+	actually remembered to change the GUI_VERSION string
+
+wgui/wintcl.c
+	windowssettaskseperator has been removed as it no longer has any meaning.
+
+
+November 20 2000 2.5.r1
+
+Changes Since  2.4.r1
+------- ----- -----
+This has some rather large changes, hence the .5
+
+wgui/menus.c
+	reduced the KeyName list to XWindows key names.
+	made key names given to bindkey and addmenu case-sensitive.
+	stopped ignoring bad key names.
+
+e93lib/e93rc.tcl
+	command+Shift return is the same as KP_Enter (Like MPW)
+	not redrecting stderr or out to TclConsole anymore
+		changed the calls to:
+			setchannelbuffer stderr
+			setchannelbuffer stdout
+		even though they're commented out
+
+wgui/docwin.c
+	general cleanup changes to how "minimized" windows are handled
+
+wgui/tasks.c
+	The whole tasks issue on Windows is not in a great state.
+
+wgui/events.c
+wgui/wintcl.c
+wgui/globals.c
+e93lib/packages/windows.tcl
+	removed the PROGRAMPATH Tcl var that was being set, since this can be
+	obtaned from Tcl with [file dirname [info nameofexecutable]]
+
+wgui/wintcl.c
+	removed:
+		windowsgetlocaltime
+		windowsgetregistrystringvalue
+		windowssetregistrystringvalue
+			because Tcl provides this functionality
+
+		windowssetfiletranslationmode
+		windowsgetfiletranslationmode
+			now a Tcl var called filetranslationmode effects this
+	added:
+		windowshtmlhelp
+			to support Windows .chm compiled HTML help files
+		raiserootmenu
+			no-op'ed for X compatibility (and we may need it if we eliminate MDI)
+
+	Tcl_WindowsRunApplication
+		was mucking with argv[1], this memory belongs to Tcl and Tcl didn't appreciate
+		having its memory mucked with. It showed its displeasure by exploding when
+		e93 quit
+
+	Ctrl vs. Alt
+		The editor command key is now configurable in the rc.files
+
+channels.c
+channels.h
+shellcmd.c
+includes.h
+makefile
+	changes to how Tcl channels are managed
+	added commands:
+		setchannelbuffer
+		getchannelbuffer
+dictionary.c
+dictionary.h
+list.c
+list.h
+	added files
+
+wgui/htmlhelp.h
+wgui/htmlhelp.lib
+wgui/includes.h
+makefile.win
+e93lib/packages/help.tcl
+	support for Windows HTML help was added
+
+unittests/addmenu.tcl
+unittests/channels.tcl
+unittests/windowshelp.tcl
+	more test
+
+October 2 2000 2.4.r1
+
+Changes Since  2.3.r3 Windows International
+------- ----- -----
+
+# the following caused a crash on 2.3.3
+addmenu {Mark} PREVIOUSSIBLING	1  {before Mark} {} {}
+
+# the following just inserted at the end, same as LASTCHILD
+addmenu {Mark} NEXTSIBLING      1  {after Mark} {} {}
+
+even within sub-menus PREVIOUSSIBLING and NEXTSIBLING were not
+implemented and merely did the same thing as FIRSTCHILD/LASTCHILD.
+
+If a command key was assigned to a menu, previous menus that used that
+same command key combination remained unchanged. So it was not
+possible to determine which menu was actually bound to the key combo.
+
+Inactive menus were not gray.
+
+Separators did not work in the main menu. They appeared with their
+name as a normal menu. (That was fixed previously, but is related)
+
+wgui/menus.c
+wgui/menus.h
+	re-wrote menus.c
+	doesn't crash
+	insert order is now correct (PREVIOUSSIBLING/NEXTSIBLING)
+	command keys are removed from previous menus
+	inactive menus now are dimmed
+	support for separators in main menu
+	switch to newer Windows menu creation API
+	eliminated boundkey linked-list
+	dropped the "MDI Windows" "addmenu \W" menu concept
+
+wgui/misc.c
+wgui/misc.h
+	made the args to the strcasecmp wrapper const
+
+e93lib/packages/worksheet.tcl
+	removed the .e93 extension from the worksheet color scheme forced
+colorscheme to "worksheet" when the worksheet file is opened rather
+	than using is file extension to determine the color scheme.
+
+e93lib/packages/help.tcl
+	tried to account for backslashes in the TCL_LIBRARY path when
+	searching for Tcl.hlp
+
+e93lib/packages/rcfiles.tcl
+	Search for only .tcl files. Only list their base names, not the full-paths.
+
+e93lib/syntaxmaps/html.tcl
+	added ".css" to the extensionHuntExpression
+
+New directory unittests/
+	made a couple of .tcl files to test e93 built-in commands.
+
+
+September 22 2000 2.3.r3
+
+Changes Since  2.3.r2 Windows International
+------- ----- -----
+e93.hlp
+	Updated the e93.hlp help file.
+
+wgui/e93help.rtf
+	added file help "source"
+
+wgui/e93.hpj
+	added file for help project
+
+wgui/events.c
+	The interaction of the Windows event loop and the
+	while(Tcl_DoOneEvent(TCL_ALL_EVENTS|TCL_DONT_WAIT))
+	call in shell.c allowed Tcl to steal events from e93.
+	Specifically it was loosing modifier keys and inserting
+	control chars into the text rather than performing
+	commands. On some machines this bug occurred more often
+	than on others, varying from unnoticeable to intolerable.
+
+	Rather than call ShellDoBackground() in shell.c,
+	events.c is now doing the following:
+	Tcl_SetServiceMode(TCL_SERVICE_ALL);
+
+	Tcl_ServiceAll();
+	VerifyModalPath();
+
+shell.c
+	Made the procedure void VerifyModalPath() not static, so that I can
+	call it from wgui/events.c
+
+
+September 21 2000 2.3.r2
+
+Changes Since  2.3.r1 Windows International
+------- ----- -----
+
+e93make.mak
+	Windows was not reporting errors. This is because fprintf(stderr, "")
+	goes nowhere on Windows. To address this I have added a #define to
+	redirect fprintf to a PrintMessage function implemented in the wgui
+	code. Rather than put that in defines.h with and #ifdef WIN32 I put
+	the define in the Windows e93make.mak. That will get error reporting
+	(in a dialog) on Windows without dirtying up the base e93 code, except
+	that I did have to add the function declaration: void
+	PrintMessage(FILE *stream, char *format,...); to guidefs.h
+
+guidefs.h
+	added PrintMessage function prototype
+
+channels.c
+	calling SetTclStderrBuffer() from UnInitChannels() now to free any
+	stderr buffers that may have been grabbed. This was leaving the buffer
+	grabbed and causing a "Buffer dying with handles" (now that Windows
+	reports them) error on quit. Since the settclstderr proc can set an
+	stderr buffer, this uninit must set it to NULL before quitting in case
+	that has happened.
+
+wgui/events.c
+	moved the Windows timer initializations out of wgui/init.c to
+	wgui/events.c. This is because they could call Tcl via the events they
+	trigger and Tcl goes away before EarlyUninit gets called. Also, since
+	they are more closely related to the event loop I choose to move them
+	closer to it. The defines for their frequency and ID numbers are now
+	local to events.c and have been moved out of wgui.h.
+
+wgui/init.c
+	moved the Windows timer initializations out
+
+wgui/wgui.h
+	moved the Windows timer defines for their frequency and ID numbers to wgui/events.c
+
+
+e93lib/packages/clearcase.tcl
+	Had to add and explicit "exec" to call the shell tool cleartool due
+	to the new way "unknown" works. Tcl check the level of the call before
+	trying to send it to the shell. Call cleartool without an exec makes
+	it a level 0, unknown insists on level 1.
+
+e93lib/packages/help.tcl
+	Wasn't finding the Tcl help file correctly. Needed a '/' after [info library]
+
+e93lib/packages/pkgindex.tcl
+	Change where TclJavaBlend looks for its .dll, you won't care about
+	that if you're not loading TclJavaBlend, which the release is not by
+	default.
+
+e93lib/packages/rcfiles.tcl
+	Cleaned-up how the RC Files menu is built.
+
+e93lib/packages/tk.tcl
+	Changed the savedialog proc to just return the file name, not wrap it
+	in a "list" call.
+
+added file INSTALL.WIN
+
+added file wgui/CHANGELOG.txt
+

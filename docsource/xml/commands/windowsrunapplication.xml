@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowsrunapplication</NAME>
+   <PARAMETER>
+      <NAME>filename</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Runs whatever program is associated with the filenames extension.<BR/>
+   </DESCRIPTION>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

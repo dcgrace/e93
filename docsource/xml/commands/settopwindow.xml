@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>settopwindow</NAME>
+    <PARAMETER>
+        <NAME>windowName</NAME>The name of the e93 window this command will act upon.</PARAMETER>
+    <DESCRIPTION>Make <VAR>windowName</VAR> the top-most window.<BR/>
+    </DESCRIPTION>
+    <STATUS>This command will return an error in the following cases:
+         <P><VAR>windowName</VAR> is not provided.<BR/>
+            <VAR>windowName</VAR> is not an e93 window.</P>
+    </STATUS>
+    <SEEALSO>
+        <CODE>
+            <A HREF="activewindow.html">activewindow</A>
+            <A HREF="openwindow.html">openwindow</A>
+            <A HREF="closewindow.html">closewindow</A>
+            <A HREF="windowlist.html">windowlist</A>
+        </CODE>
+    </SEEALSO>
+</COMMAND>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Selections</TITLE>
+
+<SUMMARY>
+Special text selection features
+</SUMMARY>
+
+<BODY>
+<P>e93's selection mechanism is on of its more distinguishing
+features. At first glance, e93 selects text in the same way as many
+other modern editors, namely:</P>
+
+<P>To select text for cut, copy, paste, or other operations, first
+move the mouse pointer to the position where the selection should
+begin, click the left button, and while holding it down, drag the
+mouse pointer to the end of the desired selection. The process
+"highlights" the selected text (by drawing it in inverse colors.) The
+highlighted selection can then be operated on by a number of editor
+functions. e93 also supports word, line, and document selection by
+double, triple, and quadruple clicking respectively. (Double clicking
+is clicking the mouse button twice in rapid succession.) If you double
+click, holding the left button down after the second click, e93 will
+the select words as you drag the mouse along. This also works for
+lines when triple clicking.</P>
+
+<P>To adjust a selection, hold down the shift key on the keyboard, and
+click the left mouse button in the document. This will either enlarge,
+or reduce the current selection, depending on where you click.
+Clicking outside the current selection will enlarge it so that it
+extends to the point where you clicked. Clicking inside the selection
+will reduce it by pulling the nearest edge in to the point where you
+clicked. You can also shift-double, shift-triple or shift-quadruple
+click, and get the expected results.</P>
+
+<A NAME="Segmented"></A>
+<H3>Segmented Selection</H3>
+<BLOCKQUOTE>
+<P>A powerful feature of e93 not found in most other modern editors is
+known as "Segmented Selection." This means is that e93 is capable of
+creating a discontiguous selection (one which has "holes" in it.) This
+feature is used by e93 to implement a more familiar form of
+selection:</P>
+</BLOCKQUOTE>
+
+<H3>Columnar Selection</H3>
+<BLOCKQUOTE>
+	<P>To create a columnar selection, click the right mouse button (if
+	your mouse has more than one button) and drag the mouse over the
+	document. This will create a selection that is rectangular.</P>
+
+	<P><B>NOTE:</B> If your mouse only has one button, you can create a
+	columnar selection by holding the "Command" key on the keyboard down,
+	while clicking and dragging. You would typically use columnar
+	selection to manipulate data that appears in columns of text. As
+	above, double clicking will force the selection to begin and end at
+	word boundaries. Triple and quadruple clicking will also work as
+	expected. You can also use the shift key as described above to expand
+	or reduce the columnar selection.</P>
+
+	<P><B>NOTE:</B> Although a columnar selection looks rectangular to
+	you, it is important to understand that e93 does not really think of
+	it that way. As far as e93 is concerned, a columnar selection is
+	nothing more than a discontinuous selection that spans pieces of the
+	text. (In this case, a small portion of one line, followed by portion
+	of the line below it, and so on...) This distinction will become
+	important as operations that work on selections are discussed.</P>
+
+</BLOCKQUOTE>
+</BODY>
+</CHAPTER>

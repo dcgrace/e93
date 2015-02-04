@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Proc">
+   <NAME>SelectLineWhenNoSelection</NAME>
+   <PARAMETER>
+      <NAME>theBuffer</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <SUMMARY>
+If there is no selection, select the current line.
+</SUMMARY>
+   <DESCRIPTION>
+If there is no selection in <VAR>theBuffer</VAR>, then select the line the cursor is on.
+</DESCRIPTION>
+   <LOCATION>
+e93lib/e93rc.tcl
+</LOCATION>
+</COMMAND>

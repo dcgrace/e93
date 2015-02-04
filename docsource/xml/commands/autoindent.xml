@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>autoindent</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <SUMMARY>
+Indent by the same amount of white space as the previous line
+</SUMMARY>
+   <DESCRIPTION>
+Delete all selected characters in <VAR>bufferName</VAR> insert a new
+line, then move over by the amount of white space that is contained at
+the start of the previous line.
+</DESCRIPTION>
+   <STATUS>
+The autoindent command will return an error in the following cases:<BR/>
+      <VAR>bufferName</VAR> is not provided.<BR/>
+      <VAR>bufferName</VAR> is not an e93 buffer.
+</STATUS>
+</COMMAND>

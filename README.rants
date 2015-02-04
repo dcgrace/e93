@@ -1,0 +1,193 @@
+Here is a collection of random rants from e93's author.
+
+This may help you understand why the editor does some things and does
+not do others.
+
+If this sounds pompous to you, it is because I can be a pompous
+bastard. Please excuse me.
+
+Control key vs. Alt key
+-----------------------
+This is for all Windows users out there who might be wondering why e93
+uses the "Alt" key to select menus (like Alt-X for cut, or Alt-C for
+copy...) instead of the "Control" key which they might be used to using...
+
+Let's see. Hmmm. How to put this gently...
+
+When the Mac came out, (and introduced the world at large to windowing
+systems) it had that strange looking clover key which was used to
+select menu items. It was quickly learned by users that that key did
+one and only one thing -- it accessed menu items from the keyboard.
+
+The Mac also had a Control key. That key did what all Control keys are
+supposed to do -- It allowed users to enter control codes which could
+be used to Control TTY style devices -- you remember those things??
+Guess what. Those things still exist, and although admittedly they are
+less important today than they used to be, the Control key is still
+needed.
+
+Anyway, if I ever had to write a Telnet client or terminal program for
+Windows, I would probably get fairly angry when I realized that I
+needed to give my users the ability to copy text (which is Control-C
+in Windows) AND the ability to send an ETX character to a process
+(which is Control-C in the rest of the world). If I used Control to
+send control codes (the original purpose for the Control key), it
+means that my users would not be able to access menus in the way that
+they were accustomed to. If I used the Control for menu shortcuts,
+users would have a difficult time using my program for its intended
+purpose (try using Telnet without a Control key).
+
+I don't know why the "engineers" at M$ chose the Control key over the
+Alt key when they were copying the Mac, but it is clear that they did
+not consider the consequences too carefully.
+
+Since I (thankfully) spend most of my time working in Unix, I think
+I'll use the Control key for its traditional purpose -- entering
+control codes.
+
+BTW: the above applies only to the Unix/X version of e93. For the
+Windows version (which fortunately I do not work on), it is clear that
+Control needs to be used for menu keys, since trying to use Alt when
+every other application uses Control (except maybe the terminal
+program ;-) would annoy people more than an inability to enter control
+codes into their documents.
+
+Oh, and if this rant gave you the impression that I am in love with
+the way X handles user interface, let me correct you now: X is my
+*least* favorite windowing system. It addresses almost no user
+interface issues, and in the process, causes every application running
+under it to be different. I tolerate X because it is the only GUI
+environment which runs on top of Unix, and is open source.
+(If there is another, I would appreciate someone letting me know.)
+
+
+Copy/Paste -- X style vs. Mac style
+-----------------------------------
+What could be more convenient? Just select some text with the left
+mouse button, and then paste it by pressing the middle button. Your
+hand would never have to leave the mouse. Sounds better than having to
+select the text with the mouse, then go to a menu, or hit a key
+combination to copy it, then do the same thing to paste -- right?
+
+Perhaps. But in practice I find the X selection mechanism annoyingly
+cumbersome.
+
+First, it is far too easy to hit the middle mouse button by accident,
+and paste unwanted text into whatever you happen to be working on. How
+many people reading this have ever pasted a bunch of garbage into an
+xterm, and ended up creating random files, or worse yet, deleting or
+over-writing important ones??
+
+Second, the copy-on-select mentality means that if I want to select a
+bunch of text to delete it, I end up putting it into the clipboard,
+writing over what I really wanted there. A good example of this is
+trying to copy a URL from some document into the address entry window
+of a browser -- Invariably I select the text of my document containing
+the URL, bring the browser window forward, notice that the address
+entry field is occupied by the last address I was looking at, select
+that address to get rid of it, hit delete, then try to paste... Oops.
+Damn. Now I go back to the original document and get the address
+again... Grrrr.
+
+Finally, having one selection for the entire windowing system means
+that I cannot leave text selected in one window or application, move
+to another to do something, then come back to the first without having
+my selections wiped out.
+
+
+Bracketing style
+----------------
+I do not really have a rant here, except that
+
+    if(blah)
+    {
+        printf("blah\n");
+    }
+    else
+    {
+        printf("no blah\n");
+    }
+
+is MUCH easier for me to follow than the K&R style.
+
+    if(blah) {
+        printf("blah\n");
+    }
+    else {
+        printf("no blah\n");
+    }
+
+If you submit code to be added to e93, do me a favor, and put it in
+the style I like :-) It will save me the time of doing the conversion
+myself, and make it more likely that I will take your code.
+
+
+Tabs vs. Spaces
+---------------
+This one is a bit more sticky. Lots of people like to use only spaces
+in their text documents. The argument is that spaces are always
+spaces, and the text will always look the same to anyone who reads it.
+If tabs are used, the argument is that different tools expand tabs
+differently, and therefore, documents with tabs in them may not always
+look as expected.
+
+I understand this argument.
+
+However, spaces are not as convenient as tabs when editing code.
+
+If you are editing code, it is nice to have the various indentation
+levels of the code represented as tabs. Tabs make it convenient to
+move over to the next indent level, or back up to the previous one.
+
+Many editors attempt to solve this tab/space issue by trying to guess
+what the user intends. When the tab key is hit, these editors add the
+correct number of spaces to the document to take the cursor to the
+next tab stop. When the user hits a backspace, the editor must guess
+that the intention was to back up over the "tab" and get rid of the
+correct number of spaces. The problem is that the editor cannot really
+know if what it is backing up over was typed as a tab, or was typed as
+spaces. Therefore, it can guess wrong, which I find confusing/bad.
+
+The best solution in my opinion is to have the editor do what the
+user asked it to do with a minimum of guessing. This means that if the
+user types a tab, he gets a tab. If the user hits backspace, he gets a
+backspace. To me, this is the most convenient way to edit code.
+
+If I need to export code to others who might be using tools which
+are different than mine, and I want them to be able to see the code
+as I intended it to look, I will convert tabs to spaces as a separate
+step. See expand(1), unexpand(1).
+
+
+Magic
+-----
+Some editors try to do things for their users by guessing what they
+would find useful, then doing those things without being asked.
+Here are some examples:
+
+Changing line termination into the default for the current platform.
+For example, some Unix editors might read a file which contained CRLF line
+termination, and convert it to LF-only line termination without asking.
+
+Adding a linefeed to the last line of a document.
+For example, some editors may discover that the last line of a document
+is lacking a line feed character, and automatically add one in.
+
+Deletion of extraneous control characters.
+
+Deletion of excess whitespace at the ends of lines.
+
+Conversion of tabs to spaces, or spaces to tabs.
+
+etc...
+
+e93 can be made to do any of these. But by default, it will never do
+*anything* to the text of a document without being explicitly
+commanded to do so. This guarantees that you can load any document
+into e93, make changes, save it, and know that the only differences are
+the changes *you* made.
+As a programmer's tool, I find this to be an important ability.
+
+If you want the editor to do these things automatically for you, e93
+is scriptable in Tcl. As a programmer, hopefully you will find such
+scripts easy to create.

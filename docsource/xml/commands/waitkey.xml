@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>waitkey</NAME>
+   <DESCRIPTION>
+Wait for user to type a key and then reports the <A HREF="../keyNames.html">keyName</A> and <A HREF="bindkey.html#modifiers">modifiers</A> that e93 associates with that key.
+</DESCRIPTION>
+   <OUTPUT>
+The <A HREF="../keyNames.html">keyName</A> and its 11 character <A HREF="bindkey.html#modifiers">modifier</A> string.
+</OUTPUT>
+</COMMAND>

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Standard keyboard layout</TITLE>
+
+<SUMMARY>
+Standard command key combinations and their effects
+</SUMMARY>
+
+<BODY>
+<P><A NAME="CommandKey"></A>Like other applications, e93 has the concept
+of a "Command Key".  This is the key used in combination with some
+other key as a shortcut to a menu item. e.g. "Command c" for cut. It's
+also sometimes called the menu accelerator key.</P>
+
+<P>On X Windows the "Command Key" key is the Alt key.</P>
+
+<H3>
+MSWindows
+</H3>
+<BLOCKQUOTE>
+	<P>On MSWindows the "Command Key" is normally the Ctrl key, as it is in
+	other MSWindows applications. However, on MSWindows e93 allows you to
+	re-map the "Command Key" to Alt if you prefer by setting two Tcl
+	variables in e93. EEM_MOD0 and EEM_CTL. 17 is the value of the Ctrl
+	key. 18 is the value of the Alt key. Modifier0 (MOD0) is how e93
+	refers to its "Command Key" internally.</P>
+
+	<P>Tying all that together; the following line lets you re-assign the
+	"Command Key" of e93 on MSWindows to the Alt key:<BR />
+	<CODE>set EEM_MOD0 18; set EEM_CTL 17</CODE><BR /></P>
+
+	<P>After doing this, the Alt key will be the e93 "Command Key" and the
+	Ctrl key will be free to generated control characters like the name
+	implies it should.</P>
+
+	<P>You may change this behavior at any time that e93 is running. However,
+	if you do that any menus that have been previously created will list
+	the old "Command Key" name. This won't cause a problem for e93, but it
+	may confuse some people. The menus will still have things like "Close
+	All Ctrl+Shift W" when, in fact, it would require "Alt+Shift W" to
+	execute that command. Menus created after that point will list the new
+	"Command Key" name correctly based on which one you've chosen to map
+	it to.<BR /> Therefore, re-assigning the "Command Key" must be done
+	early in the startup scripts  (before the first
+	<A HREF="commands/addmenu.html">addmenu</A>) if the all menu names are to
+	be displayed with their shortcut key listed correctly.</P>
+
+	<P><B>NOTE:</B>Set them to something other than 17 or 18 at your own peril.
+	Likewise setting them both to the same value would not be a good thing.</P>
+
+	<P>The X Windows version of e93 pays no mind to these variables.</P>
+</BLOCKQUOTE>
+
+<P>The following is a list of the standard e93 menus that have command
+keys assigned and key bindings. These are defined in the the base
+<A HREF="startup.html">startup scripts</A>.</P>
+
+<!--
+This is a nice idea, but it needs a lot of work:
+	Group and order by menu.
+	What Tcl proc is associated with the bound key/menu?
+	Document all those procs too.
+-->
+
+<CENTER>
+	<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+		<TR>
+			<TH WIDTH="50%">Key Combination</TH>
+			<TH WIDTH="50%">Effect</TH>
+		</TR>
+	</TABLE>
+</CENTER>
+
+<P>File Menu</P>
+
+<CENTER>
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command n</TD>
+	<TD>
+	Create a new untitled window</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command o</TD>
+	<TD>
+	Bring up an open dialog box...</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command d</TD>
+	<TD>
+	Open a file whose filename is the current selection</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command w</TD>
+	<TD>
+	Close current window</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift W</TD>
+	<TD>
+	Close all windows</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command s</TD>
+	<TD>
+	Save file...</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift S</TD>
+	<TD>
+	Save file as...</TD>
+	</TR>
+
+</TABLE></P>
+
+
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command p</TD>
+	<TD>
+	Print window...</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift P</TD>
+	<TD>
+	Print selection...</TD>
+	</TR>
+
+</TABLE></P>
+
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command q</TD>
+	<TD>
+	Quit</TD>
+	</TR>
+
+</TABLE></P>
+
+</CENTER>
+<P>Edit Menu</P>
+<CENTER>
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command z</TD>
+	<TD>
+	Undo/Redo toggle</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command u</TD>
+	<TD>
+	Undo</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command y</TD>
+	<TD>
+	Redo</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command x</TD>
+	<TD>
+	<A HREF="./commands/smartcut.html">Cut</A></TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command c</TD>
+	<TD>
+	Copy</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command v</TD>
+	<TD>
+	Paste</TD>
+	</TR>
+	
+</TABLE></P>
+
+
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command a</TD>
+	<TD>
+	Select all</TD>
+	</TR>
+
+</TABLE></P>
+
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command+Shift <A HREF="keynames.html#CharNames">braceleft</A></TD>
+	<TD>
+	Align left</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command <A HREF="keynames.html#CharNames">bracketleft</A></TD>
+	<TD>
+	Shift left</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command <A HREF="keynames.html#CharNames">bracketright</A></TD>
+	<TD>
+	Shift right</TD>
+	</TR>
+
+</TABLE>
+
+</CENTER>
+<P>Find Menu</P>
+<CENTER>
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command f</TD>
+	<TD>
+	Find/Replace...</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift G</TD>
+	<TD>
+	Find same backwards</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command g</TD>
+	<TD>
+	Find same</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift H</TD>
+	<TD>
+	Find selection backwards</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command h</TD>
+	<TD>
+	Find selection</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift T</TD>
+	<TD>
+	Replace same backwards</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command t</TD>
+	<TD>
+	Replace same</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift R</TD>
+	<TD>
+	Replace selection with...</TD>
+	</TR>
+
+</TABLE></P>
+
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command l</TD>
+	<TD>
+	Go to line...</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift l</TD>
+	<TD>
+	Locate selection</TD>
+	</TR>
+
+</TABLE></P>
+
+</CENTER>
+<P>Window Menu</P>
+<CENTER>
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command i</TD>
+	<TD>
+	Get information</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift E</TD>
+	<TD>
+	Set font...</TD>
+	</TR>
+
+</TABLE></P>
+
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command <A HREF="keynames.html#CharNames">space</A></TD>
+	<TD>
+	Swap Top Windows</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command <A HREF="keynames.html#CharNames">grave</A></TD>
+	<TD>
+	Rotate Windows</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift O</TD>
+	<TD>
+	Choose window...</TD>
+	</TR>
+
+</TABLE></P>
+
+</CENTER>
+<P>Bound Keys</P>
+<CENTER>
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command 0-9</TD>
+	<TD>
+	Clipboard 0-9</TD>
+	</TR>
+
+</TABLE></P>
+
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	F12</TD>
+	<TD>
+	Bring up Worksheet window</TD>
+	</TR>
+
+</TABLE></P>
+
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Shift F1-F10</TD>
+	<TD>
+	Set a mark</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	F1-F10</TD>
+	<TD>
+	Go to a previous set mark</TD>
+	</TR>
+
+</TABLE></P>
+
+<P><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="66%">
+	<TR><TD WIDTH="50%">
+	Command+<A HREF="keynames.html#KeyPad">KP_Enter</A></TD>
+	<TD>
+	Execute shell task</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command k</TD>
+	<TD>
+	Kill task</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	Command+Shift K</TD>
+	<TD>
+	Send EOF to Task</TD>
+	</TR>
+
+	<TR><TD WIDTH="50%">
+	<A HREF="keynames.html#KeyPad">KP_Enter</A></TD>
+	<TD>
+	Tcl execute</TD>
+	</TR>
+
+</TABLE></P>
+
+</CENTER>
+</BODY>
+</CHAPTER>

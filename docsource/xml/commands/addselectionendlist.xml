@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>addselectionendlist</NAME>
+    <PARAMETER>
+        <NAME>bufferName</NAME>
+        The unique name of an e93 buffer.
+    </PARAMETER>
+    <PARAMETER>
+        <NAME>selectionList</NAME>
+        A list of start position (in characters) / end position (also in characters) pairs.
+        Each list member representing one selection to be made in<VAR> bufferName</VAR>.<BR/>
+        <CODE>{{startPos endPos} ?{startPos endPos}? ?{startPos endPos}...?}</CODE>
+    </PARAMETER>
+    <SUMMARY>Add selections to a buffer</SUMMARY>
+    <DESCRIPTION>
+	    Add<VAR>selectionList</VAR> of ends given to the selection.
+	    If any position is out of range, it will be forced in range.
+	    If there is any overlap, the new segment boundaries will remain.
+    </DESCRIPTION>
+    <STATUS>The addselectionendlist command will return an error in the following cases:<BR/>
+        <P>
+            <VAR>bufferName</VAR> is not provided.<BR/>
+            <VAR>bufferName</VAR> is not an e93 buffer.</P>
+        <P>
+            <VAR>selectionList</VAR> is not provided.<BR/>
+            <VAR>selectionList</VAR> does not contain at least one start/end pair.</P>
+    </STATUS>
+    <SEEALSO>
+        <CODE>
+            <A HREF="expandselection.html">expandselection</A>
+            <A HREF="getselectionatposition.html">getselectionatposition</A>
+            <A HREF="getselectionendlist.html">getselectionendlist</A>
+            <A HREF="getselectionends.html">getselectionends</A>
+            <A HREF="reduceselection.html">reduceselection</A>
+            <A HREF="selectioninfo.html">selectioninfo</A>
+            <A HREF="setselectionends.html">setselectionends</A>
+            <A HREF="selectlinewhennoselection.html">selectlinewhennoselection</A>            
+            <A HREF="styletoselection.html">styletoselection</A>
+            <A HREF="selectiontostyle.html">selectiontostyle</A>
+        </CODE>
+    </SEEALSO>
+</COMMAND>

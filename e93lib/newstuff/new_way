@@ -1,0 +1,68 @@
+# Syntax coloring rules for HTML
+# March 22, 2000  TMS
+
+addsyntaxmap "HTML" \
+{
+	exp		{e_tag_start			"\\<"}
+	exp 	{e_tag_end				"\\>"}
+	exp 	{e_tag_not				"/"}
+	exp 	{e_word					"<\[!/0-9a-zA-Z\]+>"}
+	exp 	{e_equals				"="}
+	exp 	{e_comment_start		"\\<!--"}
+	exp 	{e_comment_end			"--\\>"}
+	exp 	{e_string_delimiter		"\""}
+	exp 	{e_alt_string_delimiter	"'"}
+	exp 	{e_ascii				"(&)\[#0-9a-z\]+(;)"}
+
+	m_tag_not $style_keyword \
+	{
+		{e_equals			$style_delimiter	{m_tag_value}	m_root}
+		{e_tag_end			$style_delimiter	{}				m_root}
+	}
+
+	m_tag_value $style_value \
+	{
+		{e_string_delimiter	$style_delimiter	{m_string}		""}
+		{e_tag_end			$style_delimiter	{}				""}
+	}
+
+	m_script_start 0 \
+	{
+		{e_equals			$style_delimiter	{m_tag_value}	{m_in_script}
+		{e_tag_end			$style_delimiter	{}				{m_in_script}
+	}
+
+	m_in_script 0 \
+	{
+		{e_script_end		$style_delimiter	{}				""}
+	}
+
+	m_tag_locate_keyword 0 \
+	{
+		{e_tag_not			$style_delimiter	{}				m_tag_not}
+		{e_tag_script		$style_keyword		{}				m_script_start}
+		{e_tag_style		$style_keyword		{}				m_style_start}
+		{e_equals			$style_delimiter	{}				m_tag_value}
+		{e_tag_end			$style_delimiter	{}				""}
+	}
+
+	m_comment $style_comment \
+	{
+		{e_comment_end		0					{}				""}
+	}
+
+	m_root 0 \
+	{
+		{e_comment_start	$style_comment		{m_comment}		""}
+		{e_tag_start		$style_delimiter	{m_tag_locate_keyword}	""}
+		{e_ascii:0			0					{m_ascii}		""}
+	}
+
+}
+
+set	extensionHuntExpression(HTML)	{^((.*\.html)|(.*\.htm)|(.*\.shtml))$}
+set	extensionTabSize(HTML)			4
+set	extensionColorScheme(HTML)		"e93"
+set	extensionMapName(HTML)			"HTML"
+
+

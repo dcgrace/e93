@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Find and Replace</TITLE>
+
+<SUMMARY>
+Special features for searching
+</SUMMARY>
+
+<BODY>
+<P>e93 performs search and replace like most other modern editors, with the following exceptions:</P>
+
+<P>Find All</P>
+
+<P>This is simply locates, and selects (using a segmented selection) all occurrences of the search string.</P>
+
+<P>Limit Scope</P>
+
+<P>e93 can limit the scope of Find All/Replace All functions so that they do not go outside the boundaries of the current selection (even if the current selection is discontinuous (in which case it searches the pieces individually.))</P>
+
+<P>Tcl Procedures as Replacement Text</P>
+
+<P>You can specify that e93 should treat the text of the replacement string as a Tcl script to execute each time it is about to replace something. e93 will execute the script, using the results of that execution as the text to actually replace with. </P>
+
+<P><B>NOTE:</B> When doing this, the editor creates a set of Tcl variables that contain  various portions of the matched text. These variables can be used from within the script to reference the text that is about to be replaced. The variables are:</P>
+
+<P>$found   - contains the entire text that is about to be replaced.</P>
+
+<P>If the search is done using regular expressions, then:</P>
+
+<P>$0-$9    - contain the contents of the matching subexpressions.</P>
+
+<P>Information on e93's regular expression syntax is contained <a href="regex.html">here</a></P>
+
+<P>As an example of why this might be useful, consider the task of changing a bunch of numbers in a document from decimal to hex. To do this in e93, you could enter the following into the find/replace dialog:</P>
+
+<P>Find (selection expression): [0-9]+</P>
+
+<P>Replace (treated as a Tcl script): format 0x%X $found</P>
+
+<P>The find part will locate numbers, the replace part will pass these numbers to the Tcl "format" command which will convert them to hex, and return the converted string. e93 takes this string, and uses it as the replacement. </P>
+
+</BODY>
+</CHAPTER>

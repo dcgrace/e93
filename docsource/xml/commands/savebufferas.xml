@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>savebufferas</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>newPath</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Save <VAR>bufferName</VAR> to <VAR>newPath</VAR>.
+</DESCRIPTION>
+   <OUTPUT>
+If the save succeeds, the buffer is renamed, and the new name is returned.
+</OUTPUT>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+      <P>
+         <VAR>newPath</VAR> is not provided.</P>
+      <P>The target file <VAR>newPath</VAR> cannot be created.</P>
+   </STATUS>
+</COMMAND>

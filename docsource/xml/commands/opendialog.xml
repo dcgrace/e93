@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>opendialog</NAME>
+   <PARAMETER>
+      <NAME>dialogTitle</NAME>
+   </PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>initialText</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Open a file open dialog, with <VAR>dialogTitle</VAR>  and if specified, place <VAR>initialText</VAR> into the dialog. If the user exits the dialog with Ok, return the list of files that were selected. If he exits with cancel, return an error.<BR/>
+   </DESCRIPTION>
+</COMMAND>

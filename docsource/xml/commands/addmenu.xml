@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>addmenu</NAME>
+    <SUMMARY>Add a menu to the menu tree</SUMMARY>
+    <DESCRIPTION>Add a menu to the menu tree. The addmenu command allows you to add custom menus and menu items to e93. In building a menu, you associate a command, tool, or script with a menu item that is placed in a menu. When you choose the new menu item, the command, tool, or script associated with it is executed just as though you had entered and executed the commands in the active window.<P>If you decide to change the commands associated with a menu item, you can execute addmenu again with the same menu name and item name but with a different string of commands. You can change the command key associated with a menu item in the same manner, this time modifying the item name instead of the commands.</P>
+        <P><B>NOTE:</B>Menus and menu items created with this command do not persist beyond the current e93 session unless you place the appropriate addmenu commands in one of your e93 rc files.</P>
+    </DESCRIPTION>
+    <PARAMETER>
+        <NAME>menuPathList</NAME> Is a Tcl List that specifies where the add should take place.</PARAMETER>
+    <PARAMETER>
+        <NAME>relationship</NAME> Tells how the new item should be linked to the path.<CHOICE>
+            <NAME>FIRSTCHILD</NAME> link as the first child of the given path.</CHOICE>
+        <CHOICE>
+            <NAME>LASTCHILD</NAME> link as the last child of the given path.</CHOICE>
+        <CHOICE>
+            <NAME>NEXTSIBLING</NAME> link as next sibling of the given path.</CHOICE>
+        <CHOICE>
+            <NAME>PREVIOUSSIBLING</NAME> link as previous sibling of the given path.</CHOICE>
+    </PARAMETER>
+    <PARAMETER>
+        <NAME>active</NAME> Specifies if the menu is selectable or grayed and inactive.<CHOICE>
+            <NAME>0</NAME> the menu will be grayed and inactive.</CHOICE>
+        <CHOICE>
+            <NAME>1</NAME> the menu will be selectable.</CHOICE>
+    </PARAMETER>
+    <PARAMETER>
+        <NAME>menuName</NAME>Is the name of the new element to add.</PARAMETER>
+    <PARAMETER>
+        <NAME>menuModifiers</NAME>Is a string that is used to change the menu item:<CHOICE>
+            <NAME>\S</NAME>makes the item a separator line.</CHOICE>
+        <CHOICE>
+            <NAME>\K?modifiers?keyName</NAME>
+            <P>assigns <A HREF="../keyNames.html"><VAR>keyName</VAR></A> for a command a key for the menu item.</P>
+            <P>The default behavior is to use the <A HREF="../keyNames.html"><VAR>keyName</VAR></A> specified with the Command key as the modifier<BR/>
+            The <A HREF="../keyNames.html"><VAR>keyName</VAR></A> is case-sensitive<BR/>
+            If <A HREF="../keyNames.html"> <VAR>keyName</VAR></A> specified is a single character and it is uppercase the modifiers will be Command + Shift<BR/>
+            If <A HREF="../keyNames.html"><VAR>keyName</VAR> </A> is not found, e93 for Windows will report an error.</P>
+            <P><B>NOTE:</B> Optionally you may use the same key <VAR>modifiers</VAR> used by <A HREF="bindkey.html#modifiers">bindkey</A>. This is an option unique to e93 on Windows.</P>
+        </CHOICE>
+    </PARAMETER>
+    <PARAMETER>
+        <NAME>menuFunction</NAME> Is a Tcl script to run when the menu item is selected.</PARAMETER>
+    <STATUS>The addmenu command will return an error in the following cases:<BR/>
+        <CODE>BADRELATIONSHIP</CODE>
+        <BR/>
+        <CODE>BADPATH</CODE>
+        <P>for Windows only:<BR/>
+            <CODE>BADKEYNAME</CODE>
+            <BR/>
+            <CODE>BADMODIFIERS</CODE>
+            <BR/>
+        </P>
+    </STATUS>
+    <EXAMPLES>
+        <A NAME="examples"></A>
+        <P>The following two command lines create a menu named Info and append the menu item List files to it. This menu item lists the names of each file and directory in the current directory.</P>
+        <PRE>addmenu {} LASTCHILD 1 {Info} {} {};
+        addmenu {Info} LASTCHILD 1 {List files} {} {puts [exec ls]};</PRE>
+        <P>In the following example, addmenu creates an Extras menu with a TimeStamp item. Choosing the menu item or typing its keyboard equivalent, Command-2, writes the current time and date in the active window.</P>
+        <PRE>addmenu {} LASTCHILD 1 {Extras} {} {};
+        addmenu {Extras} LASTCHILD 1 "Timestamp" {\K2} {puts [exec date]};</PRE>
+        <P>Adding the following commands to one of your <VAR>e93rc</VAR> files appends new menu items to the Find menu to create the menu shown in<A HREF="#figure1">Figure 1</A>.</P>
+        <PRE>
+        addmenu {Find} LASTCHILD 0 {Space1} {\S} {};
+        addmenu {Find} LASTCHILD 1 {Top} {\Kt} {movecursor [ActiveWindowOrBeep] STARTDOC; HomeWindowToSelectionStart [ActiveWindowOrBeep]};
+        addmenu {Find} LASTCHILD 1 {Bottom} {\Kb} {movecursor [ActiveWindowOrBeep] ENDDOC; HomeWindowToSelectionStart [ActiveWindowOrBeep]};</PRE>
+        <P>
+            <A NAME="figure1"></A>Figure 1: The Find menu with appended menu items</P>
+        <P>
+            <IMG SRC="find.jpg"/>
+        </P>
+        <P>The first command line creates a new section at the bottom of the menu by inserting a disabled separator <VAR>"Space0"</VAR> as a menu item. Each menu, including separators must have a unique name. Although, in the case of separators the name is not displayed. The newly created Top and Bottom menu items appear below the separator and allow the user to position the insertion point at the top and bottom of the target window. Their keyboard equivalents appear to the right of their names.<BR/>Notice the use of backslashes in the previous example. The "\K" needed to specify the command key is typed as "\K", this is because Tcl use the '\' character as it literal character delimiter. To use a '\' character in a Tcl script, which is what all the e93 rc files are, '\' needs to be typed twice.</P>
+        <P>In the following example,</P>
+        <PRE>addmenu {} LASTCHILD 1 {Test} {} {};
+        addmenu {Test} LASTCHILD 1 {One} {\KT} {okdialog "testing; one, two..."};
+        addmenu {Test} LASTCHILD 0 {space0} {\S} {};
+        addmenu {Test} LASTCHILD 1 {Two} {} {beep};</PRE>
+        <P>When you choose "One" from the Test menu, or type command-shift T, e93 displays an OK dialog box with "testing; one, two..." displayed in it.<BR/>When you choose "Two" from the Test menu, e93 makes an annoying beep sound.</P>
+        <BR/>
+        <BR/>
+    </EXAMPLES>
+    <LIMITATIONS>Menus and menu items created with this command do not persist beyond the current e93 session unless you place the appropriate addmenu commands in one of your e93 rc files.</LIMITATIONS>
+    <SEEALSO>
+        <CODE>
+            <A HREF="deletemenu.html">deletemenu</A>
+            <A HREF="bindkey.html">bindkey</A>
+            <A HREF="waitkey.html">waitkey</A>
+        </CODE>
+    </SEEALSO>
+</COMMAND>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Marks</TITLE>
+
+<SUMMARY>
+Book-marking selections
+</SUMMARY>
+
+<BODY>
+<P>Sometimes it is desirable to remember a given place in the text, and be able to return to it later. Most editors refer to this feature as "marking", or "book-marking". In e93, marks do not simply remember a place in the text. Instead, they remember an entire selection. e93 allows for an arbitrary number of marks of arbitrary complexity. As you edit the text, e93 attempts to update each mark so that it points to what it used to, even though you may be making modifications above or in the text that is marked. The default e93rc.tcl file sets things up so that marks can be set in a buffer by typing SHIFT-F1 through SHIFT-F10 on the keyboard. The respective mark can be recalled by F1 through F10.</P>
+
+</BODY>
+</CHAPTER>

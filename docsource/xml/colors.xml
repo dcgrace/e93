@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Color Names</TITLE>
+
+<SUMMARY>
+X Windows color names
+</SUMMARY>
+
+<BODY>
+<P>Colors are specified by name (<A HREF="#names">see below</A> ) or by three bytes in hexadecimal, one each for R, G, B., in the form 
+<CODE>RRGGBB</CODE> (e.g. white=<CODE>FFFFFF</CODE>, green=<CODE>00FF00</CODE>, gray=<CODE>808080</CODE>). 
+This gives you 65536 posible colors, if your computer supports that many.</P>
+
+<P>You may set colors by name but if you ask e93 to tell you a color it always returns back to you as 
+the two sets of numbers, representing foreground and background respectively, of three, one for
+each color channel, hexadecimal byte values in the form <CODE>RRGGBB RRGGBB</CODE>.</P>
+
+<h3>
+SEE ALSO
+</h3>
+<blockquote>
+<p><code>
+      <A HREF="commands/openwindow.html">openwindow</A> 
+      <A HREF="commands/setcolors.html">setcolor</A> 
+      <A HREF="commands/getcolors.html">getcolor</A> 
+</code></p> 
+</blockquote>
+
+
+<A name="names"/>
+<H4>Colors may also be specified using names from the following list of X Windows colors:</H4>
+<P><B>NOTE:</B>
+<BLOCKQUOTE>
+<P>Two-word colors such as "GostWhite" may optionally be written as "ghost white".</P>
+<P>Additional variation in shade may be specified by appending a 1 through 4 to the end of many color names, e.g. <CODE>bisque3</CODE>.<BR/>
+	1 being lighter than 4.</P>
+<P>Gray can be spelled incorrectly as "grey" if you really want to. Even within a word, e.g. "<CODE>DarkSlateGrey</CODE>"</P>
+<P>You may not use "lite" instead of "light", even if you ask nicely.</P>
+<P>Color names are case insensitive.</P>
+</BLOCKQUOTE>
+</P>
+
+
+<P>
+<TABLE align="center" border="0" cellPadding="0" cellSpacing="3" width="350">
+	<TH align='left' width='50%'>Name</TH>
+	<TH align='center' width='25%'>Color</TH>
+	<TH align='center' width='25%'>Hexadecimal Value</TH>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Black</TD>
+		<TD align='center' bgcolor='Black' width='25%'/>
+		<TD align='center' width='25%'><CODE>000000</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>White</TD>
+		<TD align='left' bgcolor='White' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFFFFF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Snow</TD>
+		<TD align='left' bgcolor='Snow' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFFAFA</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>GhostWhite</TD>
+		<TD align='left' bgcolor='GhostWhite' width='25%'/>
+		<TD align='center' width='25%'><CODE>F8F8FF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>WhiteSmoke</TD>
+		<TD align='left' bgcolor='WhiteSmoke' width='25%'/>
+		<TD align='center' width='25%'><CODE>F5F5F5</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Gainsboro</TD>
+		<TD align='left' bgcolor='Gainsboro' width='25%'/>
+		<TD align='center' width='25%'><CODE>DCDCDC</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>FloralWhite</TD>
+		<TD align='left' bgcolor='FloralWhite' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFFAF0</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>OldLace</TD>
+		<TD align='left' bgcolor='OldLace' width='25%'/>
+		<TD align='center' width='25%'><CODE>FDF5E6</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Linen</TD>
+		<TD align='left' bgcolor='Linen' width='25%'/>
+		<TD align='center' width='25%'><CODE>FAF0E6</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>AntiqueWhite</TD>
+		<TD align='left' bgcolor='AntiqueWhite' width='25%'/>
+		<TD align='center' width='25%'><CODE>FAEBD7</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>BlanchedAlmond</TD>
+		<TD align='left' bgcolor='BlanchedAlmond' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFEBCD</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Bisque</TD>
+		<TD align='left' bgcolor='Bisque' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFE4C4</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>NavajoWhite</TD>
+		<TD align='left' bgcolor='NavajoWhite' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFDEAD</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Moccasin</TD>
+		<TD align='left' bgcolor='Moccasin' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFE4B5</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Cornsilk</TD>
+		<TD align='left' bgcolor='Cornsilk' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFF8DC</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Ivory</TD>
+		<TD align='left' bgcolor='Ivory' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFFFF0</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LemonChiffon</TD>
+		<TD align='left' bgcolor='LemonChiffon' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFFACD</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Seashell</TD>
+		<TD align='left' bgcolor='Seashell' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFF5EE</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Honeydew</TD>
+		<TD align='left' bgcolor='Honeydew' width='25%'/>
+		<TD align='center' width='25%'><CODE>F0FFF0</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MintCream</TD>
+		<TD align='left' bgcolor='MintCream' width='25%'/>
+		<TD align='center' width='25%'><CODE>F5FFFA</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Azure</TD>
+		<TD align='left' bgcolor='Azure' width='25%'/>
+		<TD align='center' width='25%'><CODE>F0FFFF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>AliceBlue</TD>
+		<TD align='left' bgcolor='AliceBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>F0F8FF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Lavender</TD>
+		<TD align='left' bgcolor='Lavender' width='25%'/>
+		<TD align='center' width='25%'><CODE>E6E6FA</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LavenderBlush</TD>
+		<TD align='left' bgcolor='LavenderBlush' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFF0F5</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MistyRose</TD>
+		<TD align='left' bgcolor='MistyRose' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFE4E1</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkSlateGray</TD>
+		<TD align='left' bgcolor='DarkSlateGray' width='25%'/>
+		<TD align='center' width='25%'><CODE>2F4F4F</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DimGray</TD>
+		<TD align='left' bgcolor='DimGray' width='25%'/>
+		<TD align='center' width='25%'><CODE>696969</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>SlateGray</TD>
+		<TD align='left' bgcolor='SlateGray' width='25%'/>
+		<TD align='center' width='25%'><CODE>708090</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightSlateGray</TD>
+		<TD align='left' bgcolor='LightSlateGray' width='25%'/>
+		<TD align='center' width='25%'><CODE>778899</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Gray</TD>
+		<TD align='left' bgcolor='Gray' width='25%'/>
+		<TD align='center' width='25%'><CODE>BEBEBE</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightGray</TD>
+		<TD align='left' bgcolor='#D3D3D3' width='25%'/>
+		<TD align='center' width='25%'><CODE>D3D3D3</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkGray</TD>
+		<TD align='left' bgcolor='DarkGray' width='25%'/>
+		<TD align='center' width='25%'><CODE>A9A9A9</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Gray0 thru 100</TD>
+		<TD align='left' bgcolor='Gray' width='25%'/>
+		<TD align='center' width='25%'><CODE>??????</CODE></TD>
+	</TR>
+	<TR align='left' >
+		<TD align='left' width='50%'>MidnightBlue</TD>
+		<TD align='left' bgcolor='MidnightBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>191970</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Navy</TD>
+		<TD align='left' bgcolor='Navy' width='25%'/>
+		<TD align='center' width='25%'><CODE>000080</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>NavyBlue</TD>
+		<TD align='left' bgcolor='Navy' width='25%'/>
+		<TD align='center' width='25%'><CODE>000080</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkBlue</TD>
+		<TD align='left' bgcolor='DarkBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>00008B</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>CornflowerBlue</TD>
+		<TD align='left' bgcolor='CornflowerBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>6495ED</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkSlateBlue</TD>
+		<TD align='left' bgcolor='DarkSlateBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>483D8B</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>SlateBlue</TD>
+		<TD align='left' bgcolor='SlateBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>6A5ACD</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MediumSlateBlue</TD>
+		<TD align='left' bgcolor='MediumSlateBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>7B68EE</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightSlateBlue</TD>
+		<TD align='left' bgcolor='#8470FF' width='25%'/>
+		<TD align='center' width='25%'><CODE>8470FF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MediumBlue</TD>
+		<TD align='left' bgcolor='MediumBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>0000CD</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>RoyalBlue</TD>
+		<TD align='left' bgcolor='RoyalBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>4169E1</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Blue</TD>
+		<TD align='left' bgcolor='Blue' width='25%'/>
+		<TD align='center' width='25%'><CODE>0000FF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DodgerBlue</TD>
+		<TD align='left' bgcolor='DodgerBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>1E90FF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DeepSkyBlue</TD>
+		<TD align='left' bgcolor='DeepSkyBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>00BFFF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>SkyBlue</TD>
+		<TD align='left' bgcolor='SkyBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>87CEEB</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightSkyBlue</TD>
+		<TD align='left' bgcolor='LightSkyBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>87CEFA</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>SteelBlue</TD>
+		<TD align='left' bgcolor='SteelBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>4682B4</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightSteelBlue</TD>
+		<TD align='left' bgcolor='LightSteelBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>B0C4DE</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightBlue</TD>
+		<TD align='left' bgcolor='LightBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>ADD8E6</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkTurquoise</TD>
+		<TD align='left' bgcolor='DarkTurquoise' width='25%'/>
+		<TD align='center' width='25%'><CODE>00CED1</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MediumTurquoise</TD>
+		<TD align='left' bgcolor='MediumTurquoise' width='25%'/>
+		<TD align='center' width='25%'><CODE>48D1CC</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Turquoise</TD>
+		<TD align='left' bgcolor='Turquoise' width='25%'/>
+		<TD align='center' width='25%'><CODE>40E0D0</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkCyan</TD>
+		<TD align='left' bgcolor='DarkCyan' width='25%'/>
+		<TD align='center' width='25%'><CODE>008B8B</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Cyan</TD>
+		<TD align='left' bgcolor='Cyan' width='25%'/>
+		<TD align='center' width='25%'><CODE>00FFFF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightCyan</TD>
+		<TD align='left' bgcolor='LightCyan' width='25%'/>
+		<TD align='center' width='25%'><CODE>E0FFFF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>CadetBlue</TD>
+		<TD align='left' bgcolor='CadetBlue' width='25%'/>
+		<TD align='center' width='25%'><CODE>5F9EA0</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MediumAquamarine</TD>
+		<TD align='left' bgcolor='MediumAquamarine' width='25%'/>
+		<TD align='center' width='25%'><CODE>66CDAA</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Aquamarine</TD>
+		<TD align='left' bgcolor='Aquamarine' width='25%'/>
+		<TD align='center' width='25%'><CODE>7FFFD4</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkGreen</TD>
+		<TD align='left' bgcolor='DarkGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>006400</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkOliveGreen</TD>
+		<TD align='left' bgcolor='DarkOliveGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>556B2F</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkSeaGreen</TD>
+		<TD align='left' bgcolor='DarkSeaGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>8FBC8F</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>SeaGreen</TD>
+		<TD align='left' bgcolor='SeaGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>2E8B57</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MediumSeaGreen</TD>
+		<TD align='left' bgcolor='MediumSeaGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>3CB371</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightSeaGreen</TD>
+		<TD align='left' bgcolor='LightSeaGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>20B2AA</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>SpringGreen</TD>
+		<TD align='left' bgcolor='SpringGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>00FF7F</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LawnGreen</TD>
+		<TD align='left' bgcolor='LawnGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>7CFC00</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightGreen</TD>
+		<TD align='left' bgcolor='LightGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>90EE90</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Green</TD>
+		<TD align='left' bgcolor='Green' width='25%'/>
+		<TD align='center' width='25%'><CODE>00FF00</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Chartreuse</TD>
+		<TD align='left' bgcolor='Chartreuse' width='25%'/>
+		<TD align='center' width='25%'><CODE>7FFF00</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MediumSpringGreen</TD>
+		<TD align='left' bgcolor='MediumSpringGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>00FA9A</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>GreenYellow</TD>
+		<TD align='left' bgcolor='GreenYellow' width='25%'/>
+		<TD align='center' width='25%'><CODE>ADFF2F</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LimeGreen</TD>
+		<TD align='left' bgcolor='LimeGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>32CD32</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>YellowGreen</TD>
+		<TD align='left' bgcolor='YellowGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>9ACD32</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>ForestGreen</TD>
+		<TD align='left' bgcolor='ForestGreen' width='25%'/>
+		<TD align='center' width='25%'><CODE>228B22</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>OliveDrab</TD>
+		<TD align='left' bgcolor='OliveDrab' width='25%'/>
+		<TD align='center' width='25%'><CODE>6B8E23</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkKhaki</TD>
+		<TD align='left' bgcolor='DarkKhaki' width='25%'/>
+		<TD align='center' width='25%'><CODE>BDB76B</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Khaki</TD>
+		<TD align='left' bgcolor='Khaki' width='25%'/>
+		<TD align='center' width='25%'><CODE>F0E68C</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightGoldenrodYellow</TD>
+		<TD align='left' bgcolor='LightGoldenrodYellow' width='25%'/>
+		<TD align='center' width='25%'><CODE>FAFAD2</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightYellow</TD>
+		<TD align='left' bgcolor='LightYellow' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFFFE0</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Yellow</TD>
+		<TD align='left' bgcolor='Yellow' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFFF00</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Gold</TD>
+		<TD align='left' bgcolor='Gold' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFD700</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightGoldenrod</TD>
+		<TD align='left' bgcolor='#EEDD82' width='25%'/>
+		<TD align='center' width='25%'><CODE>EEDD82</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Goldenrod</TD>
+		<TD align='left' bgcolor='Goldenrod' width='25%'/>
+		<TD align='center' width='25%'><CODE>DAA520</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkGoldenrod</TD>
+		<TD align='left' bgcolor='DarkGoldenrod' width='25%'/>
+		<TD align='center' width='25%'><CODE>B8860B</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>RosyBrown</TD>
+		<TD align='left' bgcolor='RosyBrown' width='25%'/>
+		<TD align='center' width='25%'><CODE>BC8F8F</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>IndianRed</TD>
+		<TD align='left' bgcolor='IndianRed' width='25%'/>
+		<TD align='center' width='25%'><CODE>CD5C5C</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>SaddleBrown</TD>
+		<TD align='left' bgcolor='SaddleBrown' width='25%'/>
+		<TD align='center' width='25%'><CODE>8B4513</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Sienna</TD>
+		<TD align='left' bgcolor='Sienna' width='25%'/>
+		<TD align='center' width='25%'><CODE>A0522D</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Burlywood</TD>
+		<TD align='left' bgcolor='Burlywood' width='25%'/>
+		<TD align='center' width='25%'><CODE>DEB887</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Beige</TD>
+		<TD align='left' bgcolor='Beige' width='25%'/>
+		<TD align='center' width='25%'><CODE>F5F5DC</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Wheat</TD>
+		<TD align='left' bgcolor='Wheat' width='25%'/>
+		<TD align='center' width='25%'><CODE>F5DEB3</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>SandyBrown</TD>
+		<TD align='left' bgcolor='SandyBrown' width='25%'/>
+		<TD align='center' width='25%'><CODE>F4A460</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Tan</TD>
+		<TD align='left' bgcolor='Tan' width='25%'/>
+		<TD align='center' width='25%'><CODE>D2B48C</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Chocolate</TD>
+		<TD align='left' bgcolor='Chocolate' width='25%'/>
+		<TD align='center' width='25%'><CODE>D2691E</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Firebrick</TD>
+		<TD align='left' bgcolor='Firebrick' width='25%'/>
+		<TD align='center' width='25%'><CODE>B22222</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Brown</TD>
+		<TD align='left' bgcolor='Brown' width='25%'/>
+		<TD align='center' width='25%'><CODE>A52A2A</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkSalmon</TD>
+		<TD align='left' bgcolor='DarkSalmon' width='25%'/>
+		<TD align='center' width='25%'><CODE>E9967A</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Salmon</TD>
+		<TD align='left' bgcolor='Salmon' width='25%'/>
+		<TD align='center' width='25%'><CODE>FA8072</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightSalmon</TD>
+		<TD align='left' bgcolor='LightSalmon' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFA07A</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Orange</TD>
+		<TD align='left' bgcolor='Orange' width='25%'/>
+		<TD align='center' width='25%'><CODE>FFA500</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkOrange</TD>
+		<TD align='left' bgcolor='DarkOrange' width='25%'/>
+		<TD align='center' width='25%'><CODE>FF8C00</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Coral</TD>
+		<TD align='left' bgcolor='Coral' width='25%'/>
+		<TD align='center' width='25%'><CODE>FF7F50</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>LightCoral</TD>
+		<TD align='left' bgcolor='LightCoral' width='25%'/>
+		<TD align='center' width='25%'><CODE>F08080</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Tomato</TD>
+		<TD align='left' bgcolor='Tomato' width='25%'/>
+		<TD align='center' width='25%'><CODE>FF6347</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>OrangeRed</TD>
+		<TD align='left' bgcolor='OrangeRed' width='25%'/>
+		<TD align='center' width='25%'><CODE>FF4500</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Red</TD>
+		<TD align='left' bgcolor='Red' width='25%'/>
+		<TD align='center' width='25%'><CODE>FF0000</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkRed</TD>
+		<TD align='left' bgcolor='DarkRed' width='25%'/>
+		<TD align='center' width='25%'><CODE>8B0000</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Maroon</TD>
+		<TD align='left' bgcolor='Maroon' width='25%'/>
+		<TD align='center' width='25%'><CODE>B03060</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MediumVioletRed</TD>
+		<TD align='left' bgcolor='MediumVioletRed' width='25%'/>
+		<TD align='center' width='25%'><CODE>C71585</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>VioletRed</TD>
+		<TD align='left' bgcolor='#D02090' width='25%'/>
+		<TD align='center' width='25%'><CODE>D02090</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkMagenta</TD>
+		<TD align='left' bgcolor='DarkMagenta' width='25%'/>
+		<TD align='center' width='25%'><CODE>8B008B</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Magenta</TD>
+		<TD align='left' bgcolor='Magenta' width='25%'/>
+		<TD align='center' width='25%'><CODE>FF00FF</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Thistle</TD>
+		<TD align='left' bgcolor='Thistle' width='25%'/>
+		<TD align='center' width='25%'><CODE>D8BFD8</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Violet</TD>
+		<TD align='left' bgcolor='Violet' width='25%'/>
+		<TD align='center' width='25%'><CODE>EE82EE</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>Orchid</TD>
+		<TD align='left' bgcolor='Orchid' width='25%'/>
+		<TD align='center' width='25%'><CODE>DA70D6</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>MediumOrchid</TD>
+		<TD align='left' bgcolor='MediumOrchid' width='25%'/>
+		<TD align='center' width='25%'><CODE>BA55D3</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkOrchid</TD>
+		<TD align='left' bgcolor='DarkOrchid' width='25%'/>
+		<TD align='center' width='25%'><CODE>9932CC</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>DarkViolet</TD>
+		<TD align='left' bgcolor='DarkViolet' width='25%'/>
+		<TD align='center' width='25%'><CODE>9400D3</CODE></TD>
+	</TR>
+
+	<TR align='left' >
+		<TD align='left' width='50%'>BlueViolet</TD>
+		<TD align='left' bgcolor='BlueViolet' width='25%'/>
+		<TD align='center' width='25%'><CODE>8A2BE2</CODE></TD>
+	</TR>
+
+</TABLE>
+</P>
+
+</BODY>
+</CHAPTER>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowsgetstatusbarstringwidth</NAME>
+   <PARAMETER>
+      <NAME>string</NAME>
+   </PARAMETER>
+</COMMAND>

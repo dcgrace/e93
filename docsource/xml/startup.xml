@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>
+Tcl startup script and environment variables
+</TITLE>
+
+<SUMMARY>
+Startup scripts
+</SUMMARY>
+
+<BODY>
+	<P>When e93 starts, it looks for the startup script file 'e93rc.tcl'. e93 
+	searches for the startup script file in the following sequence:</P>
+	
+	<P>1. The drive and directory that is listed in the HOMEDRIVE, 
+	and HOMEPATH environment variables. 
+	<BR />
+	2. The current directory. 
+	<BR />
+	3. The directory the executable is in. 
+	<BR />
+	4. The directories that are listed in the PATH environment variable.</P>
+	
+	<P>e93 can be customized by creating scripts that are executed when the editor starts up. By default, e93 locates and executes the script "e93rc.tcl". This script contains the base information for a typical e93 setup. Although it is possible to modify this script to change e93's configuration, it is not generally recommended, since with each update of e93, you will have to reintegrate your changes with the new version.</P>
+
+	<P>To help reduce the need to modify the "e93rc.tcl" script, and to allow each user on a given machine to have a customized version of the editor, the base startup script attempts to locate and execute various user-specific script files.</P>
+
+	<P>These files reside in the user's home directory (in the directory ~/e93lib), and allow the user to add to e93's functionality in a convenient way. IT will depend on your system if ~ has any meaning. For instance on Windows with Cygwin installed it does.</P>
+
+	<P>The user's "e93lib" directory may contain the following sub-directories:</P>
+
+	<P>syntaxmaps syntaxmaps_aux highlightschemes highlightschemes_aux modules modules_aux prefs</P>
+
+	<P>If the "syntaxmaps" directory is present, e93 will use the syntax map definition files it contains in preference to the defaults it would normally load. When this directory exists, e93 will NOT load its default syntax maps. All syntax map definition files contained in this subdirectory must have a name that ends in ".tcl" to be recognized.</P>
+
+	<P>If the "syntaxmaps_aux" directory is present, e93 will add the syntax map definitions it contains to the defaults it normally loads. All syntax map definition files contained in this subdirectory must have a name that ends in ".tcl" to be recognized.</P>
+
+	<P>If the "highlightschemes" directory is present, e93 will use the highlight schemes it contains in preference to the defaults it would normally load. When this directory exists, e93 will NOT load its default highlight schemes. All highlight scheme definition files contained in this subdirectory must have a name that ends in ".tcl" to be recognized.</P>
+
+	<P>If the "highlightschemes_aux" directory is present, e93 will add the highlight schemes it contains to the defaults it normally loads. All highlight scheme definition files contained in this subdirectory must have a name that ends in ".tcl" to be recognized.</P>
+
+	<P>If the "modules" directory is present, e93 will use the modules (just additional Tcl scripts, menu items, or whatever) it contains in preference to the modules it would normally load. When this directory exists, e93 will NOT load its default modules. All modules contained in this subdirectory must have a name that ends in ".tcl" to be recognized. Modules are typically used to define functions specific to any given user's tasks.</P>
+
+	<P>If the "modules_aux" directory is present, e93 will add the modules it contains to the defaults it normally loads. All modules contained in this subdirectory must have a name that ends in ".tcl" to be recognized.</P>
+
+	<P>Finally, if the "prefs" directory is present, e93 will execute all the scripts contained within it as the last step in the initialization procedure. It is at this point, that you can alter any preferences that you desire before the editor opens any files.</P>
+</BODY>
+</CHAPTER>

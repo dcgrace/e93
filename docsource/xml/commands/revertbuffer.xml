@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>revertbuffer</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <DESCRIPTION>
+Revert <VAR>bufferName</VAR> to last loaded state, no questions asked.<BR/>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

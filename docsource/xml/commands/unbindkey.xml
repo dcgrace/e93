@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>unbindkey</NAME>
+   <PARAMETER>
+      <NAME>keyName</NAME>
+      <A HREF="../keyNames.html">
+         <VAR>keyName</VAR>
+      </A> identifies the key to which a command is bound.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>modifiers</NAME>
+See <A HREF="bindkey.html#modifiers">
+         <VAR>bindkey</VAR>
+      </A>
+   </PARAMETER>
+   <DESCRIPTION>
+      <P>Remove binding of <VAR>keyName</VAR>, <VAR>modifiers</VAR>.</P>
+   </DESCRIPTION>
+   <EXAMPLES>
+unbinding the combination Alt-F5 to beep:<BR/>
+      <CODE>unbindkey F5 00100000000</CODE>
+   </EXAMPLES>
+   <SEEALSO>
+      <A HREF="bindkey.html">bindkey</A>
+      <A HREF="../keyNames.html">key names</A>
+   </SEEALSO>
+</COMMAND>

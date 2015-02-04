@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Windows and Buffers</TITLE>
+
+<SUMMARY>
+What a buffer is and how it relates to a window
+</SUMMARY>
+
+<BODY>
+
+<P>When e93 opens a file for editing, it reads the contents of the
+file into a "buffer", and then closes the file. All editing takes
+place within the buffer, and changes are not written back to the file
+until the buffer is "Saved".</P>
+
+<P>A buffer is an area of memory where text is stored while it is
+being edited. Buffers can contain arbitrary amounts of text, and do not
+place any limits on the characters they contain ('ASCII 0' is allowed
+in a buffer). Although buffers are usually used to hold the contents
+of files, they are also used to hold other things, like new documents,
+clipboards, and the text that is used by the Find and Replace
+functions.</P>
+
+<P>All buffers have names. These names are needed so that buffers can
+be referred to from Tcl scripts. The name of each buffer must be
+unique. Buffer names can be of arbitrary length, and can contain any
+character except 'ASCII 0'. A buffer opened to a file is typically named
+with the full path name of that file. Buffer names are case
+sensitive.</P>
+
+<P>Buffers can have "windows" associated with them. A window can be
+thought of as a view onto the contents of a buffer. Windows are where
+most editing commands are carried out. It is important to understand
+that buffers do not NEED to have windows associated with them. In
+fact, certain buffers (like clipboards) typically are not associated
+with windows.</P>
+
+<P>Each window on the other hand, is always associated with a buffer.
+Windows also have names, and each takes the name of the buffer that it
+is associated with.</P>
+
+<P>Many of the features of a window can be changed from Tcl scripts.</P>
+<BLOCKQUOTE>
+	<P>
+	Some of these are:<BR />
+	<A HREF="commands/setcolors.html">Foreground Color</A><BR />
+	<A HREF="commands/setcolors.html">Background Color</A><BR />
+	<A HREF="commands/setfont.html">Font</A><BR />
+	<A HREF="commands/settabsize.html">Tab Size</A><BR />
+	<A HREF="commands/settopleft.html">Location</A><BR />
+    <A HREF="commands/setrect.html">Width/Height</A><BR />
+	</P>
+</BLOCKQUOTE>
+
+<P>See <a href="commands.html">Command Reference</a> for detailed
+information on commands that modify windows.</P>
+
+<P>e93 maintains the concept of an "active window". This is the window
+that is top-most. Most menu commands operate on the active window.</P>
+
+<P>Each window has a "Status bar" which gives useful information about
+the buffer being edited. The status bar indicates if a buffer has been
+modified, how many lines of text it contains, how many characters of
+text it contains, and gives information about the current
+cursor/selection position. Also, if there is a task running in the
+window, the status bar will let you know.</P>
+
+<h3>
+SEE ALSO
+</h3>
+<blockquote>
+<p><code>
+    <A HREF="colors.html">Color Names</A>
+    <A HREF="syntaxmaps.html">Syntax Maps</A>
+    <A HREF="commands/openwindow.html">openwindow</A>
+    <A HREF="commands/setcolors.html">setcolors</A>
+    <A HREF="commands/setfont.html">setfont</A>
+    <A HREF="commands/settabsize.html">settabsize</A>
+    <A HREF="commands/settopleft.html">settopleft</A>
+    <A HREF="commands/setrect.html">setrect</A>
+</code></p> 
+</blockquote>
+
+</BODY>
+</CHAPTER>

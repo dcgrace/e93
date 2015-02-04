@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>activewindow</NAME>
+    <SUMMARY>Report which window is top-most</SUMMARY>
+    <DESCRIPTION>Report which window is top-most.</DESCRIPTION>
+    <OUTPUT>The name of the top-most window.</OUTPUT>
+    <STATUS>activewindow returns an error if there is no window active.</STATUS>
+    <SEEALSO>
+        <CODE>
+            <A HREF="settopwindow.html">settopwindow</A>
+            <A HREF="openwindow.html">openwindow</A>
+            <A HREF="closewindow.html">closewindow</A>
+            <A HREF="windowlist.html">windowlist</A>
+        </CODE>
+    </SEEALSO>
+</COMMAND>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>settopleft</NAME>
+   <PARAMETER>
+      <NAME>windowName</NAME>
+The name of the e93 window this command will act upon.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>topLine</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>leftPixel</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+      <P>Set the line number to display at the top of <VAR>windowName</VAR> and
+the number of pixels from the left that <VAR>windowName</VAR> should
+display.</P>
+      <P>
+         <B>NOTE:</B> if any value is out of range, it will be set to the nearest allowable value.</P>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>windowName</VAR> is not provided.<BR/>
+         <VAR>windowName</VAR> is not an e93 window.</P>
+   </STATUS>
+</COMMAND>

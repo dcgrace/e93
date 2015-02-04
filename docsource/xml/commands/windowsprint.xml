@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowsprint</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <STATUS>
+This command will return an error in the following cases:<BR/>
+      <VAR>bufferName</VAR> is not provided.<BR/>
+      <VAR>bufferName</VAR> is not an e93 buffer.
+</STATUS>
+</COMMAND>

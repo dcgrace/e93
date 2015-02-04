@@ -1,0 +1,172 @@
+Hi Todd,
+
+Here's a rather disjointed list of changes made to e93 plus the latest docs, which are not "finished" but far more complete than what's in the latest release.
+
+I'm going to be busy for a while. So I may not do much more in the sort term.  However, so are you. Therefore, I may end up sending a better version of all this before you get a chance to do anything with what's here. Maybe not.
+
+Some sites list your server as the ftp source for e93 for Windows. That gets them a very old version of the executable. There are many bugs in that version so it might be worth replacing that copy with a more recent one.
+
+-Michael
+
+docsource
+	The docs are mostly complete.
+	Much further along than what was in the 1.3r3X release.
+	see:
+		http://www.meretrx.com/e93/docs/index.html
+	I've also included the newest docsource directory as an attachment to this e-mail.
+	
+Makefile
+	added dictionary.o and list.o to OBJECTS (see below)
+
+New and much better:
+	channels.c
+	channels.h
+	uses:
+		dictionary.c
+		dictionary.h
+		list.c
+		list.h
+	The list.c and dictionary.c contain pretty useful (IMHO) linked list/hash functions 
+	that could be used throughout e93 for linked lists if one were so inclined.
+
+e93lib/highlightschemes/schemes.tcl
+	Added some new schemes that you might, or might not, be interested in.
+	Some are referenced by the syntaxmaps below.
+
+Added a few new syntaxmaps that you might, or might not, be interested in.
+	e93lib/syntaxmaps/css.tcl
+	e93lib/syntaxmaps/eiffel.tcl
+	e93lib/syntaxmaps/javaScript.tcl
+	e93lib/syntaxmaps/xml.tcl
+	e93lib/syntaxmaps/xsl.tcl
+
+edit.c
+	Reverting a document was not setting "dirty" to false.
+	The status bar was being updated too soon in the process.
+	
+	In:
+		bool ClearBuffer(EDITORBUFFER *theBuffer)
+		bool LoadBuffer(EDITORBUFFER *theBuffer,char *thePath)
+	moved:
+		EditorEndReplace(theBuffer);
+		
+	to the end of the function.
+
+guidefs.h
+	The addition of "typedef" was noted, however without a name the compiler complained a lot.
+	
+	Changed to:
+	typedef struct EDITORBUFFERHANDLE
+	{
+		struct editorBuffer
+			*theBuffer;					// points to the buffer being held
+		EDITORBUFFERHANDLE
+			*nextHandle; 				// next in linked list of handles
+	} EDITORBUFFERHANDLE;
+
+
+	added
+		char *GetMainWindowID();
+		void PrintMessage(FILE *stream, char *format,...);
+		// PrintMessage is only implemented in e93 Windows.
+		// I #define fprintf to PrintMessage, because fprintf doesn't function on Windows apps.
+
+		void EditorSetModal();
+		void EditorClearModal();
+
+includes.h
+	added list.h
+	added dictionary.h
+
+shell.c
+	InitTclAndTk is done earlier and undone later,
+	e93 could still call Tcl until very late in the quit process.
+	If the Tcl interpreter is gone this is a bad thing.
+
+	Using the "tcl_rcFileName" to set the e93 rc file and the:
+	Tcl_SourceRCFile(theInterpreter);
+	function to load it, by the book.
+	The SCRIPTPATH var could go away in favor of tcl_rcFileName.
+
+	Re-enabled abort handling,
+	So far no problems on Windows or X.
+	(abort is Escape on UNIX and Break Windows)
+	What was "busted" about this?
+
+	shell.c:969
+	Changed Tk init to one line:
+	sprintf(cmnd, "set argv {-use %s -geometry 0x0+0+0}", GetMainWindowID());
+	This tells Tk to use our menu window as its main window and make TK's window really small e.i. 0 X 0
+	The 'orderout' alone was causing problems on Windows (The app would loose focus).
+	Just using the '-use' option was causing X to 
+	Using both works on UNIX and Windows.
+
+buffer.c:75
+	tasks are now killed if a buffer is closed
+	a new command "detatchtask" has been added
+	KillBufferTask(theBuffer); instead of DisconnectBufferTask(theBuffer);
+
+docsource/xml/commands/detatchtask.xml
+	documentation source for the new command
+
+shellcmd.c:330
+	in OptionBoolean()
+	changed to:
+		*((bool *)theVariable)=(optionValue != 0);
+	because some compiler (IRIX?) complained about casting an int to a bool
+	
+	shellcmd.c:5965
+		A new command "detatchtask" has been added since closing a window now kills any task running in it.
+		
+	re-added Cmd_Destroy(), which now calls a new function shared by Cmd_Grab
+
+xgui/menus.c:1786
+	Added function GetMainWindowID(), which is called from shell.c
+
+xgui/events.c:
+	moved:
+		void EditorSetModal()
+		void EditorClearModal()
+		static bool CheckEditorModal()
+
+e93lib/syntaxmaps/java.tcl
+	Defined Java keywords as keywords instead of as types and used the JBuilder highlight scheme
+
+
+e93lib/e93rc.tcl
+	AskRevert should update the mtime buffer variable
+	
+You could also get e93 from my site and diff the directories.
+Mine includes yours and will compile on UNIX.
+http://www.meretrx.com/e93/e93-2.5.r4WinSource.zip
+
+
+Questions:
+		
+	tcl_rcFileName is the same as SCRIPTPATH. Should SCRIPTPATH go away?
+
+	Should bad keynames in addmenu be ignored on X? (They are not in Windows)
+
+	I rather like the bindkey/addmenu blend in Windows.
+	Windows lets you addmenu with complex key combinations like bindkey does.
+	Should this concept move to X?
+
+	exit:
+		should it be deleted, or just no-op'ed?
+
+	Should we remove the the programName string in
+		e93.c
+		globals.c
+		shellcmd.c
+			same as "info nameofexecutable"
+
+	fromfile:
+		same as the Tcl call "file exists"
+
+	insert:
+		could possibly be same as puts if each buffer had its own channel
+
+	add an optional arg to task (completion proc)
+		task bufferName taskData ?completionProc?
+		This would allow you to run an arbitrary Tcl proc after a task finished in a window.
+		Things like: compile finished, etc...

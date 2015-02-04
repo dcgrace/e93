@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>gotomark</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>markName</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Set the selection in <VAR>bufferName</VAR> to the one marked by <VAR>markName</VAR>.
+</DESCRIPTION>
+   <STATUS>
+If either the mark, or buffer specified does not exist, and error is returned.
+</STATUS>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

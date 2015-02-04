@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>lineoffsettoposition</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>lineNumber</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>offset</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+      <P>Inverse of positiontolineoffset. Given a <VAR>lineNumber</VAR> and a
+character <VAR>offset</VAR> within the line, return the position in
+<VAR>bufferName</VAR>.</P>
+      <P>
+         <B>NOTE:</B>if <VAR>lineNumber</VAR> or <VAR>offset</VAR> is out of range,they will be set to the nearest legal value.</P>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

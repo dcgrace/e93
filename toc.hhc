@@ -1,0 +1,656 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="About e93">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//about.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Starting e93">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//starting.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Environment variables">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//environment.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Windows and Buffers">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//windows_buffers.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Cursors">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//cursors.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Selections">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//selections.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Marks">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//marks.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Cut Copy and Paste">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//cutcopypaste.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Scripting and Tasks">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//scripting.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Keyboard Input">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//keyboardinput.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Menus and Key Bindings">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//menuskeybindings.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Find and Replace">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//findreplace.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Undo and Redo">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//undoredo.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Key Names">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//keynames.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Color Names">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//colors.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Standard keyboard layout">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//standardkeyboardlayout.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Carriage returns and line feeds">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//crlf.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Regular Expressions">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//regex.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="The X Logical Font Description (XLFD)">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//xlfd.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Syntax Maps">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//syntaxmaps.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="About the e93 Command Reference">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//commandconventions.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Command Reference">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="AboutBox">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/AboutBox.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SelectLineWhenNoSelection">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/SelectLineWhenNoSelection.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SetHighlightScheme">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/SetHighlightScheme.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="activewindow">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/activewindow.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="addmenu">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/addmenu.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="addselectionendlist">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/addselectionendlist.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="addsyntaxmap">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/addsyntaxmap.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="autoindent">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/autoindent.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="beep">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/beep.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="bindkey">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/bindkey.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="breakundo">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/breakundo.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="bufferlist">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/bufferlist.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="buffervariables">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/buffervariables.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="checkbuffer">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/checkbuffer.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="clear">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/clear.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cleardirty">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/cleardirty.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="clearmark">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/clearmark.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="closebuffer">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/closebuffer.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="closewindow">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/closewindow.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="copy">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/copy.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cut">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/cut.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="delete">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/delete.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="deletemenu">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/deletemenu.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="deletesyntaxmap">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/deletesyntaxmap.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="detatchtask">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/detatchtask.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="eoftask">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/eoftask.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/execute.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="expandselection">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/expandselection.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="find">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/find.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="findall">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/findall.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="flushundos">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/flushundos.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="fontdialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/fontdialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="forceQUIT">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/forceQUIT.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="fromfile">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/fromfile.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getbuffervariable">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getbuffervariable.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getchannelbuffer">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getchannelbuffer.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getclipboard">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getclipboard.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getcolors">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getcolors.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getfont">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getfont.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getkey">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getkey.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getrect">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getrect.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getselectionatposition">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getselectionatposition.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getselectionendlist">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getselectionendlist.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getselectionends">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getselectionends.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getstyleatposition">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getstyleatposition.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getsyntaxmap">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getsyntaxmap.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="gettabsize">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/gettabsize.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="gettopleft">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/gettopleft.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="getwordchars">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/getwordchars.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="gotomark">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/gotomark.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hastask">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/hastask.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="haswindow">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/haswindow.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="homewindow">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/homewindow.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="insert">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/insert.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="insertfile">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/insertfile.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="isdirty">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/isdirty.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="keybindings">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/keybindings.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="killtask">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/killtask.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lineoffsettoposition">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/lineoffsettoposition.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="listdialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/listdialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="marklist">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/marklist.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="minimizewindow">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/minimizewindow.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="movecursor">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/movecursor.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="newbuffer">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/newbuffer.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="okcanceldialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/okcanceldialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="okdialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/okdialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="openbuffer">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/openbuffer.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="opendialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/opendialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="openwindow">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/openwindow.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="paste">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/paste.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="pathdialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/pathdialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="positiontolineoffset">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/positiontolineoffset.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="redo">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/redo.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reduceselection">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/reduceselection.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="replace">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/replace.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="replaceall">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/replaceall.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="revertbuffer">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/revertbuffer.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="savebuffer">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/savebuffer.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="savebufferas">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/savebufferas.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="savebufferto">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/savebufferto.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="savedialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/savedialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="screensize">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/screensize.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="searchdialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/searchdialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="selectall">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/selectall.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="selectedtextlist">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/selectedtextlist.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="selectioninfo">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/selectioninfo.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="selectiontostyle">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/selectiontostyle.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="selectline">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/selectline.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setbuffervariable">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setbuffervariable.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setchannelbuffer">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setchannelbuffer.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setclipboard">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setclipboard.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setcolors">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setcolors.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setfont">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setfont.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setmark">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setmark.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setrect">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setrect.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setselectioncolors">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setselectioncolors.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setselectionends">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setselectionends.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setstyle">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setstyle.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setsyntaxmap">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setsyntaxmap.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="settabsize">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/settabsize.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="settopleft">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/settopleft.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="settopwindow">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/settopwindow.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="setwordchars">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/setwordchars.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SmartCut">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/smartcut.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="styletoselection">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/styletoselection.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="syntaxmapbuffers">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/syntaxmapbuffers.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="syntaxmaps">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/syntaxmaps.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="task">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/task.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="taskbytes">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/taskbytes.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="textdialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/textdialog.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="textinfo">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/textinfo.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="unbindkey">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/unbindkey.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="undo">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/undo.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="undotoggle">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/undotoggle.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="unminimizewindow">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/unminimizewindow.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="unsetclipboard">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/unsetclipboard.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="updatetask">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/updatetask.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="updatewindows">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/updatewindows.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="version">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/version.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="waitkey">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/waitkey.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowlist">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowlist.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowsarrangeicons">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowsarrangeicons.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowscascade">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowscascade.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowsdopopupmenu">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowsdopopupmenu.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowsgetstatusbarstringwidth">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowsgetstatusbarstringwidth.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowshtmlhelp">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowshtmlhelp.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowsopenanothere93">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowsopenanothere93.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowsprint">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowsprint.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowsrunapplication">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowsrunapplication.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowssetglobalstatusbarfont">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowssetglobalstatusbarfont.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowssetglobalstatusfield">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowssetglobalstatusfield.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowssetwindowstatusbarfont">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowssetwindowstatusbarfont.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowssetwindowtitle">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowssetwindowtitle.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowstilehorz">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowstilehorz.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowstilevert">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowstilevert.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="windowswinhelp">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/windowswinhelp.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="yesnodialog">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html/commands/yesnodialog.html">
+</OBJECT>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Tcl startup script and environment variables">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//startup.html">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Copyright Information">
+<param name="Local" value="D:/Projects/e93-2.8/docsource/html//copyright.html">
+</OBJECT>
+</UL>
+</BODY></HTML>

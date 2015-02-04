@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>task</NAME>
+    <SUMMARY>Spawn a Tcl shell in a new process and run the provided command in it or send data to a running task.</SUMMARY>
+    <DESCRIPTION>If there is no task running in <VAR>bufferName</VAR>
+    	start one running by passing <VAR>taskData</VAR> to a Tcl shell.
+    	If there is a task running, place <VAR>taskData</VAR> on its stdin.<BR/>
+		The task command runs a command-line expression asynchronously in a
+		separate Tcl shell. When the process has finished the optional
+		<VAR>completionProc</VAR> will be called in e93 with <VAR>bufferName</VAR> (the name of the buffer the task
+		was running in) and the exit status the process returned. A buffer may
+		only have one task running at a time. Multiple buffers can each have
+		their own concurrent task.
+	</DESCRIPTION>
+    <PARAMETER>
+        <NAME>bufferName</NAME>The unique name of an e93 buffer.</PARAMETER>
+    <PARAMETER>
+        <NAME>taskData</NAME>The data to be sent to a running sub-shell or, initially, the command-line used to start that process.</PARAMETER>
+    <PARAMETER optional="true">
+        <NAME>completionProc</NAME>
+        The name of a Tcl proc that will be called when the task has finished running. That proc is expected to accept two parameters. <VAR>bufferName</VAR> (the name of the buffer the task
+		was running in) and the exit status the process returned.
+    </PARAMETER>
+    <STATUS>This command will return an error in the following cases:<BR/>
+        <VAR>bufferName</VAR> is not provided.<BR/>
+        <VAR>bufferName</VAR> is not an e93 buffer.<BR/>
+        <VAR>taskData</VAR> is not provided.<BR/></STATUS>
+    <SEEALSO>
+        <CODE>
+            <A HREF="detatchtask.html">detatchtask</A>
+            <A HREF="eoftask.html">eoftask</A>
+            <A HREF="hastask.html">hastask</A>
+            <A HREF="killtask.html">killtask</A>
+            <A HREF="taskbytes.html">taskbytes</A>
+            <A HREF="updatetask.html">updatetask</A>
+        </CODE>
+    </SEEALSO>
+</COMMAND>

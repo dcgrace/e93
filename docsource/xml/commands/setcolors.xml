@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>setcolors</NAME>
+    <SUMMARY>Set the colors for windowName</SUMMARY>
+    <PARAMETER>
+        <NAME>windowName</NAME>
+        The name of the e93 window this command will act upon.
+    </PARAMETER>
+    <PARAMETER>
+        <NAME>foregroundColor</NAME>
+        Specifies the foreground  <A HREF="../colors.html">color</A> of the window.
+    </PARAMETER>
+    <PARAMETER>
+        <NAME>backgroundColor</NAME>
+        Specifies the background  <A HREF="../colors.html">color</A> of the window.
+    </PARAMETER>
+    <PARAMETER optional="true">
+        <NAME>styleNum</NAME>
+        The style in the window that the colors will be set for. The default is 0.
+    </PARAMETER>
+    <DESCRIPTION>Set the colors for <VAR>windowName</VAR> <BR/>
+    </DESCRIPTION>
+    <STATUS>This command will return an error in the following cases:
+	    <P>
+	    <VAR>windowName</VAR> is not provided.<BR/>
+	    <VAR>windowName</VAR> is not an e93 window.
+	    </P>
+    </STATUS>
+   <SEEALSO>
+      <CODE>
+         <A HREF="getcolors.html">getcolors</A>
+         <A HREF="../colors.html">ColorNames</A>
+      </CODE>
+   </SEEALSO>
+</COMMAND>

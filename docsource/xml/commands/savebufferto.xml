@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>savebufferto</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>newPath</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Save a copy of <VAR>bufferName</VAR> to <VAR>newPath</VAR>. The buffer is not renamed.
+</DESCRIPTION>
+   <STATUS>
+bufferName will return an error if the save can not be completed.
+</STATUS>
+   <STATUS>
+This command will return an error in the following cases:<BR/>
+      <VAR>bufferName</VAR> is not provided.<BR/>
+      <VAR>bufferName</VAR> is not an e93 buffer.
+</STATUS>
+</COMMAND>

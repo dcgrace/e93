@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>homewindow</NAME>
+   <PARAMETER>
+      <NAME>windowName</NAME>
+The name of the e93 window this command will act upon.
+</PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>startPosition</NAME>
+The beginning of the area in <VAR>windowName</VAR>,
+in number of characters from the start, you want to be showing.
+If <VAR>startPosition</VAR> is not specified, the current
+cursor position or start of the current selection is used.
+</PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>endPosition</NAME>
+The end of the area in <VAR>windowName</VAR>, in number of characters from the start, you want to be showing.
+If <VAR>endPosition</VAR> is not specified, it will be the same as <VAR>startPosition</VAR>.
+</PARAMETER>
+   <PARAMETER  optional="true">
+      <NAME>STRICT|SEMISTRICT|LENIENT</NAME>
+	Specifies how to position the veiw in the window.
+
+	<CHOICE>
+         <NAME>STRICT</NAME>
+	Forces the view to change so that the given <VAR>position</VAR> is 1/3 the way down the window.
+	</CHOICE>
+      <CHOICE>
+         <NAME>SEMISTRICT</NAME>
+	If the given <VAR>position</VAR> is off the view, this does the same thing as <VAR>STRICT</VAR>, otherwise it does nothing.
+	</CHOICE>
+      <CHOICE>
+         <NAME>LENIENT</NAME>
+	Move the view as little as possible to get the given <VAR>position</VAR> to be displayed.
+	</CHOICE>
+   </PARAMETER>
+   <SUMMARY>
+Move the view of a window to a specific position.
+</SUMMARY>
+   <DESCRIPTION>
+Move the view of <VAR>windowName</VAR> so that the area between
+<VAR>startPosition</VAR> (in characters) and <VAR>endPosition</VAR> is
+showing.
+</DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>windowName</VAR> is not provided.<BR/>
+         <VAR>windowName</VAR> is not an e93 window.</P>
+   </STATUS>
+</COMMAND>

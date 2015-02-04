@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>keybindings</NAME>
+   <DESCRIPTION>
+Report current list of keys, modifiers, and what they are bound to.<BR/>
+   </DESCRIPTION>
+</COMMAND>

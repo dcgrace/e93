@@ -1,0 +1,119 @@
+VERY PRELIMINARY DOCUMENTATION ON SYNTAX MAPS
+
+NOTE: while reading this, it will be very helpful to be looking
+at an addsyntaxmap command from the e93rc.tcl file....
+
+The addsyntaxmap command in Tcl creates a new syntax map.
+
+A syntax map is the data structure which gives e93 all the information
+it needs to search through a document, and apply styles to the text
+which the map specifies.
+
+The first argument of the addsyntaxmap command is the name of the map,
+and the second argument is the mapping data itself.
+
+Syntax maps are assigned to e93 windows with the command:
+setsyntaxmap bufferName syntaxMapName
+
+The mapping data is composed of keyword, parameter pairs. The only
+valid keywords are:
+
+exp
+map
+at
+root
+
+"exp" defines a regular expression in the map. You can define as many
+as you want but the more you have, the slower the highlighting. The 2
+parameters to exp are simply its name, and the expression being
+defined. The expressions are matched using e93's regular expression
+matching routines (The same ones which are used when you specify a
+regular expression in the "Find" dialog.)
+
+"map" describes how expressions are mapped to styles. There are 6
+parameters to the map command.
+
+The first is the name of the map. This will be important later. The
+second parameter is the name of the expression which introduces a
+given mapping -- it is called the start expression.
+
+The third parameter is a (potentially empty) list of names of ending
+expressions.
+
+The remaining 3 parameters are the start-style, the between-style, and
+the end-style. Styles are nothing more than integers which index
+styles assigned to text. You can assign styles to the text by using
+e93's commands:
+
+setcolors windowName foregroundColor backgroundColor ?styleNum?
+setfont windowName fontName ?styleNum?
+
+maps work like this:
+If e93 encounters text which matches the starting expression, it is
+colored in start-style. If the list of ending expressions is
+non-empty, then e93 searches for text which matches any of the ending
+expressions. The text between the start and ending expression is
+colored in the between-style. Finally, the text of the matching ending
+expression is colored in the end-style. If the ending expression list
+is empty, then e93 ends the mapping immediately after the text which
+matches the start expression.
+
+The "at" keyword is used to tell e93 which mappings to search for, and
+when. "at" works like this: The first parameter is the name of the
+mapping during which this "at" takes place -- the "parent map". The
+next parameter is a list of mappings which are allowed to start within
+the "parent map".
+
+During the text between the starting and ending expressions of a given
+mapping, e93 will search for the starting expressions of any mapping
+which is specified by an "at" command for the given mapping.
+
+The "root" keyword is just a special case of "at". It tells which
+mappings are in effect when no other mapping is in effect.
+
+As an example, consider rules to color 'C' strings. To color them, you
+need to locate the start quote, and the end quote. But, while looking
+at the string, you may encounter a '\' character which tells 'C' to
+treat the next character specially. So.... The mapping would look like
+this:
+
+addsyntaxmap "C Strings" \
+{
+        exp {e_string_delimiter         "\""}	<<< expression which matches a double quote character
+        exp {e_quoted_char              "\\\\\[-\]"}    <<< expression which matches a \ followed by ANYTHING
+
+        map {m_string                   e_string_delimiter	{e_string_delimiter}	$style_delimiter	$style_string	$style_delimiter}
+        map {m_string_quoted_char       e_quoted_char		{}						$style_char			0				0}
+
+        at {m_string                    {m_string_quoted_char}} <<< within strings, look for \'s
+
+        root {m_string}					<<< look for strings at the root level
+}
+
+NOTE: in the above example, \'s need to be quoted multiple times to
+hide them from Tcl.
+
+So, if you are not thoroughly confused, you are ready to write
+syntax highlighting rules. :-)
+
+There is one more tiny little detail that is very useful, but
+was difficult to explain in the midst of the discussion above.
+
+When specifying a "map", the start and end expressions are allowed to
+take the form:
+
+e_expressionName:#
+
+where # is a number from 0-9. This number corresponds to the tagged part
+of the regular expression given by e_expressionName.
+For instance, if I had an expression, say...
+        exp {e_sample_expression		"([a-z]+)([0-9]+)"}
+
+I could have a mapping:
+
+        map {m_sample_mapping	e_sample_expression:0		{}		$style_blah	0	0}
+
+This means that the entire expression e_sample_expression needs to be
+matched to start the mapping, but that the part which is used as the
+start-expression is simply the [a-z]+ (tag 0)
+

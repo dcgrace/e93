@@ -1,0 +1,136 @@
+	COMMAND, CHAPTER
+	{
+		display: block;
+		margin-left: 40pt;
+		font-family: Helvetica;
+		font-size: 9pt;
+	}
+
+	NAME, TITLE
+	{
+		display: block;
+		font-weight: bold;
+		font-size: 18pt;
+	}
+	
+	PARAMETER > NAME, CHOICE > NAME
+	{
+		display: block;
+		font-family: Courier New;
+		font-size: 9pt;
+		font-style: italic;
+		font-weight: normal;
+		margin-left: -20pt;
+	}
+	
+	BLOCKQUOTE
+	{
+		display: block;
+		margin-left: 40pt;
+	}
+
+	PARAMETER
+	{
+		display: block;
+		margin-left: 60pt;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+
+	CHOICE
+	{
+		display: block;
+		margin-left: 60pt;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+
+	DESCRIPTION
+	{
+		display: block;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+	
+	LIMITATIONS
+	{
+		display: block;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+	
+	SEEALSO
+	{
+		display: block;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+	
+	A
+	{
+		display: inline;
+		color: blue;
+		font-style: underline;
+	}
+	
+	SUMMARY
+	{
+		color: white
+	}
+
+	H2
+	{
+		display: block;
+		font-weight: bold;
+		font-size: 14pt;
+		margin-top: 12pt;
+	}
+
+	H3
+	{
+		display: block;
+		font-weight: bold;
+		font-size: 10pt;
+		margin-top: 12pt;
+	}
+
+	TR
+	{
+		display: block;
+	}
+
+	TD
+	{
+		padding-right: 20pt;
+	}
+
+	P
+	{
+		display: block;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+	
+	BR
+	{
+		display: block;
+	}
+
+	B
+	{
+		font-weight: 700;
+		display: inline;
+	}
+	
+	CODE
+	{
+		font-family: Courier New;
+		display: inline;
+	}
+
+	VAR
+	{
+		font-family: Courier New;
+		font-style: italic;
+		display: inline;
+	}

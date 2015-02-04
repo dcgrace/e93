@@ -1,0 +1,175 @@
+e93 INSTALLATION INSTRUCTIONS:
+
+NOTE: Before proceeding, please read "LICENSE.TXT".
+
+Building e93:
+-------- ---
+
+###############################################################
+
+For those who don't want to read all the stuff below just type:
+
+make
+
+make install
+
+
+This will create e93, and install it into:
+
+/usr/local/bin
+
+It will also install all of e93's startup scripts into:
+
+/usr/local/lib/e93lib
+
+###############################################################
+
+If you run into trouble or want more control over the
+build process, read this:
+
+e93 uses Tcl and Tk for its shell and some of its dialog boxes, so
+libtcl, and libtk must exist on your system before attempting to
+compile e93. You should use the latest version of Tcl/Tk (8.3
+as of this release). Prior versions may or may not work.
+You can get Tcl and Tk from:
+
+http://www.scriptics.com
+
+The source for e93 is contained in 2 directories. The outermost
+directory contains the machine independent side of the code, while the
+"xgui" directory contains the X windows implementation of the GUI
+code.
+
+The outermost makefile will build both sections and create the
+executable "e93".
+
+To build e93 on most systems, (after Tcl/Tk are installed) all you
+need to do is: "cd" to the outer directory, and issue: "make".
+
+The makefiles are initially set up to expect the Tcl/Tk include files
+to be located in your normal system includes, or in:
+/usr/local/include
+And the X11 include files to be located in:
+/usr/include/X11
+
+If these are not the paths to the include files on your system, you
+will need to edit "machdef.mk" to point to the correct paths.
+
+Also, the "machdef.mk" contains a variable called PREFIX. This may
+be changed to alter the place e93 will install its files.
+
+
+On some systems, you may run into trouble compiling xgui/events.c
+in the function:
+
+void StartAlarmTimer()
+
+The problem arises from this function's use of a "sigaction" structure
+which is defined somewhat inconsistently across OSs. If you have
+trouble, you will need to look up the structure in your <signal.h>, or
+<sys/signal.h> file, and modify the member names appearing in
+StartAlarmTimer to suit whatever form your sigaction takes. This is
+not very difficult to do, but in future versions of e93, I will
+attempt to handle this in a better way. Suggestions are welcome.
+
+
+Installing e93:
+---------- ---
+Once e93 has compiled successfully, issue a "make install" command,
+and e93 will be copied to $PREFIX/bin (PREFIX is defined in the file
+"machdef.mk"). Also, the directory "e93lib" will be copied to
+$PREFIX/lib. This directory contains all the Tcl scripts needed by
+e93.
+
+NOTE: you may need to become root in order to perform the install.
+
+The directory called "icons" which contains some icons which can be
+used to launch e93 under Gnome or KDE. It is left up to the user to
+install these if they are desired.
+
+
+Some notes about the e93lib directory and e93rc.tcl:
+---- ----- ----- --- ------ --------- --- ---------
+The file "e93rc.tcl" contains the Tcl script code that is initially
+run by the editor to set up default menus, keybindings, colors, etc...
+When it starts, e93 looks for this file at:
+
+$PREFIX/lib/e93lib/e93rc.tcl
+
+(PREFIX is defined in "machdef.mk" and usually points to /usr/local).
+
+NOTE: e93 relies heavily on this file. No menus are defined by
+default, so if this file is corrupt, e93 may start up in a somewhat
+helpless state.
+
+
+To hook up e93 complete with icon to the GNOME Panel, follow these steps:
+-- ---- -- --- -------- ---- ---- -- --- ----- ------ ------ ----- -----
+1.      Click the GNOME Main Menu button, open the Panel menu, and then open
+        the Add to Panel submenu and choose Launcher.
+
+2.      Right-click the newly created icon on the Panel and enter the following
+        in the Command field:
+
+        directory_name/e93
+
+        where directory_name is the directory where you installed the e93
+        executable. For example, the default directory that e93 suggests
+        is /usr/local/bin.
+
+3.      Type in a name for the icon, and type in a comment if you wish.
+
+4.      Click the icon button and type in the following as the icon's location:
+
+        directory_name/images/e93icon-48.png
+
+        where directory_name is the directory where you installed the e93
+        libraries. For example, the default directory is /usr/local/lib/e93lib.
+
+5.      Click OK.
+
+
+Problems, bugs, caveats:
+--------  ----  -------
+There is a user manual (README.e93) but it is still somewhat
+incomplete. To get an idea of some of the Tcl commands in e93, and how
+to use them, take a close look at the standard e93rc.tcl file. Also,
+look at the source file "shellcmd.c". It contains the implementations
+of all of the Tcl commands that e93 supports.
+
+Some users compiling e93 under SOLARIS have complained that the first
+two characters of filenames do not show up in the file selection
+dialog boxes properly. If this happens to you, it can be fixed by
+replacing the line:
+#include <dirent.h>
+of xgui/includes.h with:
+#include <dir.h>
+After doing this, be sure to issue a "make clean" command in the outer
+directory, and then make everything again. The problem stems from
+differing definitions of the "dirent" structure across these two
+files.
+
+Menus and keybindings do not function within dialog windows.
+
+The "active" field of menus is not implemented.
+
+Using a keyboard focus model other than explicit may cause you to get
+confused.
+
+If all of virtual memory is used up, the editor may crash, due to code
+within some external libraries that allocates memory, and then uses it
+without first checking to see if the allocation succeeded. This should
+be a minor problem, since typically you are not editing at anywhere near
+the limit of virtual memory.
+
+There is no "busy" cursor.
+
+There are a few cases where sending the "Break" keycode will not cause
+Tcl to stop processing.
+
+I have never tested e93 on a Black & White display.
+
+If a window manager is restarted while e93 is running, causing it to
+reparent e93's windows again, or anything else causes e93's windows to
+be reparented again, e93 will become confused about the windows it has
+open.

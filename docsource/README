@@ -1,0 +1,3 @@
+This directory contains the source for all the e93 documentation.
+To create the documentation from the source, run the "makedocs.tcl"
+script from within this directory.

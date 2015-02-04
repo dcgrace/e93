@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+
+<TITLE>
+Copyright Information
+</TITLE>
+
+<SUMMARY>
+Copyright information about e93 and its components
+</SUMMARY>
+
+<BODY>
+
+<H2>
+e93 Copyrights
+</H2>
+
+
+<P>e93 is free software; you can redistribute it and/or modify it under the terms of the e93 LICENSE AGREEMENT.</P>
+
+<P>e93 is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. e93 is a copyrighted program
+authored by Todd Squires and owned by Core Technologies. By continuing
+the installation of this program, by loading or running the program,
+or by placing or copying the program onto your computer hard drive,
+you are agreeing to be bound by the terms of this License Agreement.
+e93 is not being sold or offered for sale by Core Technologies. You
+may, however, without charge, use, modify and distribute exact or
+modified copies of e93 and its documentation subject to the following
+limitations:
+
+<UL>
+<LI>
+You may make and keep as many copies of
+the e93 files as you wish.</LI>
+
+<LI>
+You may distribute copies of the e93 files
+to others provided you distribute ALL the files included in e93 provided
+that you (1) appropriately publish on each copy an appropriate copyright
+notice and disclaimer of warranty, (2) keep all notices with respect to
+this License Agreement intact and (3) give any other recipients of e93
+a copy of this License Agreement.</LI>
+
+<LI>
+You may charge for such distribution,
+provided that you inform your prospective customers that the payment is
+only for the distribution and not for e93.</LI>
+
+<LI>
+You may provide e93 along with another
+product or service, even if you charge for that product or service, provided
+that your prospective customers or clients are aware that they are NOT
+paying for e93 and that any modified files carry a prominent notice stating
+that you changed the file and the date of such changes.</LI>
+
+<LI>
+You agree that e93 will not be shipped,
+transferred or exported into any country in violation of the U.S. Export
+Administration Act and that you will not utilize, in any other manner,
+e93 in violation of any applicable law.</LI>
+
+<LI>
+e93 and the accompanying documentation
+is owned by Core Technologies and is protected by United States copyright
+laws and international treaty provisions. You must treat e93 like any other
+copyrighted material, except that you may make copies of the exact or modified
+e93 files to give to other persons provided that you (1) appropriately
+publish on each copy an appropriate copyright notice and disclaimer of
+warranty, (2) keep all notices with respect to this License Agreement intact
+and (3) give any other recipients of e93 a copy of this License Agreement.</LI>
+
+<LI>
+You agree to use your best efforts to
+see that any user of e93 licensed hereunder complies with this License
+Agreement.</LI>
+
+<LI>
+Since e93 has been made available free
+of charge, you must agree not to hold or assert that Core Technologies
+is liable for any damages resulting from the use of or inability to use
+this software. CORE TECHNOLOGIES SPECIFICALLY DISCLAIMS ALL WARRANTIES,
+EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OR
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+OF THIRD PARTY RIGHTS. CORE TECHNOLOGIES does not warrant that the operation
+of e93 will be uninterrupted, error free or meet licensee's specific requirements.
+The agents, employees, and distributors of e93 are not authorized to make
+any warranties on behalf of CORE TECHNOLOGIES. In no event shall CORE TECHNOLOGIES
+be liable for any loss of profit or any other commercial damage, including
+but not limited to special, incidental, consequential or other damages,
+arising out of the use or inability to use e93, including but not limited
+to loss of data or data being rendered inaccurate or losses sustained by
+third parties. e93 IS NOT LICENSED TO BE USED AT ALL IN PLACES WHERE THIS
+EXCLUSION IS NOT LEGAL.</LI>
+
+<LI>
+Neither this License Agreement nor any
+part or portion hereof shall be assigned or sublicensed, except as described
+herein. Should any provision of this License Agreement be held to be void,
+invalid, unenforceable or illegal by a court, the validity and enforceability
+of the other provisions shall not be affected thereby. If any provision
+is determined to be unenforceable, you agree to a modification of such
+provision to provide for enforcement of the provision's intent, to the
+extent permitted by applicable law. Failure of a party to enforce any provision
+of this License Agreement shall not constitute or be construed as a waiver
+of such provision or of the right to enforce such provision. If you fail
+to comply with any terms of the License Agreement, YOUR LICENSE IS AUTOMATICALLY
+TERMINATED.</LI>
+</UL>
+</P>
+
+<P>
+<BR />YOU ACKNOWLEDGE THAT YOU HAVE READ
+THIS AGREEMENT, YOU UNDERSTAND THIS AGREEMENT, AND UNDERSTAND THAT BY CONTINUING
+THE INSTALLATION OF THE SOFTWARE, BY LOADING OR RUNNING THE SOFTWARE, OR
+BY PLACING OR COPYING THE SOFTWARE ONTO YOUR COMPUTER HARD DRIVE, YOU AGREE
+TO BE BOUND BY THIS AGREEMENT'S TERMS AND CONDITIONS. YOU FURTHER AGREE
+THAT, EXCEPT FOR WRITTEN SEPARATE AGREEMENTS BETWEEN CORE TECHNOLOGIES
+AND YOU, THIS AGREEMENT IS A COMPLETE AND EXCLUSIVE STATEMENT OF THE RIGHTS
+AND LIABILITIES OF THE PARTIES. THIS AGREEMENT SUPERSEDES ALL PRIOR ORAL
+AGREEMENTS, PROPOSALS OR UNDERSTANDINGS, AND ANY OTHER COMMUNICATIONS BETWEEN
+CORE TECHNOLOGIES AND YOU RELATING TO THE SUBJECT MATTER OF THIS AGREEMENT.
+</P>
+
+<H2>
+Regular Expression Copyrights
+</H2>
+
+<P>
+Regular expression material is derived
+from The GNU Emacs Manual, 9th edition. Copyright 1985, 1986, 1987, 1993
+Free Software Foundation, Inc. and from the GNU regex library version 0.11.
+Copyright 1992 Free Software Foundation, Inc.
+The Free Software Foundation gives
+permission for the use of this material in e93, with different distribution
+terms from those stated in the Emacs manual, because e93 is free software,
+and thus worthy of cooperation.
+</P>
+
+<H2>
+Tcl Copyrights
+</H2>
+
+<P>
+Tcl software is copyrighted by the
+Regents of the University of California, Sun Microsystems, Inc., and other
+parties. The following terms apply to all files associated with the software
+unless explicitly disclaimed in individual files.
+The authors hereby grant permission
+to use, copy, modify, distribute, and license this software and its documentation
+for any purpose, provided that existing copyright notices are retained
+in all copies and that this notice is included verbatim in any distributions.
+No written agreement, license, or royalty fee is required for any of the
+authorized uses. Modifications to this software may be copyrighted by their
+authors and need not follow the licensing terms described here, provided
+that the new terms are clearly indicated on the first page of each file
+where they apply.<BR />
+IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS
+BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR
+ANY DERIVATIVES THEREOF, EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+THE AUTHORS AND DISTRIBUTORS SPECIFICALLY
+DISCLAIM ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, AND THE AUTHORS AND DISTRIBUTORS
+HAVE NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS,
+OR MODIFICATIONS.<BR />
+GOVERNMENT USE: If you are acquiring
+this software on behalf of the U.S. government, the Government shall have
+only "Restricted Rights" in the software and related documentation as defined
+in the Federal Acquisition Regulations (FARs) in Clause 52.227.19 (c) (2).
+If you are acquiring the software on behalf of the Department of Defense,
+the software shall be classified as "Commercial Computer Software" and
+the Government shall have only "Restricted Rights" as defined in Clause
+252.227-7013 (c) (1) of DFARs. Notwithstanding the foregoing, the authors
+grant the U.S. Government and others acting in its behalf permission to
+use and distribute the software in accordance with the terms specified
+in this license.
+</P>
+</BODY>
+</CHAPTER>

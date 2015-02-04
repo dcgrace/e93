@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowswinhelp</NAME>
+   <PARAMETER>
+      <NAME>helpfile</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>keyword</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Specify a <VAR>helpfile</VAR> and a <VAR>keyword</VAR> to find in that help file, brings up the Windows help system.<BR/>
+   </DESCRIPTION>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

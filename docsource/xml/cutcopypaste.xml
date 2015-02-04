@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Cut Copy and Paste</TITLE>
+
+<SUMMARY>
+Clipboards in e93
+</SUMMARY>
+
+<BODY>
+
+<P>Like other editors, e93 supports Cut, Copy, and Paste. When the selected text is Cut from a buffer, it is removed from that buffer, and placed into another buffer referred to as the "clipboard." When the selected text is Copied from a buffer, it is not removed, but is just copied into the clipboard. Each time a Cut or Copy operation takes place, the text that is placed into the clipboard completely overwrites the text that was there. Once you have text in the clipboard, it can be placed into another buffer by pasting. Pasting does not destroy the contents of the clipboard.</P>
+
+<P>The clipboard in e93 is nothing more than a buffer that has been designated as the clipboard. It is possible to designate any buffer as the clipboard, and it is also possible to switch on the fly. This allows e93 to  support an arbitrary number of clipboards. The default e93rc.tcl creates 10 buffers to be used as clipboards, and provides menu operations to switch between these buffers.</P>
+
+<P><B>NOTE:</B> Clipboard buffers in e93 do not typically have windows open onto them, but it is possible, and sometimes desirable to attach a window to a clipboard. The command to open a window onto clipboard 0 would be:</P>
+
+<P>opendefaultwindow clip0</P>
+
+<P><B>NOTE:</B> The command opendefaultwindow is not a command built into e93, instead, it is a Tcl procedure, defined in the e93rc.tcl file (described below.)</P>
+
+<P>Cut, Copy, Paste, and fun with <A HREF="selections.html#Segmented">Segmented Selections</A></P>
+
+<P>Since e93 allows a selection to have "holes" in it, Cut, Copy, and Paste take on a slightly different flavor than in most other editors. When a selection is Cut, or Copied, the text of each segment of the selection is placed into the clipboard sequentially. As each segment is placed into the clipboard buffer, it is also  selected as a segment in the clipboard buffer. The result is a clipboard that not only contains the pieces of text that were selected, but also one that remembers where each piece begins and ends (since each piece is selected individually in the clipboard.)</P>
+
+<P>When text is pasted from the clipboard, each segment is pasted individually. The process works as follows: First, any selected text in the destination buffer is deleted. Then, the first segment from the clipboard is pasted into the destination buffer at the cursor position. Then, the next segment is pasted into the line immediately below the first segment. Each successive segment is placed into the line immediately below the previous one.... It is in this way that columnar paste is implemented.</P>
+
+<P><B>NOTE:</B> e93 does not care how selections were placed into the clipboard. It always pastes them in this columnar fashion. Also note that in the case of a selection with just one segment (no discontinuity) that the paste operation works exactly as it would in an editor without segmented selection.</P>
+
+</BODY>
+</CHAPTER>

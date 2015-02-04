@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowsdopopupmenu</NAME>
+   <PARAMETER>
+      <NAME>list</NAME>
+   </PARAMETER>
+   <OUTPUT>
+The list item the user selected.
+</OUTPUT>
+   <DESCRIPTION>
+Passed a Tcl <VAR>list</VAR>, brings up a  popup menu at the current
+mouse position allowing the user to select one of the items from the
+list.
+</DESCRIPTION>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

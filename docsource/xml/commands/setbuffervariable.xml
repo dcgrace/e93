@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>setbuffervariable</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>variableName</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>variableText</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Assign a variable with <VAR>variableName</VAR> to <VAR>bufferName</VAR> These variables are kept local to each buffer.
+This makes it convenient for Tcl scripts to hang information off of each buffer, then reference it later.
+</DESCRIPTION>
+   <STATUS>
+The setbuffervariable command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+      <P>
+         <VAR>variableName</VAR> is not provided.</P>
+      <P>
+         <VAR>variableText</VAR> is not provided.</P>
+   </STATUS>
+   <SEEALSO>
+      <A HREF="buffervariables.html">buffervariables</A>
+   </SEEALSO>
+</COMMAND>

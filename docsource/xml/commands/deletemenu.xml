@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>deletemenu</NAME>
+   <SUMMARY>
+	Delete a menu
+	</SUMMARY>
+   <PARAMETER>
+      <NAME>menuPathList</NAME>
+	Is a Tcl List that specifies which menu should be deleted.
+	</PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>menuPathList...</NAME>
+	More than one menu may be deleted in a single call.
+	</PARAMETER>
+   <DESCRIPTION>
+	Delete the menus at the end of menuPathList.
+	</DESCRIPTION>
+   <STATUS>
+	The deletemenu command will return an error in the following cases:<BR/>
+	      <VAR>menuPathList</VAR> is not provided.<BR/>
+	      <VAR>menuPathList</VAR> is not a valid e93 menu path.
+	</STATUS>
+</COMMAND>

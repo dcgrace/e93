@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>setfont</NAME>
+   <PARAMETER>
+      <NAME>windowName</NAME>
+The name of the e93 window this command will act upon.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>fontName</NAME>
+   </PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>styleNum</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+      <P>Change the font used by a window. If the font cannot be located, default to one that can.<BR/>
+e93 for Windows uses the  <A HREF="../xlfd.html">X Logical Font Description (XLFD) format</A>.<BR/>
+         <CODE>-*-Courier-bold-i-normal-*-12-*-*-*-*-*</CODE>
+         <BR/>
+This is the same format that e93 X Windows and TK use.</P>
+      <P>An easy way to get this information is to use the command <A HREF="fontdialog.html">fontdialog</A>.
+This will bring up a font dialog box that allows you to choose a font, its size, and attributes.
+It will return the editor specific font string for the font you selected.</P>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>windowName</VAR> is not provided.<BR/>
+         <VAR>windowName</VAR> is not an e93 window.</P>
+   </STATUS>
+</COMMAND>

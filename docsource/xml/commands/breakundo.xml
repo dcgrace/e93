@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>breakundo</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <SUMMARY>
+Put a break into the flow of undo information for a buffer
+</SUMMARY>
+   <DESCRIPTION>
+Put a break into the flow of undo information for <VAR>bufferName</VAR>.
+</DESCRIPTION>
+   <STATUS>
+The breakundo command will return an error in the following cases:<BR/>
+      <VAR>bufferName</VAR> is not provided.<BR/>
+      <VAR>bufferName</VAR> is not an e93 buffer.
+</STATUS>
+   <SEEALSO>
+      <A HREF="undo.html">undo</A>
+      <A HREF="flushundos.html">flushundos</A>
+      <A HREF="undotoggle.html">undotoggle</A>
+      <A HREF="../undoredo.html">undoredo</A>
+   </SEEALSO>
+</COMMAND>

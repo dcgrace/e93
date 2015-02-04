@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>copy</NAME>
+    
+    <PARAMETER>
+        <NAME>bufferName</NAME> The unique name of an e93 buffer.</PARAMETER>
+        
+    <PARAMETER optional="true">
+        <NAME>clipboardBuffer</NAME>  The name of a specific buffer that is to hold a copy of the selected text.</PARAMETER>
+        
+    <SUMMARY> Copy the selected text from a buffer to a clipboard</SUMMARY>
+    
+    <DESCRIPTION> Copy the selected text from <VAR>bufferName</VAR> into the current clipboard, or <VAR>clipboardBuffer</VAR> if specified.</DESCRIPTION>
+    <STATUS> This command will return an error in the following cases:
+    		<P><VAR>bufferName</VAR> is not provided.<BR/>
+            <VAR>bufferName</VAR> is not an e93 buffer.</P>
+        
+        	<P><VAR>clipboardBuffer</VAR> is not an e93 buffer.</P>
+    </STATUS>
+</COMMAND>

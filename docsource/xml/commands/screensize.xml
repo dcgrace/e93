@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>screensize</NAME>
+   <DESCRIPTION>
+Report the screen's width, and height. On Windows, this is the size of the outer MDI window.<BR/>
+   </DESCRIPTION>
+</COMMAND>

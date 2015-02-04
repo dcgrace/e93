@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>getselectionends</NAME>
+    <SUMMARY>Return the start and end positions of the current selection</SUMMARY>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <DESCRIPTION>
+Return the start and end positions (in characters) of the current selection in <VAR>bufferName</VAR>  If there is no selection, the cursor position is reported as both the start, and the end.<BR/>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

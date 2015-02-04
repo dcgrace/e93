@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>setstyle</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>startPosition</NAME>
+      
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>endPosition</NAME>
+      
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>styleNum</NAME>
+      
+   </PARAMETER>
+   <DESCRIPTION>
+Set the style of text of the passed buffer.
+If the given end position is less than the start position, the positions will be reversed.
+If any position is out of range, it will be forced in range.
+</DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:<BR/>
+      <VAR>bufferName</VAR> is not provided.<BR/>
+      <VAR>bufferName</VAR> is not an e93 buffer.
+      <VAR>startPosition</VAR> is not provided.<BR/>
+      <VAR>endPosition</VAR> is not provided.<BR/>
+      <VAR>styleNum</VAR> is not provided.<BR/>
+</STATUS>
+</COMMAND>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>setwordchars</NAME>
+   <PARAMETER>
+      <NAME>wordCharacters</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Set the editor's understanding of which characters are considered part of words, and which are not. <VAR>wordCharacters</VAR> is a string containing all of the characters to be considered parts of words. The editor uses this information when double clicking, and when moving the cursor in a relative direction by word.<BR/>
+   </DESCRIPTION>
+</COMMAND>

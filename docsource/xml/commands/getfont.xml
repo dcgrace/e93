@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>getfont</NAME>
+    <SUMMARY>Report the font use by window</SUMMARY>
+   <PARAMETER>
+      <NAME>windowName</NAME>
+The name of the e93 window this command will act upon.
+</PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>styleNum</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Report the font in use by <VAR>windowName</VAR>.
+</DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>windowName</VAR> is not provided.<BR/>
+         <VAR>windowName</VAR> is not an e93 window.</P>
+   </STATUS>
+</COMMAND>

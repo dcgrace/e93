@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>minimizewindow</NAME>
+    <PARAMETER>
+        <NAME>windowName</NAME>
+        The name of the e93 window this command will act upon.
+    </PARAMETER>
+    <SUMMARY>Minimize a window</SUMMARY>
+    <DESCRIPTION>Attempt to minimize (in whatever way the current OS supports) the given document window.</DESCRIPTION>
+    <STATUS>This command will return an error in the following cases:<P>
+            <VAR>windowName</VAR> is not provided.<BR/>
+            <VAR>windowName</VAR> is not an e93 window.</P>
+    </STATUS>
+    <SEEALSO>
+        <CODE>
+            <A HREF="unminimizewindow.html">unminimizewindow</A>
+        </CODE>
+    </SEEALSO>
+</COMMAND>

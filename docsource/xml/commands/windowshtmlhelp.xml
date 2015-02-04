@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowshtmlhelp</NAME>
+   <PARAMETER>
+      <NAME>helpfile</NAME>
+Path to the Windows HTML help file.
+</PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>keyword</NAME>
+A keyword in the HTML help file.
+</PARAMETER>
+   <DESCRIPTION>
+Brings up the Windows HTML help system.
+</DESCRIPTION>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+   <EXAMPLES>
+Get help on this command:<BR/>
+      <CODE>
+	windowshtmlhelp "[file dirname [info nameofexecutable]]/e93.chm" windowshtmlhelp
+	</CODE>
+   </EXAMPLES>
+</COMMAND>

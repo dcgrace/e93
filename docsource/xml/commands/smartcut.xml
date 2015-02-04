@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Proc">
+   <NAME>SmartCut</NAME>
+   <PARAMETER>
+      <NAME>theBuffer</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <SUMMARY>
+Cut the selection into the clipboard.
+</SUMMARY>
+   <DESCRIPTION>
+Cut the selection in <VAR>theBuffer</VAR> to the current clipboard.
+If there is no selection in <VAR>theBuffer</VAR>, then select the line the cursor is on.
+</DESCRIPTION>
+   <SEEALSO>
+      <A HREF="cut.html">cut</A>
+      <A HREF="selectlinewhennoselection.html">SelectLineWhenNoSelection</A>
+   </SEEALSO>
+   <LOCATION>
+e93lib/e93rc.tcl
+</LOCATION>
+</COMMAND>

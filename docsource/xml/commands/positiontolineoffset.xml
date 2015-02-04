@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>positiontolineoffset</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>position</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+      <P>Given a character <VAR>position</VAR> within <VAR>bufferName</VAR>
+this will return the line number that contains that
+<VAR>position</VAR> and the offset into the line of that
+<VAR>position</VAR>.</P>
+      <P>
+         <B>NOTE:</B>if <VAR>position</VAR> is out of range, it will be set to the nearest legal <VAR>position</VAR>.</P>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

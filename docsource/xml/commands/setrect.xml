@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>setrect</NAME>
+   <PARAMETER>
+      <NAME>windowName</NAME>
+The name of the e93 window this command will act upon.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>x</NAME>
+      The position from the left side of the screen.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>y</NAME>
+       The position from the top side of the screen.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>w</NAME>
+      The width of the window.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>h</NAME>
+      The height of the window.
+   </PARAMETER>
+   <DESCRIPTION>
+	Change the position and size of <VAR>windowName</VAR><BR/>
+   </DESCRIPTION>
+   <STATUS>
+		This command will return an error in the following cases:
+		<P>
+         <VAR>windowName</VAR> is not provided.<BR/>
+         <VAR>windowName</VAR> is not an e93 window.</P>
+   </STATUS>
+    <SEEALSO>
+        <CODE>
+            <A HREF="getrect.html">getrect</A>
+        </CODE>
+    </SEEALSO>
+</COMMAND>

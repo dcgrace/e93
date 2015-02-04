@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>windowsgetframewindowplacement</NAME>
+    <SUMMARY>Report the dimensions of the outer e93 frame window.</SUMMARY>
+   <DESCRIPTION>
+Report the dimensions (top, left, bottom, right, and showcmd) of the outer e93 frame window.
+</DESCRIPTION>
+    <SEEALSO>
+        <CODE>
+            <A HREF="windowssetframewindowplacement.html">windowssetframewindowplacement</A>
+        </CODE>
+    </SEEALSO>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

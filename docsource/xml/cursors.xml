@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Cursors</TITLE>
+
+<SUMMARY>
+Explaination of what a cursor is
+</SUMMARY>
+
+<BODY>
+<P>The cursor is a small flashing vertical line that appears in the text of the active window. Its position indicates where the next editing operation will take place. e93's editing model considers the cursor to be akin to a selection of 0 characters. By contrast, in some editors, you can have both a cursor, and a selection active simultaneously. In e93, the selection and the cursor are really the same thing, so if you have a selection, that IS your cursor.</P>
+</BODY>
+</CHAPTER>

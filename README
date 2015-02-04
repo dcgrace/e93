@@ -1,0 +1,516 @@
+e93 version 1.3r4 (X Windows version)
+http://www.e93.org
+1/25/2002
+
+Todd Squires
+Core Technologies
+270 Ambria Drive
+Mundelein, Il 60060
+(squirest@e93.org)
+
+What is e93?
+---- -- ---
+
+e93 is a portable window based text editor oriented to the needs of
+programmers. It was begun in 1993 (thus the name). It uses the mouse,
+selections, cut/copy/paste, and closely follows the model of editors
+on the Macintosh and NeXT platforms.
+
+e93 is portable to environments other than Unix/X Windows -- as long as
+those environments support virtual memory.
+
+e93 supports columnar selection. It achieves this by allowing multiple
+pieces of the text to be selected simultaneously (this is perhaps its
+most unique feature).
+
+e93 imposes no limits on the line length, file length, or number of
+simultaneous files which it can edit.
+
+e93 is able to handle all 8-bit binary codes without complaint, or
+confusion.
+
+e93 is highly configurable without recompiling because scripts which
+control the editor can be written in Tcl.
+
+e93 supports user-configurable syntax highlighting.
+
+
+To Install
+-- -------
+
+Please read "LICENSE.TXT" if you agree with it, follow
+the instructions given in the file "INSTALL."
+
+
+What's the deal with those version numbers?
+------ --- ---- ---- ----- ------- --------
+
+The version numbers in e93 work as follows:
+
+e93 1.3r4X means:
+
+Major version: 1    If it is ever rewritten, this will increment, and the
+                    numbers below will be reset to 0.
+Minor version: 3    If really significant changes are made, this will increment.
+Revision:      4    Any change will cause this will increment.
+Machine:       X    X windows implementation.
+
+
+Additional Information
+---------- -----------
+
+The material README.regex is taken from The GNU Emacs Manual, 9th edition.
+Copyright 1985, 1986, 1987, 1993 Free Software Foundation, Inc.
+and from the GNU regex library version 0.11.
+Copyright 1992 Free Software Foundation, Inc.
+
+
+Mail From e93 Users
+---- ---- --- -----
+
+Mail me useful tips, and I will place them here so that
+other users can benefit from them.
+
+From: Michael Zuelsdorff <micha@dolbyco.han.de>
+Subject: e93 on german linux box
+
+The only problem I ran into was my German keyboard. You
+might know, that we have Umlauts and other special characters
+instead of all those brackets and braces. My solution are
+some additonal lines in my e93rc.tcl:
+
+bindkey 7      {00100000000} {InsertAndHome [ActiveWindowOrBeep] "\{"};
+bindkey 8      {00100000000} {InsertAndHome [ActiveWindowOrBeep] "\["};
+bindkey 9      {00100000000} {InsertAndHome [ActiveWindowOrBeep] "\]"};
+bindkey 0      {00100000000} {InsertAndHome [ActiveWindowOrBeep] "\}"};
+bindkey ssharp {00100000000} {InsertAndHome [ActiveWindowOrBeep] "\\"};
+bindkey q      {00100000000} {InsertAndHome [ActiveWindowOrBeep] "\@"};
+bindkey plus   {00100000000} {InsertAndHome [ActiveWindowOrBeep] "\~"};
+bindkey less   {00100000000} {InsertAndHome [ActiveWindowOrBeep] "|"};
+----------------------------------------------------------------
+
+Please send all bug reports to squirest@e93.org. (Todd Squires)
+
+Release of 1.3r3
+------- -- -----
+
+A variable called "not" in regex.c was changed to a new name, since
+"not" is a reserved keyword in 'C', and new compilers have started to
+complain.
+(Thanks to Adam Yellen, and Mark Maxon)
+
+The version of Gnome shipping with RedHat 7.0 did not like the way
+that dialog windows were being set up and was causing an inability
+to click in them. dialogs.c was modified to solve the problem.
+
+The following changes are thanks to Michael Manning:
+    Unnecessary "strings.h" was removed from includes.h.
+    Tcl commands: setmodal and getmodal were removed in favor of a
+      more transparent method of determining when a grab has occured.
+    Dummy version of ShellCommand added to make errors in the startup
+      script a little less catstrophic.
+    fromfile was removed from the Tcl script GetDefaultStyleInfo
+    The about box was changed so that it no longer calls "uname" making
+      it more portable.
+    Some other problems were corrected in the startup script.
+
+Michael Manning also contributed the docsource directory which
+contains the beginnings of some real documentation for e93.
+
+Adam Yellen supplied some icons (in the e93lib/images directory) which
+can be used for Gnome or KDE.
+
+Adam also supplied the "colorme.tcl" module which can be used to
+dynamically modify the background color of editor windows.
+
+channels.c was changed to account for a change in the Tcl_ChannelType
+data structure. (Thanks to everyone who reported this.)
+
+Release of 1.3r2
+------- -- -----
+
+e93r was modified to allow files to be piped to it on its stdin.
+(Thanks to aweigp@autelca.ascom.ch)
+
+Setlocale is called at startup to allow keybord input to work in other
+parts of the world. (Thanks to y_kozlov@chat.ru)
+
+
+Release of 1.3r1
+------- -- -----
+
+Fixed a crash bug which happens when replacing using tcl script as the
+replacement text, and the script is using "puts" to write to another buffer.
+
+Fixed a problem with closing stderr in Tcl which was causing e93's
+stderr to be closed as well -- this caused no error messages to be
+generated.
+
+Removed EDITORUNIVERSE concept -- folded it into EDITORBUFFER.
+
+Modified smart-open to take "# include" (with whitespace between
+the # and the include).
+
+Added private color map handling for X windows. If the
+environment variable E93_COLORMAP exists, e93 will use a private
+colormap. Otherwise, it shares the system's default color map.
+
+Many thanks to Peter TEX Weigand <aweigp@autelca.ascom.ch> for the following changes:
+    Modified Makefiles for easier multi-platform configuration
+    Added "install-strip" target to Makefile
+    Added SA_RESTART for Solaris in xgui/events.c
+    Added "Modified" icon for documents
+    Moved start-up scripts to "lib" instead of "bin"
+    Added vertical scroll-bar left/right-hand preference "scrollbarplacement"
+    Added "PrintWindows" command to e93rc
+    Modified e93rc mail command to use "sendmail" instead of "mail"
+    Added "subject" to mail dialog in e93rc
+    Added "MailWindows" menu item to e93rc
+    Enhanced "buffer info" dialog box
+    Enhanced find-selection so that empty selections work better
+    Enhanced modules/c.tcl so that prototype location is more robust for different coding styles
+    Updated the README.e93 document (BIG THANKS!)
+    Added .src to the extensions recognized as assembly code
+    Removed errno and sys_errlist from errors.c
+    Created "e93r" script for remote execution -- this allows you to pass files to a running e93
+    Fixed "dirty" flag so that it tracks the "undo" status of a buffer
+
+
+Release of 1.2r8
+------- -- -----
+
+Changed the way e93 finds and runs its startup scripts.
+
+Added the long awaited Syntax Highlighting.
+
+Changed the way e93 internally deals with fonts and colors.
+
+Modified the way e93 internally deals with selections.
+
+Added < and > to regular expression matcher to allow matches on
+word boundaries.
+
+Changed regular expression matcher to allow empty groups (as this
+helps with the syntax highlighting rules).
+
+Modified text drawing to allow fonts with characters which overhang
+their cell boundaries (such as serifed and italic fonts) to work
+without having the overhanging portions clipped.
+
+More code formatting changes.
+
+Bug fix: Reverting to a document which contained 0 bytes did not
+work correctly.
+
+Bug fix: When doing a replace, the cursor did not always end up
+in the correct spot.
+
+Modified task code to keep e93 from using pause() to give time
+back to the system when tasks have data for the editor. This resulted
+in a 30% speed increase when reading task data into buffers on fast
+machines.
+
+Allowed menu key definitions to be overwritten by subsequent menu
+definitions.
+
+Added "the Hand" function to the middle mouse button to allow
+easier text movement.
+
+Changed .e93rc to show modified files in the "Choose window" dialog.
+
+Changed .e93rc to remember the contents of some dialogs across invocations.
+
+Changed the function of SHIFT-Arrow keys to work more as expected:
+previously, the selection was always expanded. Now, it expands and
+contracts in a more intuitive way.
+
+Changed the columnar paste algorithm:
+OLD way: delete all selections in document, paste columnarly.
+NEW way: paste each selection of the clipboard over each selection in the
+document until we run out of selections in the clipboard or document.
+If there are no more selections in the document, then paste the remaining
+clipboard selections columnarly. If there are no more selections in the
+clipboard, delete the remaining selections in the document.
+
+Changed behavior of the horizontal scroll bar so that it is possible
+to scroll the text beyond the right-most position dictated by the
+thumb. This makes it possible to see and edit the ends of very long
+lines, but does add a small bit of strangeness to the behavior of the
+scroll bar.
+
+Changed the way the editor homes the view when text is being sent to
+a buffer from a task. Now, the editor will not scroll horizontally
+when it homes. This makes it much easier to see what is happening
+when tasks dump long lines into the view.
+
+Allowed the escape key to be used to abort searches and scripts.
+
+Release of 1.2r7
+------- -- -----
+
+Code formatting changes.
+
+Some problems with SIGALRM fixed under Linux and IRIX.
+
+
+Release of 1.2r6
+------- -- -----
+
+The fallback font list (fonts e93 looks for when it cannot locate the
+one it really wants) has been changed. This was done to make e93
+behave better on machines that do not have b&h fonts.
+
+Opening and closing of e93's menus has been made slightly more
+efficient. This was done to make it faster with some window managers
+(like fvwm) which tend to behave very slowly when e93 changes the size
+of its menu window.
+
+The open and save dialogs have been changed slightly to make them
+more friendly.
+
+The startup procedure which reads the .e93rc file has been improved to
+handle some error cases in a more friendly way.
+
+4 new Tcl commands have been added:
+
+  buffervariables
+  setbuffervariable
+  unsetbuffervariable
+  getbuffervariable
+
+These allow variables to be created which are local to any given buffer.
+This will make it much easier for Tcl scripts to hang information off
+of a buffer, and reference it later.
+
+Finally, .e93rc has been changed in the following way:
+
+Checks were added to see if the modification time of a file has
+changed while the file was being edited. (Warning you that another
+application did something to the file).
+
+Capitalization of function names has been standardized.
+
+The open selection command has been improved to handle globbing, and
+selecting the cursor line to open if no selections exist.
+
+Open Clipboard was added to the Edit/Clipboards menu.
+
+Release of 1.2r5
+------- -- -----
+
+Some minor cleanup to code calling Tcl.
+
+Some bugs related to reporting errors at inopportune times were
+located and removed. These usually showed themselves during very low
+memory conditions.
+
+Double click timer is now reset in the file dialog boxes. Clicking
+rapidly on the file list now works as expected.
+
+The initial delay before repeated scrolling/paging with scroll bars
+has been lengthened slightly.
+
+The allowable delay between consecutively typed characters in list
+boxes has been lengthened slightly.
+
+A bug in the menu code was removed. The bug was caused by clicking
+multiple mouse buttons at the same time while tracking menu items.
+
+The directory dialog has been modified to show only directories.
+Previously it also showed files.
+
+Color handling has been altered so that named colors are now
+recognized. Previous to this, all colors had to be specified as 6 hex
+digits RRGGBB. Now, if a machine supports color names, e93 will also
+accept them.
+
+.e93rc was modified:
+  Strip EOL Whitespace and line termination functions were added.
+  Align Left was added.
+  "About" was slightly modified.
+  Color names were added.
+  Line Wrap functions were added.
+
+Characters with diacritical marks such as umlauts and other special
+characters which are contained in the upper half of the character set
+will now be displayed properly by e93. Previously, any character above
+0x7F would have been displayed as its hexidecimal equivalent. e93 will
+now use the character contained in the current font (as long as it is
+not of 0 width, in which case, it will display the hex equivalent as
+before).
+
+Two new relative cursor movement modes have been defined:
+STARTPARAGRAPH and ENDPARAGRAPH which will move the cursor to the
+start or end of a paragraph. These modes can be used with the
+following commands:
+
+movecursor
+delete
+expandselection
+reduceselection
+
+
+Release of 1.1r4
+------- -- -----
+
+.e93rc was modified:
+  Mark, Directory and C menus were added. Some more cleanup.
+  Views menu became Windows menu. Printing menus were added.
+
+All dialogs were modified to handle error conditions more
+consistently.
+
+The Ok dialog was modified to wrap text instead of drawing it off the
+edge.
+
+Open/save file dialogs were modified to handle more cases. Also a "/"
+was added after all items in the dialogs which point to directories.
+
+A new Path selection dialog was written, and a Tcl command
+(pathdialog) was added.
+
+Menus were modified so that you do not have to hold the mouse button
+down while making menu selections. You can now click on the various
+submenus one at a time to make a selection. This is more consistent
+with most window managers, and easier to use.
+
+Text routines were sped up by adding a cache mechanism that allows e93
+to locate positions in the text more quickly. The speed increase
+should be especially noticeable when editing large files (>1MB).
+Assuming you have enough virtual memory, e93 should now be able to
+edit very large (<2GB) files without a noticeable slow down.
+
+When treating replacement text as a Tcl script, 10 new variables (in
+addition to $found) are available if the search string was a selection
+expression: $0 - $9 are now set to the \0 through \9 matches of the
+selection expression.
+
+A bug that caused a rare memory leak related to search and replace was
+found and fixed.
+
+A bug in realpath2 that caused extra '/' characters to appear in its
+output was fixed.
+
+The clipboard interface with X windows has changed. Previously, e93
+used the clipboard mechanism to import/export to the X windows
+environment. However, most X windows applications do not use the
+clipboard. Instead, they use the X selection mechanism. Users
+complained that they could not easily communicate with programs that
+used only the selection mechanism (most programs). So, e93 now does
+the following to support communication with other X applications:
+Whenever text is copied into e93's current clipboard, e93 takes
+ownership of the current selection. If another application does a
+"paste selection" (many use the middle mouse button for this) while
+e93 owns the selection, the application will get the text in e93's
+current clipboard. Conversely, If another application owns the current
+selection, attempts to paste from the current clipboard within e93
+will cause it to copy the selected text from the current selection
+owner into the current clipboard before pasting. This all seems
+somewhat convoluted, but since e93 supports multiple selections
+simultaneously across multiple windows, and X does not, this is the
+best solution I can currently offer.
+
+The editor startup scheme was modified so that it looks for the .e93rc
+file in your home directory first, but if it is not found, it will now
+also look through the path given by $PATH in its environment. As soon
+as it locates a .e93rc file that it can open, it will execute it and
+stop looking. A Tcl global variable SCRIPTPATH is set to the path of
+the script that is executed.
+
+The font selection dialog was written. It is better than what it
+replaces (a dialog that made you type in the font you wanted) but it
+still could use some work.
+
+Release of 1.0r3
+------- -- -----
+
+The increment of the minor version number (1.0->1.1) indicates lots
+of changes.
+
+.e93rc was modified:
+  Some new functions added, some old ones cleaned up slightly. The
+  "unknown" function was modified so that if it launches a task that
+  wants input from stdin, it will get an EOF, instead of hanging
+  e93.
+
+README.e93 was written, as a first cut at a manual. Read it, if you
+have suggestions, let me know. There is a lot more to do in this
+arena, but I hate writing documentation, so this is it for a while.
+
+A proper open/save file dialog was written. It is kind of different.
+Let me know how you like it.
+
+There is also a new listdialog function which allows choices from a
+Tcl list. This dialog was used to implement the new "Windows..." menu
+function.
+
+Dialog management has changed significantly.
+
+Color handling was improved, so the editor should not just quit if it
+cannot get colors at startup. The new behavior is to just get either
+black, or white depending on which color is closer to the one asked
+for.
+
+Tasks are now hung off of buffers, instead of windows as they were
+previously. This allows for tasks to be running in buffers which do
+not have associated windows.
+
+EOF can now be sent to a task by closing the input pipe.
+
+Task error handling has been improved.
+
+A speed governor was installed on all scrolling items so you folks
+with screaming fast machines will not have things scrolling so fast as
+to be annoying. This should not slow down slow machines.
+
+LOTS of minor source code changes.
+
+Release of 1.0r2
+------- -- -----
+
+.e93rc was modified:
+  Some defaults were made easier to change.
+  Error reporting during file save functions was improved.
+  Menu names were made more consistent.
+  Some features were added to the "Misc" menu.
+
+The call to the library function "realpath" in xgui/misc.c was
+replaced by a call to a new internal routine "realpath2" which does
+the same thing. This was done for those machines that do not include
+"realpath" in their libraries.
+
+Release of 1.0r1
+------- -- -----
+
+xgui/includes.h was modified to include <sys/time.h> because some
+machines require it.
+
+Two bugs in keybind.c were found and corrected.
+
+Error reporting at init time was enhanced so that users would know if
+e93 failed to start up because of a lack of available colors.
+
+Startup script execution has been changed so that the editor will not
+startup if it cannot locate the startup script.
+
+The default .e93rc was slightly modified to change the colors of some
+windows.
+
+guidefs.h was modified to get rid of an array of 0 length that
+offended some compilers.
+
+Release of 1.0r0
+------- -- -----
+
+The makefile was altered to get rid of -L$(LIB) in the link line which
+was causing trouble.
+
+killpg in xgui/tasks.c was modified to kill(-pid...) because some
+systems do not have killpg.
+
+xgui/events.c was modified to make sigaction a little more portable.
+
+The clipboard is now imported when the editor starts.
+
+A new Tcl command called "version" was added to allow users to find
+out which version of the editor they are using.

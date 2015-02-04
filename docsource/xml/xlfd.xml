@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+
+<TITLE>The X Logical Font Description (XLFD)</TITLE>
+
+<SUMMARY>
+Specifying fonts
+</SUMMARY>
+
+<BODY>
+<P>The XLFD name is a string of characters that describes properties of the font you want.<BR />
+The form of the XLFD is 15 fields separated by dashes. These fields are explained later in this section.</P>
+
+<P><CODE>FontNameRegistry-Foundry-FamilyName-WeightName-Slant-SetwidthName<BR />
+-AddStyleName-PixelSize-PointSize-ResolutionX-ResolutionY<BR />
+-Spacing-AverageWidth-CharSetRegistry-CharSetCodin</CODE></P>
+
+<P>For example,<BR /></P>
+<CODE>-adobe-courier-bold-o-normal--10-100-75-75-m-60-hp-roman8</CODE>
+<P>specifies a courier, bold, oblique bitmapped font created by Adobe.
+The font is 10 pixels tall, 100 tenths of a point tall on a
+75dpi*75dpi display. Characters are monospaced, and are an average of
+60 tenths of a pixel wide. Fonts codes are based on the HP Roman8
+encoding.</P>
+
+<P>You may use either upper-case or lower-case letters when you specify a
+characteristic.  Reference XLFD names are all lower-case.</P>
+
+<P>The text "[extensions]" means that there are optional extensions to the
+standard XLFD fields that are used to generate additional font
+variations.  Notice that the underscore (_) character is used in some
+extensions to avoid confusion with the dash (-).</P>
+
+<H3>FontNameRegistry.</H3>
+<BLOCKQUOTE>
+	<P>The authority that registered the font.  Usually left blank.  If there is
+	a value in the field, it is of the form +version, where version is the
+	version of some future XLFD specification.</P>
+
+</BLOCKQUOTE>
+<H3>Foundry.</H3>
+<BLOCKQUOTE>
+ 	<P>The name of the digital type foundry that digitized the font data.</P>
+</BLOCKQUOTE>
+<H3>FamilyName.</H3>
+	<BLOCKQUOTE>
+	<P>The trademarked commercial name of the font.  If the FamilyName contains
+	spaces, do one of the following for a request XLFD name:</P>
+	<UL>
+		<LI> Enclose the entire XLFD name in double quotes (").  For example,
+		this fonts.alias file line.</LI>
+		<PRE>
+		            italic "-agfa-cg century schoolbook italic-normal-i-*---240---p-150-*-roman8"
+		</PRE>
+		<LI> Use wild cards for part of the field.</LI>
+		<PRE>
+		            italic -agfa-*schoolbook*italic-normal-i-*---240---p-150-*-roman8
+		</PRE>
+	</UL>
+
+</BLOCKQUOTE>
+<H3>WeightName[extensions].</H3>
+<BLOCKQUOTE>
+
+<P>The relative weight of the font, such as bold.</P>
+
+<P>For scalable typefaces, the user may specify that the font be darker
+(bolder) or lighter than the normal for that font.  The syntax for this
+optional extension is:</P>
+<PRE>
+[+-horiz_value][[+-vert_value]]
+</PRE>
+
+<P>The increase (+) or decrease (_) in boldness.  A
+value of 4000 for a normal font simulated the bold
+version of that font.</P>
+
+<P>If only one delta and value are specified, they apply to both directions.</P>
+
+</BLOCKQUOTE>
+<H3>Slant[extensions].</H3>
+<BLOCKQUOTE>
+
+<P>A code indicating the direction of the slant for the font.</P>
+
+<PRE>
+r       Roman (no slant)
+i       Italic (slant left)
+o       Oblique (slant left)
+ri      Reverse italic (slant right)
+ro      Reverse oblique (slant right)
+</PRE>
+
+<P>For scalable typefaces, the user can request additional slanting from the
+normal.  The syntax for this optional extension is:</P>
+<PRE>
++-value
+</PRE>
+
+<P>The angle in 1/64 degree ranging from 0 degrees to
+45 degrees (0-2880).  (0.5 degrees = 32, 1 degrees
+= 64, etc) Values outside of that range will return
+an error.  Use + for counterclockwise angles, _ for
+clockwise angles.</P>
+
+</BLOCKQUOTE>
+<H3>SetwidthName.</H3>
+<BLOCKQUOTE>
+
+<P>The width-per-unit of the font, such as compressed or expanded.</P>
+
+</BLOCKQUOTE>
+<H3>AddStyleName[extensions].</H3>
+<BLOCKQUOTE>
+
+<P>A description of anything else needed to uniquely identify the font, such
+as serif or cursive.</P>
+
+<P>For scalable typefaces, users can specify that the font be mirrored or
+rotated.  The syntax for the optional extension is:</P>
+<PRE>
+[+Mx][+-angle][+My]
+</PRE>
+
+<P>Mx mirrors the font horizontally, and My mirrors the font
+vertically.
++- the amount of rotation from normal in 1/64th degree
+increments.  Use + for counterclockwise angles; use _ for
+clockwise angles.</P>
+
+<P>Don't confuse "slant" with "rotation".  A character that has been slanted
+has its base in the normal position and the top pushed to one side.  A
+character that has been rotated has been moved around some central pivot
+point.</P>
+
+</BLOCKQUOTE>
+<H3>PixelSize [Extensions].</H3>
+<BLOCKQUOTE>
+
+<P>An integer describing the height of an EM square in pixels.</P>
+
+<P>For scalable typefaces, you can increase or decrease the horizontal size
+to make a font wider or narrower than normal for that font.  The syntax
+for this optional extension is</P>
+<PRE>
+[+pixelwidth]
+</PRE>
+
+<P>The horizontal size in pixels.  If this field is
+not specified, it is assumed to be the same as
+PixelSize.</P>
+
+<P>For example, 20+10 requests a font 20 pixels high and 10 pixels wide (or,
+more accurately, a 20-pixel font whose width is half its normal width).</P>
+
+<P>The PixelSize and PointSize fields are related through the ResolutionY
+field in the XLFD name (see below).  You should specify a font by using
+either PixelSize or PointSize, but not both.  An error occurs if you
+specify both and they conflict.</P>
+
+</BLOCKQUOTE>
+<H3>PointSize[extensions].</H3>
+<BLOCKQUOTE>
+
+<P>An integer giving the EM square size in decipoints.  For example 140 is
+14-points.</P>
+
+<P>For scalable typefaces, you can expand the horizontal size (set size) to
+make a font wider or narrower than normal for that font.  The syntax for
+this optional extension is:</P>
+<PRE>
+[+setsize]
+</PRE>
+
+<P>The horizontal size in decipoints.  If this field
+is not specified, it is assumed to be the same as
+PointSize.</P>
+
+<P>For example, "140+240" requests a font 14 points high, and 24 points wide
+(or, more accurately, a 14-point font whose width is that of a 24-point
+font).</P>
+
+<P>If neither PixelSize or PointSize are specified, the assumption is
+12-point.  If both are specified and they conflict, an error is returned.
+Use either PixelSize or PointSize, but not both.</P>
+
+</BLOCKQUOTE>
+<H3>ResolutionX, ResolutionY.</H3>
+<BLOCKQUOTE>
+
+<P>The horizontal (X) and vertical (Y) resolution of the device that the
+font was designed for, measured in pixels-per-inch.  If the resolution is
+not specified in a request XLFD name, the X server defaults to the
+resolution of the display for which the font is requested.</P>
+
+</BLOCKQUOTE>
+<H3>Spacing.</H3>
+<BLOCKQUOTE>
+
+<P>A code indicating the spacing between units in the font.</P>
+
+<PRE>
+M       Monospaced (fixed pitch)
+P       Proportional spaced (variable pitch)
+C       Character cell.  The glyphs of the font can be thought of as
+        "boxes" of the same width and height that are stacked side by
+        side or top to bottom.
+</PRE>
+
+</BLOCKQUOTE>
+<H3>AverageWidth.</H3>
+<BLOCKQUOTE>
+
+<P>An integer string giving the average, unweighted width of all the glyphs
+in the font, measured in 1/10th device-dependent pixels.</P>
+
+</BLOCKQUOTE>
+<H3>CharSetRegistry.</H3>
+<BLOCKQUOTE>
+
+<P>The registration authority that registered the specified CharSetEncoding.
+The XLFD conventions expect organizations that control characters to
+register with the X Consortium and be given a unique name to use in this
+field.</P>
+
+</BLOCKQUOTE>
+<H3>CharSetEncoding[extensions].</H3>
+<BLOCKQUOTE>
+
+<P>The character set from which the characters in the font are drawn.</P>
+
+<P>For scalable typefaces, this field can be used to specify subsets of any
+of the character sets.  This is a performance hint that the X or font
+server uses to determine which characters need to be realized.  The
+syntax for this optional extension is:</P>
+<PRE>
+=value,value...
+</PRE>
+
+<P>A character or range of characters to be included in the
+font, specified as decimal or hex number[s].  A range is
+two numbers separated by a colon (:).  For example,</P>
+<PRE>
+=65,0x45,90:95
+</PRE>
+specifies the characters "A," "E," and "P" through "U."
+
+<P>If an application requests a character not in the subset, then:</P>
+<UL>
+<LI> A space will be substituted for that character if space is in the subset.</LI>
+<LI> A null, zero-width character is substituted if space is not in the subset.</LI>
+</UL>
+</BLOCKQUOTE>
+</BODY>
+</CHAPTER>

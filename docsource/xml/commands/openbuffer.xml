@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>openbuffer</NAME>
+   <PARAMETER>
+      <NAME>pathName</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Open a buffer to the file at the end of <VAR>pathName</VAR>  This will return the fully expanded path name for the buffer if it is successfully opened. If asked to open a buffer to a file that is already opened, this will return the previously opened buffer name. If asked to open a file that cannot be opened, this will return an error.<BR/>
+   </DESCRIPTION>
+</COMMAND>

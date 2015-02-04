@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>paste</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>clipboardbuffer</NAME>
+The optional name of an e93 buffer that contains the text to be pasted.
+</PARAMETER>
+   <DESCRIPTION>
+      <P>Paste the contents of the current clipboard, or <VAR>clipboardbuffer</VAR> if specified into bufferName.</P>
+      <P>
+         <B>NOTE:</B>this exists to allow pasting into buffers that have no associated window.
+It cannot paste columnarly, because without a window (therefore, no font), there is no way to know how to move down a line.</P>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+      <P>
+         <VAR>clipboardbuffer</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

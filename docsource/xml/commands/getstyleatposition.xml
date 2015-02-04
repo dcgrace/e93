@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>getstyleatposition</NAME>
+    <SUMMARY>Return style information from a position in the text</SUMMARY>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>position</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Return information about the style at the given character <VAR>position</VAR> in the text.
+</DESCRIPTION>
+   <OUTPUT>
+The result is a value (style index), the given <VAR>position</VAR> where the style begins,
+and the <VAR>position</VAR> just after the end of the style.
+</OUTPUT>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

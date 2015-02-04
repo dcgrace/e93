@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>movecursor</NAME>
+   <PARAMETER>
+      <NAME>windowName</NAME>
+The name of the e93 window this command will act upon.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>relativeMode</NAME>
+      <CHOICE>
+         <NAME>LEFTCHAR</NAME>
+		move left by one (wrap to previous line if needed).
+	</CHOICE>
+      <CHOICE>
+         <NAME>RIGHTCHAR</NAME>
+		move left by one (wrap to previous line if needed).
+	</CHOICE>
+      <CHOICE>
+         <NAME>LEFTWORD</NAME>
+		move right by one (wrap to next line if needed).
+	</CHOICE>
+      <CHOICE>
+         <NAME>RIGHTWORD</NAME>
+		move left by one word (wrap lines as needed).
+	</CHOICE>
+      <CHOICE>
+         <NAME>DOWNLINE</NAME>
+		move down by one line, attempt to stay at same horizontal offset.
+	</CHOICE>
+      <CHOICE>
+         <NAME>STARTLINE</NAME>
+		move to the start of the current line.
+	</CHOICE>
+      <CHOICE>
+         <NAME>ENDLINE</NAME>
+		move to the end of the current line.
+	</CHOICE>
+      <CHOICE>
+         <NAME>STARTDOC</NAME>
+		move to the start of the document.
+	</CHOICE>
+      <CHOICE>
+         <NAME>ENDDOC</NAME>
+		move to the end of the document.
+	</CHOICE>
+   </PARAMETER>
+   <SUMMARY>
+Reposition the cursor in a window
+</SUMMARY>
+   <DESCRIPTION>
+Move the cursor in <VAR>windowName</VAR> in the direction given by <VAR>relativeMode</VAR>.
+</DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>windowName</VAR> is not provided.<BR/>
+         <VAR>windowName</VAR> is not an e93 window.</P>
+      <P>
+         <VAR>relativeMode</VAR> is not provided, or is not a understood value.</P>
+   </STATUS>
+</COMMAND>

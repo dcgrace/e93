@@ -1,0 +1,108 @@
+/* Comments like this are allowed in CSS2 */
+@media screen, print
+{
+	COMMAND
+	{
+		display: block;
+		margin-left: 40pt;
+		font-family: Helvetica;
+		font-size: 9pt;
+	}
+
+	NAME
+	{
+		display: block;
+		font-weight: bold;
+		font-size: 18pt;
+	}
+	
+	PARAMETER > NAME, CHOICE > NAME, OPTION > NAME, OPTION > NAME
+	{
+		display: block;
+		font-family: Courier New;
+		font-size: 9pt;
+		font-style: italic;
+		font-weight: normal;
+		margin-left: -20pt;
+	}
+	
+	PARAMETER, OPTION
+	{
+		display: block;
+		margin-left: 60pt;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+
+	CHOICE
+	{
+		display: block;
+		margin-left: 60pt;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+
+	DESCRIPTION
+	{
+		display: block;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+	
+	LIMITATIONS
+	{
+		display: block;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+	
+	SEEALSO
+	{
+		display: block;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+	
+	A
+	{
+		display: inline;
+		color: blue;
+		font-style: underline;
+	}
+	
+	SUMMARY
+	{
+	color: white
+	}
+
+	P
+	{
+		display: block;
+		margin-top: 12pt;
+		margin-bottom: 12pt;
+	}
+	
+	BR
+	{
+		display: block;
+	}
+
+	B
+	{
+		font-weight: 700;
+		display: inline;
+	}
+	
+	CODE
+	{
+		font-family: Courier New;
+		display: inline;
+	}
+
+	VAR
+	{
+		font-family: Courier New;
+		font-style: italic;
+		display: inline;
+	}
+}

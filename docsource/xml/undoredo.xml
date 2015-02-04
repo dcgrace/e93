@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Undo and Redo</TITLE>
+
+<SUMMARY>
+Changing your mind
+</SUMMARY>
+
+<BODY>
+
+<P>e93 remembers undo/redo information only for operations that change the text of a buffer. It does not remember cursor movements, or selections.</P>
+
+<P>Unlimited amounts of undo information are recorded separately for each buffer. e93 groups character insertions and deletions so that they become single undo items.</P>
+
+<P>Each time you undo in a buffer, e93 remembers what was undone as redo information. However, once you make a change in a buffer, all redo information is lost.</P>
+
+<h3>
+SEE ALSO
+</h3>
+<blockquote>
+<p><code>
+      <A HREF="commands/undo.html">undo</A> 
+      <A HREF="commands/breakundo.html">breakundo</A> 
+      <A HREF="commands/flushundos.html">flushundos</A> 
+      <A HREF="commands/undotoggle.html">undotoggle</A> 
+</code></p> 
+</blockquote>
+
+
+</BODY>
+</CHAPTER>

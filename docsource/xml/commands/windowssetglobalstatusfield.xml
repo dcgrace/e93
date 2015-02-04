@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowssetglobalstatusfield</NAME>
+   <PARAMETER>
+      <NAME>fieldNumber</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>width</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>string</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+At the bottom of the MDI window there is a global status bar that you can put your own information in. <VAR>fieldNumber</VAR> is a relative position (numbered starting from 0) from left to right. <VAR>width</VAR> is how wide in pixels the field should be, and <VAR>string</VAR> is any text data you want in that field. If <VAR>width</VAR> is zero, the field is removed from the status bar.<BR/>
+   </DESCRIPTION>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

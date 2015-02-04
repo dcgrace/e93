@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>addsyntaxmap</NAME>
+   <PARAMETER>
+      <NAME>syntaxMapName</NAME>
+The name that this syntax map will be known to e93 by.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>syntaxMap</NAME>
+      <P>A syntax map is the data structure which gives e93 all the information
+it needs to search through a document, and apply styles to the text
+which the map specifies.</P>
+      <P>See: <A HREF="../syntaxmaps.html">Syntax maps</A> for more information.</P>
+   </PARAMETER>
+   <SUMMARY>
+Create a syntax highlighting map
+</SUMMARY>
+   <DESCRIPTION>
+      <P>Create a syntax highlighting map from a list of expressions and a list of mappings from expressions to styles.</P>
+      <P>
+         <B>NOTE:</B> this can be used to replace an existing syntax map, but if the existing map is in use by any buffer which is busy,
+this will fail before it does anything.</P>
+   </DESCRIPTION>
+   <STATUS>
+      <P>The addsyntaxmap command will return an error in the following cases:<BR/>
+         <VAR>syntaxMapName</VAR> is not provided.</P>
+      <P>
+         <VAR>syntaxMap</VAR> is not provided.<BR/>
+         <VAR>syntaxMap</VAR> is not valid.</P>
+   </STATUS>
+   <SEEALSO>
+      <CODE>
+         <A HREF="../syntaxmaps.html">Syntax maps</A>
+         <A HREF="addsyntaxmap.html">addsyntaxmap</A>
+         <A HREF="deletesyntaxmap.html">deletesyntaxmap</A>
+         <A HREF="getsyntaxmap.html">getsyntaxmap</A>
+         <A HREF="setsyntaxmap.html">setsyntaxmap</A>
+         <A HREF="syntaxmapbuffers.html">syntaxmapbuffers</A>
+      </CODE>
+   </SEEALSO>
+</COMMAND>

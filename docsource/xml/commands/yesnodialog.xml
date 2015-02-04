@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>yesnodialog</NAME>
+   <PARAMETER>
+      <NAME>dialogText</NAME>
+	Specifies a message requesting information from the user.
+	</PARAMETER>
+   <SUMMARY>
+	Open a dialog with Yes, No, and Cancel
+	</SUMMARY>
+   <DESCRIPTION>
+	Open a dialog with Yes, No, and Cancel buttons, containing <VAR>dialogText</VAR>.
+	</DESCRIPTION>
+   <OUTPUT>
+	If the user exits the dialog with Yes, yesnodialog will return 1. If the user exits the dialog with No, yesnodialog will return 0.
+	</OUTPUT>
+   <STATUS>
+	If the user exits the dialog with Cancel yesnodialog will return an error.
+	</STATUS>
+   <SEEALSO>
+      <CODE>
+         <A HREF="fontdialog.html">fontdialog</A>
+         <A HREF="listdialog.html">listdialog</A>
+         <A HREF="okcanceldialog.html">okcanceldialog</A>
+         <A HREF="okdialog.html">okdialog</A>
+         <A HREF="opendialog.html">opendialog</A>
+         <A HREF="pathdialog.html">pathdialog</A>
+         <A HREF="savedialog.html">savedialog</A>
+         <A HREF="searchdialog.html">searchdialog</A>
+         <A HREF="textdialog.html">textdialog</A>
+      </CODE>
+   </SEEALSO>
+</COMMAND>

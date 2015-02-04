@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>delete</NAME>
+    <PARAMETER>
+        <NAME>windowName</NAME>
+	The name of the e93 window this command will act upon.
+	</PARAMETER>
+    <PARAMETER>
+        <NAME>relativeMode</NAME>
+        <VAR>relativeMode</VAR> is the same as in <A href="movecursor.html">movecursor</A>.
+
+	<CHOICE>
+            <NAME>LEFTCHAR</NAME>
+		delete left by one (wrap to previous line if needed).
+	</CHOICE>
+        <CHOICE>
+            <NAME>RIGHTCHAR</NAME>
+		delete right by one (wrap to previous line if needed).
+	</CHOICE>
+        <CHOICE>
+            <NAME>LEFTWORD</NAME>
+		delete left by one word (wrap to next line if needed).
+	</CHOICE>
+        <CHOICE>
+            <NAME>RIGHTWORD</NAME>
+		delete right by one word (wrap lines as needed).
+	</CHOICE>
+        <CHOICE>
+            <NAME>DOWNLINE</NAME>
+		delete down by one line, attempt to stay at same horizontal offset.
+	</CHOICE>
+        <CHOICE>
+            <NAME>STARTLINE</NAME>
+		delete to the start of the current line.
+	</CHOICE>
+        <CHOICE>
+            <NAME>ENDLINE</NAME>
+		delete to the end of the current line.
+	</CHOICE>
+        <CHOICE>
+            <NAME>STARTDOC</NAME>
+		delete to the start of the document.
+	</CHOICE>
+        <CHOICE>
+            <NAME>ENDDOC</NAME>
+		delete to the end of the document.
+	</CHOICE>
+    </PARAMETER>
+    <SUMMARY>Delete the characters in a window</SUMMARY>
+    <DESCRIPTION>
+	Delete the characters in <VAR>windowName</VAR> between the cursor, and relative mode away from it.
+	</DESCRIPTION>
+    <STATUS>
+		This command will return an error in the following cases:
+		<P>
+            <VAR>windowName</VAR> is not provided.<BR/>
+            <VAR>windowName</VAR> is not an e93 window.</P>
+        <P>
+            <VAR>relativeMode</VAR> is not provided, or is not an understood value.</P>
+    </STATUS>
+    <SEEALSO>
+        <CODE>
+            <A HREF="movecursor.html">movecursor</A>
+        </CODE>
+    </SEEALSO>
+</COMMAND>

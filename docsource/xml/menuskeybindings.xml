@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Menus and Key Bindings</TITLE>
+
+<SUMMARY>
+Tying commands to keys or key combinations
+</SUMMARY>
+
+<BODY>
+<P>Menus are used to place functions that are executed often in a convenient place where they can be accessed quickly. The menuing system in e93 is dynamic. Menus can be added or deleted at any time. There are two Tcl commands used to add/delete menus:</P>
+
+<P><A HREF="commands/addmenu.html">addmenu</A>  - adds or replaces a menu in the menu bar.</P>
+
+<P><A HREF="commands/deletemenu.html">deletemenu</A> - deletes a menu, and its children from the menu bar.</P>
+
+<P>Example:</P>
+
+<PRE><CODE>addmenu {} LASTCHILD 1 "Test" {&#092;&#092;KA } { okdialogokdialog "Testing 123"}</CODE></PRE>
+
+<P>This command adds a menu at the end (LASTCHILD) of the root menu {}. The new menu is called Test, it has a keyboard equivalent of <A HREF="standardkeyboardlayout.html#CommandKey">Command</A>-Shift-A, and when selected, it will bring up a dialog box with a test message in it.</P>
+
+<P>To delete the menu:</P>
+
+<PRE><CODE>deletemenu {Test}</CODE></PRE>
+
+<P>Keys can also be bound to functions within e93. Key binding is much the same as defining menus. The major difference is that key bindings have no visual representation (as in a menu item that the user can see.) Also, key bindings may be more versatile than menu key  equivalents, allowing a richer set of key combinations to be bound to functions. For example, menu key equivalents only function when the <A HREF="standardkeyboardlayout.html#CommandKey">Command Key</A> or <A HREF="standardkeyboardlayout.html#CommandKey">Command</A>+shift is pressed, but bound keys can be bound to virtually all combinations.</P>
+
+<P>There are two major key binding functions:</P>
+
+<P><A HREF="commands/bindkey.html">bindkey</A>- bind a key combination to a Tcl script.</P>
+
+<P><A HREF="commands/unbindkey.html">unbindkey</A> - remove a bound key combination.</P>
+
+<P>Using the menu example from above, if we wanted to bind the function key F5 to bring up the test dialog box, the command would be:</P>
+
+<PRE><CODE>bindkeyF5 00000000000 {okdialogokdialog "Testing 123"}</CODE></PRE>
+
+<P>To get rid of the binding:</P>
+
+<PRE><CODE>unbindkey F5 00000000000</CODE></PRE>
+
+<P>All those 0s are called the "modifier string" they tell which modifier keys should be in which states for the binding to take effect. In this example, no modifiers can be pressed when F5 is pressed if the binding is to take effect. As usual, see the <a href="commands.html">Command Reference</a> for a more detailed description.</P>
+
+<P><B>NOTE:</B>The key binding, and menu key equivalent functions are completely separate. If you define a menu that has a key equivalent, and also bind that combination of keys to some other function, e93 does not guarantee which will take precedence, only that one of them will be executed, and not both.</P>
+
+</BODY>
+</CHAPTER>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowsopenanothere93</NAME>
+   <PARAMETER>
+      <NAME>TRUE/FALSE</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Determines what to do when another copy of e93 is launched. If set TRUE a new copy of e93 is always run. If set to FALSE, if there is already a copy of e93 running it is brought to the front.<BR/>
+   </DESCRIPTION>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

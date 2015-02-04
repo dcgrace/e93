@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>replaceall</NAME>
+   <PARAMETER>
+      <NAME>searchInBuffer</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>findBuffer</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>replaceBuffer</NAME>
+   </PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>flags</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+      <P>Attempt to locate all occurrences of the text contained in findbuffer
+in <VAR>searchInBuffer</VAR> when each is found, replace it with the
+contents of replacebuffer.<BR/>The following <VAR>flags</VAR> are
+available:<BR/>-backwardsearch backwards.<BR/>-wrapwraps the search or
+replace around the end of <VAR>searchInBuffer</VAR>
+         <BR/>-regextreats
+findbuffer as a regular expression. Also, treat the contents of
+replacebuffer as a selection expression replacement strings (unless
+-replacescript is present).<BR/>-ignorecaseignores case during the
+search.<BR/>-limitscopesearches only the selected text of
+<VAR>searchInBuffer</VAR>
+         <BR/>-replacescripttreat the contents of
+replacebuffer as a Tcl script that should be executed when a match is
+found, the results of which will be placed into
+<VAR>searchInBuffer</VAR>.</P>
+      <P>
+         <B>NOTE:</B>when a match is found, the text that matched is copied
+to a Tcl global variable called $found, this variable can be
+referenced by the replace procedure.</P>
+   </DESCRIPTION>
+</COMMAND>

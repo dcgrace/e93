@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>forceQUIT</NAME>
+    <SUMMARY>make e93 QUIT without saving, or asking to save any modified buffers</SUMMARY>
+   <DESCRIPTION>
+Rude unforgiving command that will make e93 QUIT without saving, or asking to save any modified buffers. This is the only way to ask e93 to quit, so Tcl scripts must take care of the niceties of asking to save modified buffers before this is executed.<BR/>
+   </DESCRIPTION>
+</COMMAND>

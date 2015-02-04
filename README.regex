@@ -1,0 +1,419 @@
+This material is derived from The GNU Emacs Manual, 9th edition.
+Copyright 1985, 1986, 1987, 1993 Free Software Foundation, Inc.
+and from the GNU regex library version 0.11.
+Copyright 1992 Free Software Foundation, Inc.
+
+The Free Software Foundation gives permission for the use of this
+material in e93, with different distribution terms from those stated
+in the Emacs manual, because e93 is free software, and thus worthy
+of cooperation.
+
+
+NOTE: this has been modified to reflect e93's syntax.
+1/22/00 TMS (squirest@e93.org)
+
+Regular Expression Syntax
+
+Common Operators
+
+* Match-self Operator::                 Ordinary characters.
+* Match-any-character Operator::        .
+* Concatenation Operator::              Juxtaposition.
+* Repetition Operators::                *  +  ? {}
+* Alternation Operator::                |
+* List Operators::                      [...]  [^...]
+* Grouping Operators::                  (...)
+* Back-reference Operator::             \digit
+* Anchoring Operators::                 ^  $  <  >
+
+Repetition Operators
+
+* Match-zero-or-more Operator::  *
+* Match-one-or-more Operator::   +
+* Match-zero-or-one Operator::   ?
+* Interval Operators::           {}
+
+List Operators (`[' ... `]' and `[^' ... `]')
+
+* Range Operator::          start-end
+
+Anchoring Operators
+
+* Match-beginning-of-word Operator::  <
+* Match-end-of-word Operator::        >
+* Match-beginning-of-line Operator::  ^
+* Match-end-of-line Operator::        $
+
+
+Overview
+********
+
+  A "regular expression" (or "regexp", or "pattern") is a text string
+that describes some (mathematical) set of strings.  A regexp R
+"matches" a string S if S is in the set of strings described by R.
+
+  Some regular expressions match only one string, i.e., the set they
+describe has only one member.  For example, the regular expression
+`foo' matches the string `foo' and no others.  Other regular
+expressions match more than one string, i.e., the set they describe has
+more than one member.  For example, the regular expression `f*' matches
+the set of strings made up of any number (including zero) of `f's.  As
+you can see, some characters in regular expressions match themselves
+(such as `f') and some don't (such as `*'); the ones that don't match
+themselves instead let you specify patterns that describe many
+different strings.
+
+Regular Expression Syntax
+*************************
+
+  "Characters" are things you can type.  "Operators" are things in a
+regular expression that match one or more characters.  You compose
+regular expressions from operators, which in turn you specify using one
+or more characters.
+
+  Most characters represent what we call the match-self operator, i.e.,
+they match themselves; we call these characters "ordinary".  Other
+characters represent either all or parts of fancier operators; e.g.,
+`.' represents what we call the match-any-character operator (which, no
+surprise, matches any character); we call these characters
+"special".
+
+  In the following sections, we describe these things in more detail.
+
+The Backslash Character
+=======================
+
+  The `\' character quotes (makes ordinary, if it's special,
+  or possibly special if it's ordinary) the next character.
+
+	'\' sequences:
+
+	\n			-- stands for new line (0x0A).
+	\b			-- stands for backspace (0x08).
+	\r			-- stands for return (0x0D).
+	\t			-- stands for tab (0x09).
+	\x##		-- allows specification of arbitrary characters in hex
+				   for example \x0A is equivalent to \n.
+	\0 to \9	-- backreference to register (not valid within [])
+
+
+Common Operators
+****************
+
+  You compose regular expressions from operators.  In the following
+sections, we describe the regular expression operators.
+
+
+* Match-self Operator::                 Ordinary characters.
+* Match-any-character Operator::        .
+* Concatenation Operator::              Juxtaposition.
+* Repetition Operators::                *  +  ? {}
+* Alternation Operator::                |
+* List Operators::                      [...]  [^...]
+* Grouping Operators::                  (...)
+* Back-reference Operator::             \digit
+* Anchoring Operators::                 ^  $  <  >
+
+
+The Match-self Operator (ORDINARY CHARACTER)
+============================================
+
+  This operator matches the character itself.  All ordinary characters
+represent this operator.  For example, `f' is always an ordinary character,
+so the regular expression `f' matches only the string `f'.
+In particular, it does *not* match the string `ff'.
+
+
+The Match-any-character Operator (`.')
+======================================
+
+  This operator matches any single printing or nonprinting character except
+  newline (it is equivalent to `[^\n]').
+
+  NOTE: if you wish to match absolutely anything, use `[-]', or `[^]'.
+
+  The `.' (period) character represents this operator.  For example,
+`a.b' matches any three-character string beginning with `a' and ending
+with `b'.
+
+The Concatenation Operator
+==========================
+
+  This operator concatenates two regular expressions A and B. No
+character represents this operator; you simply put B after A.  The
+result is a regular expression that will match a string if A matches
+its first part and B matches the rest.  For example, `xy' (two
+match-self operators) matches `xy'.
+
+Repetition Operators
+====================
+
+  Repetition operators repeat the preceding regular expression a
+specified number of times.
+
+* Match-zero-or-more Operator::  *
+* Match-one-or-more Operator::   +
+* Match-zero-or-one Operator::   ?
+* Interval Operators::           {}
+
+The Match-zero-or-more Operator (`*')
+-------------------------------------
+
+  This operator repeats the smallest possible preceding regular
+expression as many times as necessary (including zero) to match the
+pattern. `*' represents this operator.  For example, `o*' matches any
+string made up of zero or more `o's.  Since this operator operates on
+the smallest preceding regular expression, `fo*' has a repeating `o',
+not a repeating `fo'.  So, `fo*' matches `f', `fo', `foo', and so on.
+
+  Since the match-zero-or-more operator is a suffix operator, it may
+not be applied when no regular expression precedes it.  This is the
+case when it:
+
+   * is first in a regular expression, or
+
+   * follows a match-beginning-of-line, match-end-of-line, open-group,
+     or alternation operator.
+
+  The matcher processes a match-zero-or-more operator by first matching
+as many repetitions of the smallest preceding regular expression as it
+can. Then it continues to match the rest of the pattern.
+
+  If it can't match the rest of the pattern, it backtracks (as many
+times as necessary), each time discarding one of the matches until it
+can either match the entire pattern or be certain that it cannot get a
+match.  For example, when matching `ca*ar' against `caaar', the matcher
+first matches all three `a's of the string with the `a*' of the regular
+expression.  However, it cannot then match the final `ar' of the
+regular expression against the final `r' of the string.  So it
+backtracks, discarding the match of the last `a' in the string.  It can
+then match the remaining `ar'.
+
+The Match-one-or-more Operator (`+')
+------------------------------------
+
+  This operator is similar to the match-zero-or-more operator except
+that it repeats the preceding regular expression at least once; *note
+Match-zero-or-more Operator::., for what it operates on, and how Regex
+backtracks to match it.
+
+  For example, supposing that `+' represents the match-one-or-more
+operator; then `ca+r' matches, e.g., `car' and `caaaar', but not `cr'.
+
+The Match-zero-or-one Operator (`?')
+------------------------------------
+
+  This operator is similar to the match-zero-or-more operator except
+that it repeats the preceding regular expression once or not at all;
+*note Match-zero-or-more Operator::., to see what it operates on, and
+how Regex backtracks to match it.
+
+  For example, supposing that `?' represents the match-zero-or-one
+operator; then `ca?r' matches both `car' and `cr', but nothing else.
+
+Interval Operators (`{' ... `}')
+----------------------------------
+
+Supposing that `{' and `}' represent the open-interval
+and close-interval operators; then:
+
+`{COUNT}'
+     matches exactly COUNT occurrences of the preceding regular
+     expression.
+
+`{MIN,}'
+     matches MIN or more occurrences of the preceding regular
+     expression.
+
+`{MIN, MAX}'
+     matches at least MIN but no more than MAX occurrences of the
+     preceding regular expression.
+
+  The interval expression (but not necessarily the regular expression
+that contains it) is invalid if:
+
+   * MIN is greater than MAX
+
+The Alternation Operator (`|')
+==============================
+
+  Alternatives match one of a choice of regular expressions: if you put
+the character(s) representing the alternation operator between any two
+regular expressions A and B, the result matches the union of the
+strings that A and B match.  For example, supposing that `|' is the
+alternation operator, then `foo|bar|quux' would match any of `foo',
+`bar' or `quux'.
+
+  The alternation operator operates on the *largest* possible
+surrounding regular expressions.  (Put another way, it has the lowest
+precedence of any regular expression operator.) Thus, the only way you
+can delimit its arguments is to use grouping.  For example, if `(' and
+`)' are the open and close-group operators, then `fo(o|b)ar' would
+match either `fooar' or `fobar'.  (`foo|bar' would match `foo' or
+`bar'.)
+
+  The matcher tries each combination of alternatives in order until it
+is able to make a match.
+
+List Operators (`[' ... `]' and `[^' ... `]')
+=============================================
+
+  "Lists", also called "bracket expressions", are a set of zero or more
+items.  An "item" is a character, or a range expression.
+
+  A "matching list" matches a single character represented by one of
+the list items.  You form a matching list by enclosing one or more items
+within an "open-matching-list operator" (represented by `[') and a
+"close-list operator" (represented by `]').
+
+  For example, `[ab]' matches either `a' or `b'. `[ad]*' matches the
+empty string and any string composed of just `a's and `d's in any
+order.  Regex considers invalid a regular expression with a `[' but no
+matching `]'.
+
+  "Nonmatching lists" are similar to matching lists except that they
+match a single character *not* represented by one of the list items.
+You use an "open-nonmatching-list operator" (represented by `[^')
+instead of an open-matching-list operator to start a nonmatching list.
+
+  For example, `[^ab]' matches any character except `a' or `b'.
+
+  Most characters lose any special meaning inside a list.  The special
+characters inside a list follow.
+
+`]'
+     ends the list unless quoted by '\'.
+
+`\'
+     quotes the next character.
+
+`-'
+     represents the range operator unless quoted by '\'.
+
+All other characters are ordinary.  For example, `[.*]' matches `.' and
+`*'.
+
+The Range Operator (`-')
+------------------------
+
+  Regex recognizes "range expressions" inside a list. They represent
+those characters that fall between two elements in the current
+collating sequence.  You form a range expression by putting a "range
+operator" between two characters. `-' represents the range operator.
+ For example, `a-f' within a list represents all the characters from `a'
+through `f' inclusively.
+
+  Since `-' represents the range operator, if you want to make a `-'
+character itself a list item, you must quote it with '\'.
+
+  Ranges do not need a start and end, if the start is omitted
+for example, `[-a]' matches all characters through lowercase 'a';
+if the end is omitted: '[a-]' matches lowercase 'a' through 0xFF;
+[-] matches all characters.
+
+Grouping Operators (`(' ... `)')
+=================================================
+
+  A "group", also known as a "subexpression", consists of an
+"open-group operator", any number of other operators, and a
+"close-group operator".  Regex treats this sequence as a unit, just as
+mathematics and programming languages treat a parenthesized expression
+as a unit. Groups can be empty.
+
+  Therefore, using "groups", you can:
+
+   * delimit the argument(s) to an alternation operator (*note
+     Alternation Operator::.) or a repetition operator (*note
+     Repetition Operators::.).
+
+   * keep track of the indices of the substring that matched a given
+     group. *Note Using Registers::, for a precise explanation. This
+     lets you:
+
+        * use the back-reference operator (*note Back-reference
+          Operator::.).
+
+        * use registers (*note Using Registers::.).
+
+The Back-reference Operator ("\"DIGIT)
+======================================
+
+A back reference matches a specified preceding group.
+The back reference operator is represented by `\DIGIT' anywhere after
+the end of a regular expression's DIGIT-th group (*note Grouping
+Operators::.).
+
+  DIGIT must be between `0' and `9'.  The matcher assigns numbers 0
+through 9 to the first ten groups it encounters.  By using one of `\0'
+through `\9' after the corresponding group's close-group operator, you
+can match a substring identical to the one that the group does.
+
+  Back references match according to the following (in all examples
+below, `(' represents the open-group, `)' the close-group, `{' the
+open-interval and `}' the close-interval operator):
+
+   * If the group matches a substring, the back reference matches an
+     identical substring.  For example, `(a)\0' matches `aa' and
+     `(bana)na\0bo\0' matches `bananabanabobana'.  Likewise, `(.*)\0'
+     matches any string that is composed of two identical halves; the `(.*)'
+     matches the first half and the `\0' matches the second half.
+
+   * If the group matches more than once (as it might if followed by,
+     e.g., a repetition operator), then the back reference matches the
+     substring the group *last* matched.  For example, `((a*)b)*\0\1'
+     matches `aabababa'; first group 0 (the outer one) matches `aab'
+     and group 1 (the inner one) matches `aa'.  Then group 0 matches
+     `ab' and group 1 matches `a'.  So, `\0' matches `ab' and `\1'
+     matches `a'.
+
+   * If the group doesn't participate in a match, i.e., it is part of an
+     alternative not taken or a repetition operator allows zero
+     repetitions of it, then the back reference makes the whole match
+     fail.
+
+  You can use a back reference as an argument to a repetition operator.
+ For example, `(a(b))\1*' matches `a' followed by one or more `b's.
+Similarly, `(a(b))\1{3}' matches `abbbb'.
+
+  If there is no preceding DIGIT-th subexpression, the regular
+expression is invalid.
+
+Anchoring Operators
+===================
+
+  These operators can appear anywhere (except lists) within a pattern
+and force that point in the pattern to match only at the beginning or end of a word or line.
+
+* Match-beginning-of-word Operator::  <
+* Match-end-of-word Operator::        >
+* Match-beginning-of-line Operator::  ^
+* Match-end-of-line Operator::        $
+
+
+The Match-beginning-of-word Operator (`<')
+------------------------------------------
+
+  This operator can match the empty string either at the beginning of
+the text or the beginning of a word. Thus, it is said to "anchor" the
+pattern to the beginning of a word.
+
+The Match-end-of-word Operator (`>')
+------------------------------------
+
+  This operator can match the empty string either at the end of the text
+or the end of a word. Thus, it is said to "anchor" the pattern to the
+end of a word.
+
+The Match-beginning-of-line Operator (`^')
+------------------------------------------
+
+  This operator can match the empty string either at the beginning of
+the text or after a newline character.  Thus, it is said to "anchor"
+the pattern to the beginning of a line.
+
+The Match-end-of-line Operator (`$')
+------------------------------------
+
+  This operator can match the empty string either at the end of the
+text or before a newline character in the text.  Thus, it is said
+to "anchor" the pattern to the end of a line.

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+
+<COMMAND type="Proc">
+    <NAME>SetHighlightScheme</NAME>
+    <SUMMARY>Set the highlight scheme for a window</SUMMARY>
+    <DESCRIPTION>
+    .</DESCRIPTION>
+    <LOCATION>e93lib/e93rc.tcl</LOCATION>
+</COMMAND>

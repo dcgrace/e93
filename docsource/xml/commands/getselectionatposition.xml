@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>getselectionatposition</NAME>
+    <SUMMARY>Return information about the selection in a buffer</SUMMARY>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>position</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Return information about the selection at the given character <VAR>position</VAR> in <VAR>bufferName</VAR>.
+</DESCRIPTION>
+   <OUTPUT>
+The result is a boolean value (0 if no selection, 1 if selection) and the given <VAR>position</VAR>,
+where the current selection begins, and the <VAR>position</VAR> just after the end of the selection.
+</OUTPUT>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

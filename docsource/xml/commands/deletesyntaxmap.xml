@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>deletesyntaxmap</NAME>
+   <PARAMETER>
+      <NAME>syntaxMapName</NAME>
+   </PARAMETER>
+   <SUMMARY>
+Delete the syntax map
+</SUMMARY>
+   <DESCRIPTION>
+Delete the syntax map named <VAR>syntaxMapName</VAR>, which was created by <A HREF="addsyntaxmap.html">addsyntaxmap</A>.
+Remove the map from all buffers which are using it.
+</DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>A buffer which is using the map is currently busy.</P>
+      <P>
+         <VAR>syntaxMapName</VAR> is not the name of an existing syntax map.</P>
+   </STATUS>
+   <SEEALSO>
+      <CODE>
+         <A HREF="../syntaxmaps.html">Syntax maps</A>
+         <A HREF="addsyntaxmap.html">addsyntaxmap</A>
+         <A HREF="deletesyntaxmap.html">deletesyntaxmap</A>
+         <A HREF="getsyntaxmap.html">getsyntaxmap</A>
+         <A HREF="setsyntaxmap.html">setsyntaxmap</A>
+         <A HREF="syntaxmapbuffers.html">syntaxmapbuffers</A>
+      </CODE>
+   </SEEALSO>
+</COMMAND>

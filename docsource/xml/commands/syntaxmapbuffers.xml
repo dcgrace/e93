@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>syntaxmapbuffers</NAME>
+   <PARAMETER>
+      <NAME>syntaxMapName</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Return the list of buffer names which are currently using the given syntax map<BR/>
+   </DESCRIPTION>
+   <SEEALSO>
+      <CODE>
+         <A HREF="../syntaxmaps.html">Syntax maps</A>
+         <A HREF="addsyntaxmap.html">addsyntaxmap</A>
+         <A HREF="deletesyntaxmap.html">deletesyntaxmap</A>
+         <A HREF="getsyntaxmap.html">getsyntaxmap</A>
+         <A HREF="setsyntaxmap.html">setsyntaxmap</A>
+         <A HREF="syntaxmapbuffers.html">syntaxmapbuffers</A>
+      </CODE>
+   </SEEALSO>
+</COMMAND>

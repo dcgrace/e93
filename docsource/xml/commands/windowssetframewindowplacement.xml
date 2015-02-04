@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>windowssetframewindowplacement</NAME>
+    <SUMMARY>Change the position and size of the outer e93 frame window</SUMMARY>
+   <PARAMETER>
+      <NAME>top</NAME>
+      The position from the top of the screen to the top of the window.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>left</NAME>
+       The position from the left side of the screen to the left side of the window.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>bottom</NAME>
+       The position of the bottom of the window from the top of the screen.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>right</NAME>
+       The position of the right side of the window from the left side of the screen.
+   </PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>showcmd</NAME>
+      Specifies how the window should be displayed.
+		<CHOICE>
+	         <NAME>normal</NAME>
+			Activates and displays the window.
+			If the window is minimized or maximized, the system restores it to its original size and position.
+		</CHOICE>
+		<CHOICE>
+	         <NAME>maximize</NAME>
+			Maximizes the window.
+		</CHOICE>
+		<CHOICE>
+	         <NAME>minimize</NAME>
+			Minimizes the window and activates the next top-level window in the z-order.
+		</CHOICE>
+   </PARAMETER>
+   <DESCRIPTION>
+	Change the position and size of the outer e93 frame window<BR/>
+   </DESCRIPTION>
+    <SEEALSO>
+        <CODE>
+            <A HREF="windowsgetframewindowplacement.html">windowsgetframewindowplacement</A>
+        </CODE>
+    </SEEALSO>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

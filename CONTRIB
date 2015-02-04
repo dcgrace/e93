@@ -1,0 +1,644 @@
+# The functions in this file were contributed by Dave Grace
+# I have dropped them in here in no particular order
+# NOTE: I broke most of these when I changed the syntax of the
+# search and replace commands -- TMS
+
+# FormatTable
+#
+# Generates C-style data tables.
+#
+# listName is the name of a list variable containing the elements of the table
+# type is the data type (i.e. "unsigned long" or UINT32)
+# tableName is the name of the table in the C program
+# format is the printing format for each element (defaults to "\t%4d")
+# nColumns is the number of columns for the table (defaults to 4)
+proc FormatTable {args} \
+{
+	if {[llength $args] > 2} \
+	{
+		set listName [lindex $args 0]
+		set type  [lindex $args 1]
+		set tableName [lindex $args 2]
+
+		if {[llength $args] > 3} \
+		{
+			set format [lindex $args 3]
+		} \
+		else \
+		{
+			set format "\t%4d"
+		}
+
+		if {[llength $args] > 4} \
+		{
+			set nColumns [lindex $args 4]
+		} \
+		else \
+		{
+			set nColumns 4
+		}
+
+		upvar $listName list
+		set listLength [llength $list]
+		set returnString "$type\t$tableName\[$listLength\] = \{\n"
+		set i 0
+		foreach value $list \
+		{
+			if {[expr $i % $nColumns]==0} \
+			{
+				append returnString "\t"
+				set trimFormat [string trimleft $format]
+			} \
+			else \
+			{
+				set trimFormat $format
+			}
+			append returnString [format $trimFormat $value]
+
+			if {$i < [expr $listLength-1]} \
+			{
+				append returnString ","
+			}
+
+			if {([expr $i % $nColumns]==[expr $nColumns-1]) || ($i == [expr $listLength-1])} \
+			{
+				append returnString "\n"
+			}
+			incr i
+		}
+		append returnString "\};\n"
+	} \
+	else \
+	{
+		set returnString "Wrong # args: must be \"FormatTable listName type tableName ?format? ?nColumns?\""
+	}
+	return $returnString
+}
+
+
+#
+# bin2hex.tcl --
+#
+#		Implementation of bin2hex conversions for e93 editor.
+#
+# Copyright (c) 1999 D. Grace
+#
+# See the file "license.txt" for information on usage and redistribution
+# of this file, and for a DISCLAIMER OF ALL WARRANTIES.
+#
+
+package provide hex 1.0
+namespace eval hex {
+	#internal variables
+
+	# exported functions
+	namespace export	OpenList
+}
+
+
+# hex::OpenList --
+#
+#		Convert the (binary) contents of a file to a C-style character array,
+#		suitable for including from C code.  Useful for compiling binaries directly
+#		into code to reduce load times.  Returns the buffer containing the hex data.
+#
+# Arguments:
+#		theBuffer			the buffer whose contents to convert.
+#
+# Results:
+#		A buffer name, or an error code.
+
+proc hex::OpenList { fileList } {
+	set nFiles	[llength $fileList]
+	set fileNum	0
+	set code	0
+	foreach fileName $fileList {
+		# get file size
+		if {![set code [catch {file size $fileName} error]]} {
+			# check if empty file
+			if {[set fileSize $error] > 0} {
+				# open file for reading
+				if {![set code [catch {open $fileName "r"} error]]} {
+					set fd $error
+					# set binary mode to avoid confusion on CR/LF's
+					fconfigure $fd -translation binary
+					# create the buffer for the new file
+					if {![catch {NewWindow} error]} {
+						set theBuffer $error
+					}
+					insert $theBuffer [format "unsigned char %s_data\[\] = \{\n" [file root [file tail $fileName]]]
+					set offset 0
+					while {$offset < $fileSize} {
+						insert $theBuffer [format "\t\""]
+						binary scan [read $fd 32] "H64" data
+						incr offset 32
+						set text ""
+						for {set i 0} {$i < 64} {incr i 2} {
+							append text [format "\\x%s" [string range $data [expr $i] [expr $i+1]]]
+						}
+						insert $theBuffer $text
+						insert $theBuffer [format "\"\n"]
+					}
+					insert $theBuffer [format "\};\n"]
+					close $fd
+				}
+			} else {
+				set error [format "Error: file \"%s\" contains no data" $fileName]
+				set code	1
+			}
+		}
+		if {$code} {
+			if {$fileNum == ($nFiles-1)} {
+				okdialog [format "Failed to open \"%s\":\n%s" $fileName $error]
+			} else {
+				okcanceldialog [format "Failed to open \"%s\":\n%s\n\nContinue?" $fileName $error]
+			}
+		}
+	}
+	if {!$code} {
+		return $theBuffer
+	}
+	error $error
+}
+
+
+
+# add handy menu functions
+addmenu {C}			LASTCHILD	1	"Open As Hex..."			{}		{hex::OpenList [set path [opendialog "Open File As Hex:" $curPath]];set curPath [file dirname [lindex $path 0]]}
+
+
+
+
+
+#
+# brace.tcl --
+#
+#		Implementation of brace matching for e93 editor.
+#
+# Copyright (c) 1998 D. Grace
+#
+# See the file "license.txt" for information on usage and redistribution
+# of this file, and for a DISCLAIMER OF ALL WARRANTIES.
+#
+
+package provide brace 1.0
+namespace eval brace {
+	#internal variables
+	variable	Braces
+	variable	searchBackwards	0
+
+	# exported functions
+	namespace export	MatchBrace
+	namespace export	MatchIfDef
+
+	# build up table of braces
+	set Braces(\{.match)	\}
+	set Braces(\{.open)		1
+	set Braces(\}.match)	\{
+	set Braces(\}.open)		0
+	set Braces(\(.match)	)
+	set Braces(\(.open)		1
+	set Braces(\).match)	(
+	set Braces(\).open)		0
+	set Braces(\[.match)	\]
+	set Braces(\[.open)		1
+	set Braces(\].match)	\[
+	set Braces(\].open)		0
+}
+
+
+# brace::MatchBrace --
+#
+#		If the cursor is next to a curly brace, parenthesis, bracket etc., find
+#		the matching brace and move the cursor to it.  If no brace, beep.
+#
+# Arguments:
+#		theWindow		The e93 buffer in which to search.
+#
+# Results:
+#		The character index of the matching brace, or -1 if none found.
+
+proc brace::MatchBrace {theWindow} {
+	variable Braces
+	
+	set selectionEnds [getselectionends $theWindow]
+	set start [lindex $selectionEnds 0]
+	set end [lindex $selectionEnds 1]
+	if {$start == $end} {
+		# no text is selected, so check for brace next to cursor
+		# brace to the right of cursor gets priority
+		set matchBrace ""
+		setselectionends $theWindow $start [expr $end+1]
+		set selectedText [join [selectedtextlist $theWindow]]
+		if {[regexp {\{|\}|\(|\)|\[|\]} $selectedText brace] != 0} {
+			set matchBrace $Braces($brace.match)
+			set searchForwards $Braces($brace.open)
+			if {$searchForwards} {
+				set searchStart [expr $end+1]
+			} else {
+				set searchStart $start
+			}
+		} else {
+			# check to the left of the cursor
+			setselectionends $theWindow [expr $start-1] $end
+			set selectedText [join [selectedtextlist $theWindow]]
+			if {[regexp {\{|\}|\(|\)|\[|\]} $selectedText brace] != 0} {
+				set matchBrace $Braces($brace.match)
+				set searchForwards $Braces($brace.open)
+				if {$searchForwards} {
+					set searchStart $end
+				} else {
+					set searchStart [expr $start-1]
+				}
+			}
+		}
+		if {$matchBrace != ""} {
+			# found a brace next to the cursor.  Now find the matching
+			# brace by searching in the specified direction and counting
+			# brace levels
+			setselectionends $theWindow $searchStart $searchStart
+			TextToBuffer tempFindBuffer "\\$brace|\\$matchBrace"
+			set braceLevel 1
+			while {$braceLevel > 0} {
+				if {[catch {find $theWindow tempFindBuffer [expr !$searchForwards] 0 1 0} message] == 0} {
+					if {$message != -1} {
+						# found a brace
+						set selectedText [join [selectedtextlist $theWindow]]
+						if {$selectedText == $brace} {
+							incr braceLevel 1
+						} elseif {$selectedText == $matchBrace} {
+							incr braceLevel -1
+						}
+					} else {
+						# hit the end of the file
+						break
+					}
+				}
+			}
+			if {$braceLevel == 0} {
+				# found the matching brace, and it's currently selected
+				# set cursor position to the brace
+				set selectionEnds [getselectionends $theWindow]
+				set start [lindex $selectionEnds 0]
+				setselectionends $theWindow $start $start
+				homewindow $theWindow LENIENT
+				return $start
+			}
+		}
+		setselectionends $theWindow $start $end
+	}
+	beep
+	return -1
+}
+
+
+# brace::MatchIfDef --
+#
+#		If the current selection contains a preprocessor directive like #ifdef, find the
+#		matching #else or #endif and move the cursor to it.  If the selection does not
+#		contain a token, find the closest one.  If no token found, beep.
+#
+# Arguments:
+#		theWindow		The e93 buffer in which to search.
+#
+# Results:
+#		The character index of the matching token, or -1 if none found.
+
+proc brace::MatchIfDef {theWindow} {
+	variable	searchBackwards
+
+	set code			1
+	set selectionEnds	[getselectionends $theWindow]
+	set start			[lindex $selectionEnds 0]
+	set end				[lindex $selectionEnds 1]
+	set searchExp		"^\[ \t\]*#\[ \t\]*(if|else|endif)"
+	TextToBuffer tempFindBuffer $searchExp
+	if {[regexp $searchExp [string tolower [join [selectedtextlist $theWindow]]] match token]} {
+		# the current selection contains a token - find its match if possible
+		if {$token == "if"} {
+			set searchBackwards	0
+		} elseif {$token == "endif"} {
+			set searchBackwards	1
+		} else {
+			# found an "else": search in whatever direction was searched last
+		}
+		set code	0
+		set level	1
+		while {(!$code) && ($level>0)} {
+			if {[catch {find $theWindow tempFindBuffer $searchBackwards 0 1 1} message] == 0} {
+				if {$message != -1} {
+					# found a token
+					regexp $searchExp [string tolower [join [selectedtextlist $theWindow]]] match token
+					if {$token == "else"} {
+						if {$level == 1} {
+							break
+						}
+					} else {
+						if {!$searchBackwards} {
+							if {$token == "if"} {
+								incr level 1
+							} else {
+								incr level -1
+							}
+						} else {
+							if {$token == "if"} {
+								incr level -1
+							} else {
+								incr level 1
+							}
+						}
+					}
+				} else {
+					# hit the end of the file
+					set code 1
+				}
+			}
+		}
+		if {!$code} {
+			if {$token == "if"} {
+				set searchBackwards	0
+			} elseif {$token == "endif"} {
+				set searchBackwards	1
+			} else {
+				# found an "else": search in whatever direction was searched last
+			}
+		}
+	} else {
+		# no token in the current selection, so find the nearest one (try forward first)
+		if {(![catch {find $theWindow tempFindBuffer 0 0 1 1} message]) && ($message!=-1)} {
+			set code 0
+		} elseif {(![catch {find $theWindow tempFindBuffer 1 0 1 1} message]) && ($message!=-1)} {
+			set code 0
+		}
+		if {!$code} {
+			regexp $searchExp [string tolower [join [selectedtextlist $theWindow]]] match token
+			if {$token == "if"} {
+				set searchBackwards	0
+			} elseif {$token == "endif"} {
+				set searchBackwards	1
+			} else {
+				# found an "else": search in whatever direction was searched last
+			}
+		}
+	}
+	if {!$code} {
+		# set cursor position to the token
+		homewindow $theWindow LENIENT
+		return $start
+	}
+	setselectionends $theWindow $start $end
+	beep
+	return -1
+}
+
+
+# Bind keys to various useful things.
+# l=caps lock, s=shift, c=control, 0-7 are additional modifiers such as command, alt, option, command, etc...
+# Bind flags		 lsc01234567 (x means don't care, 0 means not pressed, 1 means pressed)
+
+bindkey bracketleft			{x0100000000} {brace::MatchBrace [ActiveWindowOrBeep]}
+bindkey bracketright		{x0100000000} {brace::MatchBrace [ActiveWindowOrBeep]}
+bindkey bracketleft			{x1100000000} {brace::MatchIfDef [ActiveWindowOrBeep]}
+bindkey bracketright		{x1100000000} {brace::MatchIfDef [ActiveWindowOrBeep]}
+
+
+
+##############################################################################
+##############################################################################
+##############################################################################
+
+# new updated bracketing stuff
+
+##############################################################################
+##############################################################################
+##############################################################################
+
+
+#
+# brace.tcl --
+#
+#		Implementation of brace matching for e93 editor.
+#
+# Copyright (c) 1998 D. Grace
+#
+# See the file "license.txt" for information on usage and redistribution
+# of this file, and for a DISCLAIMER OF ALL WARRANTIES.
+#
+
+package provide brace 1.0
+namespace eval brace {
+	#internal variables
+	variable	Braces
+	variable	searchBackwards	0
+
+	# exported functions
+	namespace export	MatchBrace
+	namespace export	MatchIfDef
+
+	# build up table of braces
+	set Braces(\{.match)	\}
+	set Braces(\{.open)		1
+	set Braces(\}.match)	\{
+	set Braces(\}.open)		0
+	set Braces(\(.match)	)
+	set Braces(\(.open)		1
+	set Braces(\).match)	(
+	set Braces(\).open)		0
+	set Braces(\[.match)	\]
+	set Braces(\[.open)		1
+	set Braces(\].match)	\[
+	set Braces(\].open)		0
+}
+
+
+# brace::MatchBrace --
+#
+#		If the cursor is next to a curly brace, parenthesis, bracket etc., find
+#		the matching brace and move the cursor to it.  If no brace, beep.
+#
+# Arguments:
+#		theWindow		The e93 buffer in which to search.
+#
+# Results:
+#		The character index of the matching brace, or -1 if none found.
+
+proc brace::MatchBrace {theWindow} {
+	variable Braces
+	
+	set selectionEnds [getselectionends $theWindow]
+	set start [lindex $selectionEnds 0]
+	set end [lindex $selectionEnds 1]
+	if {$start == $end} {
+		# no text is selected, so check for brace next to cursor
+		# brace to the right of cursor gets priority
+		set matchBrace ""
+		setselectionends $theWindow $start [expr $end+1]
+		set selectedText [join [selectedtextlist $theWindow]]
+		if {[regexp {\{|\}|\(|\)|\[|\]} $selectedText brace] != 0} {
+			set matchBrace $Braces($brace.match)
+			set searchForwards $Braces($brace.open)
+			if {$searchForwards} {
+				set searchStart [expr $end+1]
+			} else {
+				set searchStart $start
+			}
+		} else {
+			# check to the left of the cursor
+			setselectionends $theWindow [expr $start-1] $end
+			set selectedText [join [selectedtextlist $theWindow]]
+			if {[regexp {\{|\}|\(|\)|\[|\]} $selectedText brace] != 0} {
+				set matchBrace $Braces($brace.match)
+				set searchForwards $Braces($brace.open)
+				if {$searchForwards} {
+					set searchStart $end
+				} else {
+					set searchStart [expr $start-1]
+				}
+			}
+		}
+		if {$matchBrace != ""} {
+			# found a brace next to the cursor.  Now find the matching
+			# brace by searching in the specified direction and counting
+			# brace levels
+			setselectionends $theWindow $searchStart $searchStart
+			TextToBuffer tempFindBuffer "\\$brace|\\$matchBrace"
+			set braceLevel 1
+			while {$braceLevel > 0} {
+				set findArgs "-regex"
+				if {!$searchForwards} {
+					append findArgs " -backward"
+				}
+				if {[catch {eval find \$theWindow tempFindBuffer $findArgs} message] == 0} {
+					if {$message != -1} {
+						# found a brace
+						set selectedText [join [selectedtextlist $theWindow]]
+						if {$selectedText == $brace} {
+							incr braceLevel 1
+						} elseif {$selectedText == $matchBrace} {
+							incr braceLevel -1
+						}
+					} else {
+						# hit the end of the file
+						break
+					}
+				}
+			}
+			if {$braceLevel == 0} {
+				# found the matching brace, and it's currently selected
+				# set cursor position to the brace
+				set selectionEnds [getselectionends $theWindow]
+				set start [lindex $selectionEnds 0]
+				setselectionends $theWindow $start $start
+				eval homewindow \$theWindow [getselectionends $theWindow] -lenient
+				return $start
+			}
+		}
+		setselectionends $theWindow $start $end
+	}
+	beep
+	return -1
+}
+
+
+# brace::MatchIfDef --
+#
+#		If the current selection contains a preprocessor directive like #ifdef, find the
+#		matching #else or #endif and move the cursor to it.  If the selection does not
+#		contain a token, find the closest one.  If no token found, beep.
+#
+# Arguments:
+#		theWindow		The e93 buffer in which to search.
+#
+# Results:
+#		The character index of the matching token, or -1 if none found.
+
+proc brace::MatchIfDef {theWindow} {
+	variable	searchBackwards
+
+	set code			1
+	set selectionEnds	[getselectionends $theWindow]
+	set start			[lindex $selectionEnds 0]
+	set end				[lindex $selectionEnds 1]
+	set searchExp		"^\[ \t\]*#\[ \t\]*(if|else|endif)"
+	TextToBuffer tempFindBuffer $searchExp
+	if {[regexp $searchExp [string tolower [join [selectedtextlist $theWindow]]] match token]} {
+		# the current selection contains a token - find its match if possible
+		if {$token == "if"} {
+			set searchBackwards	0
+		} elseif {$token == "endif"} {
+			set searchBackwards	1
+		} else {
+			# found an "else": search in whatever direction was searched last
+		}
+		set code	0
+		set level	1
+		while {(!$code) && ($level>0)} {
+			set findArgs "-regex -ignorecase"
+			if {$searchBackwards} {
+				append findArgs " -backward"
+			}
+			if {[catch {find $theWindow tempFindBuffer $findArgs} message] == 0} {
+				if {$message != -1} {
+					# found a token
+					regexp $searchExp [string tolower [join [selectedtextlist $theWindow]]] match token
+					if {$token == "else"} {
+						if {$level == 1} {
+							break
+						}
+					} else {
+						if {!$searchBackwards} {
+							if {$token == "if"} {
+								incr level 1
+							} else {
+								incr level -1
+							}
+						} else {
+							if {$token == "if"} {
+								incr level -1
+							} else {
+								incr level 1
+							}
+						}
+					}
+				} else {
+					# hit the end of the file
+					set code 1
+				}
+			}
+		}
+		if {!$code} {
+			if {$token == "if"} {
+				set searchBackwards	0
+			} elseif {$token == "endif"} {
+				set searchBackwards	1
+			} else {
+				# found an "else": search in whatever direction was searched last
+			}
+		}
+	} else {
+		# no token in the current selection, so find the nearest one (try forward first)
+		if {(![catch {find $theWindow tempFindBuffer -regex -ignorecase} message]) && ($message!=-1)} {
+			set code 0
+		} elseif {(![catch {find $theWindow tempFindBuffer -backward -regex -ignorecase} message]) && ($message!=-1)} {
+			set code 0
+		}
+		if {!$code} {
+			regexp $searchExp [string tolower [join [selectedtextlist $theWindow]]] match token
+			if {$token == "if"} {
+				set searchBackwards	0
+			} elseif {$token == "endif"} {
+				set searchBackwards	1
+			} else {
+				# found an "else": search in whatever direction was searched last
+			}
+		}
+	}
+	if {!$code} {
+		# set cursor position to the token
+		eval homewindow \$theWindow [getselectionends $theWindow] -lenient
+		return $start
+	}
+	setselectionends $theWindow $start $end
+	beep
+	return -1
+}

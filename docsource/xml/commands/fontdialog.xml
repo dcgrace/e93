@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>fontdialog</NAME>
+    <SUMMARY>Open a font selection dialog box</SUMMARY>
+    <PARAMETER>
+        <NAME>dialogTitle</NAME>
+    </PARAMETER>
+    <PARAMETER optional="true">
+        <NAME>initialFont</NAME>
+    </PARAMETER>
+    <DESCRIPTION>Open a font selection dialog, with <VAR>dialogTitle</VAR> and if specified, place <VAR>initialFont</VAR> into the dialog. If the user exits the dialog with Ok, return the font that was entered. If he exits with cancel, return an error.
+    </DESCRIPTION>
+</COMMAND>

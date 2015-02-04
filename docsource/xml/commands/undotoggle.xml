@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>undotoggle</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <DESCRIPTION>
+If there is redo information for <VAR>bufferName</VAR>  redo. If not, then if there is undo information for <VAR>bufferName</VAR>  undo. If not, return an error.<BR/>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:<BR/>
+      <VAR>bufferName</VAR> is not provided.<BR/>
+      <VAR>bufferName</VAR> is not an e93 buffer.
+</STATUS>
+   <SEEALSO>
+      <A HREF="undo.html">undo</A>
+      <A HREF="breakundo.html">breakundo</A>
+      <A HREF="flushundos.html">flushundos</A>
+      <A HREF="../undoredo.html">undoredo</A>
+   </SEEALSO>
+</COMMAND>

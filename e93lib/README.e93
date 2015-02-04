@@ -1,0 +1,1273 @@
+e93 Manual
+July 19, 2000
+
+e93 is a portable window based text editor oriented to the needs of
+programmers. It was written to take advantage of the windowing systems
+found on today's workstations, and PCs. e93 is based on the Tcl
+scripting language, and relies on this language for most of its high
+level functionality.
+
+e93 supports a model of editing which emphasizes limiting the number
+of modes, and maximizing the use of a small, easily learned set of
+editing commands.
+
+To install e93, please read the file "INSTALL" that came with this
+distribution.
+
+NOTE: Since e93 is portable, I have attempted to keep this manual
+machine/OS independent to a reasonable extent. However, since e93 was
+first written for UN*X machines, there is a slight bias towards them
+in this documentation.
+
+
+Starting e93
+-------- ---
+To start e93 from a command line interface (if your machine/OS has
+one), type:
+
+e93 <fileToEdit> <fileToEdit> ...
+
+e93 will start up, and open all of the specified files for editing.
+There are no command line options, just filenames.
+
+NOTE: each time you run e93 it creates an entirely new instance
+of the editor. Sometimes it is desirable to ask a currently running
+version of the editor to open files from the command line. If you wish
+to do this, run the script "e93r" as:
+
+e93r <fileToEdit> <fileToEdit> ...
+
+This script will attempt to locate a running e93 and pass the files
+to it for it to open. If there is no currently running e93, this
+script will start one.
+
+You can also start e93r the following way to read piped data for
+fileToEdit, e.g.:
+
+ls a*.c | e93r -
+
+This is the same as:
+
+e93r a*.c
+
+but:
+
+ls a*.c | e93r - test.c
+
+will only open the file "-" and "test.c"
+
+NOTE: if you start "e93r -" without data readable from stdin then you
+have to kill the e93r process to unlock.
+
+NOTE: this script relies on Tk's "send" command to contact a running
+version of e93. The "send" command is a potentially large security
+hole, and therefore is quite restricted in its use. You may need
+to alter settings on your system before it will function.
+
+
+Environment variables
+----------- ---------
+There is one environment variable that will affect the operation of
+e93 (X windows version only).
+
+E93_COLORMAP
+
+If this variable is defined, e93 will attempt to allocate its own
+color map at start-up. This may allow it to work better on 256-color
+displays.
+
+If it is not defined, e93 will attempt to share the system's default
+colormap.
+
+
+Windows and Buffers
+------- --- -------
+When e93 opens a file for editing, it reads the contents of the file
+into a "buffer", and then closes the file. All editing takes place
+within the buffer, and changes are not written back to the file until
+the buffer is "Saved".
+
+A buffer is an area of memory where text is stored while it is being
+edited. Buffers can contain arbitrary amounts of text, and do not
+place any limits on the characters they contain (ASCII \0 is allowed
+in a buffer). Although buffers are usually used to hold the contents
+of files, they are also used to hold other things, like new documents,
+clipboards, and the text that is used by the Find and Replace
+functions.
+
+All buffers have names. These names are needed so that buffers can be
+referred to from Tcl scripts. The name of each buffer must be unique.
+buffer names can be of arbitrary length, and can contain any character
+except '\0'. A buffer open to a file is typically named with the full
+path name of that file. Buffer names are case sensitive.
+
+Buffers can have "windows" associated with them. A window can be
+thought of as a view onto the contents of a buffer. Windows are where
+most editing commands are carried out. It is important to understand
+that buffers do not NEED to have windows associated with them. In
+fact, certain buffers (like clipboards) typically are not associated
+with windows.
+
+Each window on the other hand, is always associated with a buffer.
+Windows also have names, and each takes the name of the buffer it is
+associated with.
+
+Many of the features of a window can be changed from Tcl scripts.
+Some of these are:
+	Foreground Color
+	Background Color
+	Font
+	Tab Size
+	Location
+	Width/Height
+
+See Appendix A for detailed information on commands that modify
+windows.
+
+e93 maintains the concept of an "active window". This is the window
+that is top-most. Most menu commands operate on the active window.
+
+Each window has a "Status bar" which gives useful information about
+the buffer being edited. The status bar indicates if a buffer has been
+modified, how many lines of text it contains, how many characters of
+text it contains, and gives information about the current
+cursor/selection position. Also, if there is a task running in the
+window, the status bar will let you know.
+
+
+Cursors
+-------
+The cursor is a small flashing vertical line that appears in the text
+of the active window. Its position indicates where the next editing
+operation will take place. e93's editing model considers the cursor to
+be akin to a selection of 0 characters. By contrast, in some editors,
+you can have both a cursor, and a selection active simultaneously. In
+e93, the selection and the cursor are really the same thing, so if you
+have a selection, that IS your cursor.
+
+
+Selections
+----------
+e93's selection mechanism is one of its more distinguishing features.
+At first glance, e93 selects text in the same way as many other modern
+editors, namely:
+
+To select text for cut, copy, paste, or other operations, first move
+the mouse pointer to the position where the selection should begin,
+click the left button, and while holding it down, drag the mouse
+pointer to the end of the desired selection. The process "highlights"
+the selected text (by drawing it in inverse colors). The highlighted
+selection can then be operated on by a number of editor functions. e93
+also supports word, line, and document selection by double, triple,
+and quadruple clicking respectively. (Double clicking is clicking the
+mouse button twice in rapid succession). If you double click, holding
+the left button down after the second click, e93 will then select words
+as you drag the mouse along. This also works for lines when triple
+clicking.
+
+To adjust a selection, hold down the shift key on the keyboard, and
+click the left mouse button in the document. This will either enlarge,
+or reduce the current selection, depending on where you click.
+Clicking outside the current selection will enlarge it so that it
+extends to the point where you clicked. Clicking inside the selection
+will reduce it by pulling the nearest edge in to the point where you
+clicked. You can also shift-double, shift-triple or shift-quadruple
+click, and get the expected results.
+
+Segmented Selection
+
+A powerful feature of e93 not found in most other modern editors is
+known as "Segmented Selection." This means that e93 is capable of
+creating a discontiguous selection (one which has "holes" in it). This
+feature is used by e93 to implement a more familiar form of selection:
+
+Columnar Selection
+
+To create a columnar selection, click the right mouse button (if your
+mouse has more than one button) and drag the mouse over the document.
+This will create a selection that is rectangular. NOTE: if your mouse
+only has one button, you can create a columnar selection by holding
+the "Command" key on the keyboard down, while clicking and dragging.
+You would typically use columnar selection to manipulate data that
+appears in columns of text. As above, double clicking will force the
+selection to begin and end at word boundaries. Triple and quadruple
+clicking will also work as expected. You can also use the shift key as
+described above to expand or reduce the columnar selection.
+
+NOTE: although a columnar selection looks rectangular to you, it is
+important to understand that e93 does not really think of it that way.
+As far as e93 is concerned, a columnar selection is nothing more than
+a discontinuous selection which spans pieces of the text. (In this
+case, a small portion of one line, followed by a portion of the line
+below it, and so on...) This distinction will become important as
+operations that work on selections are discussed.
+
+
+Marks
+-----
+Sometimes it is desirable to remember a given place in the text, and
+be able to return to it later. Most editors refer to this feature as
+"marking", or "book-marking". In e93, marks do not simply remember a
+place in the text. Instead, they remember an entire selection. e93
+allows for an arbitrary number of marks of arbitrary complexity. As
+you edit the text, e93 attempts to update each mark so that it points
+to what it used to, even though you may be making modifications above
+or in the text which is marked. The default e93rc.tcl file sets things up
+so that marks can be set in a buffer by typing CMD-F1 through CMD-F4
+on the keyboard. The respective mark can be recalled by F1 through F4.
+
+
+Cut, Copy, and Paste
+---  ----  --- -----
+Like other editors, e93 supports Cut, Copy, and Paste. When the
+selected text is Cut from a buffer, it is removed from that buffer,
+and placed into another buffer referred to as the "clipboard." When
+the selected text is Copied from a buffer, it is not removed, but is
+just copied into the clipboard. Each time a Cut or Copy operation
+takes place, the text that is placed into the clipboard completely
+overwrites the text that was there. Once you have text in the
+clipboard, it can be placed into another buffer by pasting. Pasting
+does not destroy the contents of the clipboard.
+
+The clipboard in e93 is nothing more than a buffer which has been
+designated as the clipboard. It is possible to designate any buffer as
+the clipboard, and it is also possible to switch on the fly. This
+allows e93 to support an arbitrary number of clipboards. The default
+e93rc.tcl creates 10 buffers to be used as clipboards, and provides menu
+operations to switch between these buffers.
+
+NOTE: clipboard buffers in e93 do not typically have windows open onto
+them, but it is possible, and sometimes desirable to attach a window
+to a clipboard. The command to open a window onto clipboard 0 would
+be:
+
+OpenDefaultWindow clip0
+
+NOTE: the command OpenDefaultWindow is not a command built into e93,
+instead, it is a Tcl procedure, defined in the e93rc.tcl file (described
+below).
+
+Cut, Copy, Paste, and fun with Segmented Selections
+
+Since e93 allows a selection to have "holes" in it, Cut, Copy, and
+Paste take on a slightly different flavor than in most other editors.
+When a selection is Cut, or Copied, the text of each segment of the
+selection is placed into the clipboard sequentially. As each segment
+is placed into the clipboard buffer, it is also selected as a segment
+in the clipboard buffer. The result is a clipboard that not only
+contains the pieces of text that were selected, but also one that
+remembers where each piece begins and ends (since each piece is
+selected individually in the clipboard).
+
+When text is pasted from the clipboard, each segment is pasted
+individually. The process works as follows:
+
+Each selection in the clipboard is pasted over each selection in
+the document until e93 runs out of selections in the clipboard or
+document. If there are no more selections in the document, then the
+remaining clipboard selections are pasted columnarly with each
+successive segment placed into the line immediately below the
+previous one..... If there are no more selections in the clipboard,
+then the remaining selections in the document are deleted.
+
+NOTE: e93 does not care how selections were placed into the clipboard.
+It always pastes them in this columnar fashion. Also note that in the
+case of a selection with just one segment (no discontinuity) that the
+paste operation works exactly as it would in an editor without
+segmented selection.
+
+
+Scripting
+---------
+e93 utilizes the Tcl scripting language. This allows it great
+flexibility. Users of e93 are able to write scripts to perform complex
+editing tasks, as well as use them to configure the editor to personal
+taste.
+
+When e93 starts, it attempts to locate a file with the name e93rc.tcl
+(some implementations use slightly different names). This file is
+meant to contain a Tcl script. The script is charged with the task of
+setting up all menus, key bindings, and defaults that will be
+available when the editor starts. It is also the responsibility of
+this script to interpret all of the command line parameters passed to
+e93. That includes opening any files present on the command line.
+Without this script, e93 would not do very much. Therefore, if the
+script cannot be located at startup, e93 will complain, and quit.
+
+This script is the primary means by which e93 is customized to the
+taste of the user. Given the number of things defined by this script,
+a fair amount of customization is available, but at the cost of some
+complexity. See Appendix B for information on how to customize
+e93 at startup time.
+
+Once e93 has started, Tcl commands may be executed by typing them into
+any window, and pressing the enter key on the numeric keypad. The
+results of the command (if they are not piped elsewhere) are then
+placed into the window.
+
+If you are viewing this file from within e93, do the following:
+Place the cursor anywhere on the following line, and press keypad
+enter:
+
+beep; okdialog {Hmmm, that was interesting}
+
+You should hear a beep, and then a dialog should pop up with a useless
+message in it. This works, because the e93rc.tcl script has bound the
+keypad enter key to a function that grabs the line the cursor is on
+(or the currently selected text), and sends it to Tcl for processing.
+
+The list of built in commands that e93 currently understands is given
+in Appendix A.
+
+
+Keyboard Input
+-------- -----
+e93 separates the keyboard into three types of keys: modifiers,
+characters, and functions.
+There are 11 modifier keys defined by e93:
+	caps-lock
+	shift
+	control
+	modifier 0  (command)
+	modifier 1  (option)
+	modifier 2 - modifier 7 (implementation specific)
+
+The character keys are a-z, numbers, tab, escape, return, etc...
+These are the keys which would be expected to insert a character
+when typed.
+
+The function keys are:
+Arrows, Backspace, F1, F2, Undo, Help, Break, etc... These are keys
+which do not insert characters, but instead, perform actions.
+
+When no keys are bound (See the section on Key binding below), e93
+relies on a default set of bindings that are "hardwired" into the code.
+NOTE: key bindings can be used to override this default behavior. Here
+is a list of keys, and default actions:
+
+All unmodified, or shift modified characters are inserted into the
+active window.
+
+All control modified characters are inserted into the active window
+(e93 does not treat the control key specially by default, since
+programmers often want to be able to enter control sequences into text
+with a minimum of bother).
+
+Unmodified Arrows move the cursor up/down by line, left/right by character.
+Control Left/Right Arrow moves cursor by word left/right.
+Control Up/Down Arrow scrolls the document down/up without moving the cursor.
+Command Left/Right moves to start or end of line.
+Command Up/Down moves up or down by page.
+Shift can be used with the above combinations to expand or reduce the
+selection.
+
+Page up, Page down move the cursor up or down by a page.
+Shift can be used with the page up/down to expand or reduce the
+selection.
+
+Home, and End move the cursor to the start or end of a line.
+Command Home/End moves to start/end of the document.
+Shift can be used with the home/end to expand the selection.
+
+Unmodified Backspace deletes the character to the left of the cursor.
+Command Backspace deletes to end of line.
+Command Shift Backspace deletes to beginning of line.
+Command Option Backspace deletes to end of buffer.
+Command Shift Option Backspace deletes to beginning of buffer.
+Control Backspace deletes word left.
+Control Shift Backspace deletes word right.
+
+Unmodified Delete deletes the character to the right of the cursor.
+Command Delete deletes to beginning of line.
+Command Shift Delete deletes to end of line.
+Command Option Delete deletes to beginning of buffer.
+Command Shift Option Delete deletes to end of buffer.
+Control Delete deletes word right.
+Control Shift Delete deletes word left.
+
+Return does an autoindent (except in some dialog windows where it
+selects the "Ok" option). NOTE: if you wish to place a new-line
+character into the text of a dialog window, type Control J.
+
+Tab inserts a tab (except in some dialog windows where it may move
+between fields). NOTE: if you wish to insert a tab character into the
+text of a dialog window, type Control I.
+
+Escape inserts an escape (except in some dialog windows where it
+selects the "Cancel" option). NOTE: if you wish to insert an escape
+character into the text of a dialog window, type Control [.
+
+Cut, Copy, Paste, Undo, Redo (if you have these keys) perform their
+respective actions.
+
+
+Menus and Key Bindings
+----- --- --- --------
+Menus are used to place functions that are executed often in a
+convenient place where they can be accessed quickly. The menuing
+system in e93 is dynamic. Menus can be added or deleted at any time.
+There are two Tcl commands used to add/delete menus:
+
+addmenu    - adds or replaces a menu in the menu bar.
+deletemenu - deletes a menu, and its children from the menu bar.
+
+Examples:
+
+addmenu {} LASTCHILD 1 "Test" {\KA} {okdialog "Testing 123"}
+
+This command adds a menu at the end (LASTCHILD) of the root menu {}.
+The new menu is called Test, it has a keyboard equivalent of
+CMD-SHIFT-a, and when selected, it will bring up a dialog box with a
+test message in it. NOTE: if you are viewing this file from e93, place
+the cursor on the example line above, and press keypad enter. You
+should see the menu item being added to the menu bar.
+
+To delete the menu:
+
+deletemenu {Test}
+
+Appendix A contains a more detailed description of these commands.
+
+Keys can also be bound to functions within e93. Key binding is much
+the same as defining menus. The major difference is that key bindings
+have no visual representation (as in a menu item that the user can
+see). Also depending on the implementation of e93, key bindings may be
+more versatile than menu key equivalents, allowing a richer set of key
+combinations to be bound to functions. For example, in the X windows
+version of e93, menu key equivalents only function when the command
+key is pressed, but bound keys can be bound to virtually all
+combinations.
+
+There are two major key binding functions:
+
+bindkey   - bind a key combination to a Tcl script.
+unbindkey - remove a bound key combination.
+
+Using the menu example from above, if we wanted to bind the function
+key F5 to bring up the test dialog box, the command would be:
+
+bindkey F5 00000000000 {okdialog "Testing 123"}
+
+To get rid of the binding:
+
+unbindkey F5 00000000000
+
+All those 0s are called the "modifier string" they tell which modifier
+keys should be in which states for the binding to take effect. In this
+example, no modifiers can be pressed when F5 is pressed if the binding
+is to take effect. As usual, see Appendix A for a more detailed
+description.
+
+NOTE: the key binding, and menu key equivalent functions are
+completely separate. If you define a menu that has a key equivalent,
+and also bind that combination of keys to some other function, e93
+does not guarantee which will take precedence, only that one of them
+will be executed, and not both.
+
+
+Find and Replace
+---- --- -------
+e93 performs search and replace like most other modern editors, with
+the following exceptions:
+
+Find All
+
+This simply locates, and selects (using a segmented selection) all
+occurrences of the search string.
+
+Limit Scope
+
+e93 can limit the scope of Find All/Replace All functions so that they
+do not go outside the boundaries of the current selection (even if the
+current selection is discontiguous (in which case it searches the
+pieces individually)).
+
+Tcl Procedures as Replacement Text
+
+You can specify that e93 should treat the text of the replacement
+string as a Tcl script to execute each time it is about to replace
+something. e93 will execute the script, using the results of that
+execution as the text to actually replace with. NOTE: when doing this,
+the editor creates a set of Tcl variables which contain various
+portions of the matched text. These variables can be used from within
+the script to reference the text which is about to be replaced. The
+variables are:
+$found   - contains the entire text which is about to be replaced.
+If the search is done using regular expressions, then:
+$0-$9    - contain the contents of the matching subexpressions.
+
+Information on e93's regular expression syntax is contained in the
+file 'README.regex'.
+
+As an example of why this might be useful, consider the task of
+changing a bunch of numbers in a document from decimal to hex.
+To do this in e93, you could enter the following into the find/replace
+dialog:
+
+Find (selection expression):
+[0-9]+
+
+Replace (treated as a Tcl script):
+format 0x%X $found
+
+The find part will locate numbers, the replace part will pass
+these numbers to the Tcl "format" command which will convert
+them to hex, and return the converted string. e93 takes this
+string, and uses it as the replacement.
+
+
+Undo and Redo
+---- --- ----
+e93 remembers undo/redo information only for operations which change
+the text of a buffer. It does not remember cursor movements, or
+selections.
+
+Unlimited amounts of undo information are recorded separately for each
+buffer. e93 groups multiple contiguous character insertions and
+deletions so that they become single undo items.
+
+Each time you undo in a buffer, e93 remembers what was undone as redo
+information. However, once you make a change in a buffer, all redo
+information is lost.
+
+
+                                Appendix A
+                                -------- -
+This appendix lists the Tcl commands which are implemented by e93, and
+gives a short description of each. These are in logical, not
+alphabetical order.
+
+Buffers and Windows
+------- --- -------
+	newbuffer bufferName
+Create a new buffer with the name bufferName. If bufferName already
+exists, this will return an error.
+
+	openbuffer pathName
+Open a buffer to the file at the end of pathName. This will return the
+fully expanded path name for the buffer if it is successfully opened.
+If asked to open a buffer to a file which is already opened, this will
+return the previously opened buffer name. If asked to open a file
+which cannot be opened, this will return an error.
+
+	closebuffer bufferName
+Close bufferName. NOTE: this does not ask any questions, it just
+closes the buffer.
+
+	savebuffer bufferName
+If bufferName is linked to a file, this will save the buffer to its
+file.
+
+	savebufferas bufferName newPath
+Save bufferName to newPath, if the save succeeds, the buffer is
+renamed, and the new name is returned.
+
+	savebufferto bufferName newPath
+Save bufferName to newPath, do not rename the buffer, only complain if
+the save could not be completed.
+
+	revertbuffer bufferName
+Revert bufferName to last loaded state, no questions asked.
+
+	isdirty bufferName
+Return a boolean value that tells if bufferName has been modified
+since it was last loaded, or saved.
+
+	fromfile bufferName
+Return a boolean value that tells if bufferName is associated with a
+file. A buffer is associated with a file, if e93 has read the buffer
+from a file, or has done a savebufferas.
+
+	haswindow bufferName
+Return a boolean value that tells if bufferName has an associated
+window.
+
+	cleardirty bufferName
+Set bufferName as unmodified.
+
+	bufferlist
+Return a Tcl list of all of the currently open buffer names.
+
+	windowlist
+Return a Tcl list of all of the currently open window names.
+
+	openwindow bufferName x y w h fontName tabSize foregroundColor backgroundColor
+Open a window onto bufferName. Place the window at x,y and give it size w,h.
+The text will be displayed in font fontName. NOTE: if e93 cannot
+locate the specified font, it will default to one of its own choosing.
+tabSize is used as the initial tab size.
+foregroundColor specifies the foreground color of the window as 3
+hexadecimal digits, one each for R, G, B. (e.g. white=FFFFFF,
+green=00FF00, gray=808080) backgroundColor specifies the background
+color of the window.
+
+	closewindow windowName
+Close windowName if it exists, but do not close its associated buffer.
+
+	setrect windowName x y w h
+Change the position and size of windowName.
+
+	getrect windowName
+Report the position and size of windowName.
+
+	setfont windowName fontName [styleIndex]
+Change the font used by a window. If the font cannot be located,
+default to one that can.
+
+	getfont windowName [styleIndex]
+Report the font in use by windowName.
+
+	settabsize windowName tabSize
+Set the tab size for windowName.
+
+	gettabsize windowName
+Report the tab size for windowName.
+
+	setcolors windowName foregroundColor backgroundColor [styleIndex]
+Set the colors for windowName.
+
+	getcolors windowName [styleIndex]
+Report the colors for windowName.
+
+	buffervariables bufferName
+Report all variable definitions assigned to bufferName.
+
+	setbuffervariable bufferName variableName variableText
+Assign a variable with variableName to bufferName. These variables are
+kept local to each buffer. This makes it convenient for Tcl scripts to
+hang information off of each buffer, then reference it later.
+
+	getbuffervariable bufferName variableName
+Get the text of variableName contained in bufferName. If no such
+variable exists, an error is returned.
+
+	settopwindow windowName
+Make windowName the top-most window.
+
+	minimizewindow windowName
+attempt to minimize (in whatever way the current OS supports) the given document window
+
+	unminimizewindow windowName
+attempt to un-minimize (in whatever way the current OS supports) the given document window
+
+	activewindow
+Report which window is top-most.
+
+	updatewindows
+Redraw all invalid areas of all windows.
+
+	screensize
+Report the screen's width, and height.
+
+
+Menus and Key bindings
+----- --- --- --------
+	addmenu menuPathList relationship active menuName menuModifiers menuFunction
+Add a menu to the menu tree.
+menuPathList is a Tcl List that tells where the add should take place.
+relationship tells how the new item should be linked to the path:
+	NEXTSIBLING	- link as next sibling of the given path.
+	PREVIOUSSIBLING - link as previous sibling of the given path.
+	FIRSTCHILD - link as the first child of the given path.
+	LASTCHILD - link as the last child of the given path.
+menuName is the name of the new element to add.
+menuModifiers is a string that is used to change the menu item:
+	\FfontName can be used to specify a new font for the menu item.
+	\S makes the item a separator line.
+	\KkeyName assigns keyName as a command key for the menu item.
+menuFunction is a Tcl script to run when the menu item is selected.
+
+	deletemenu menuPathList ?menuPathList ...?
+Delete the menus at the end of menuPathList. (e.g. to delete all
+menus, use deletemenu {})
+
+	bindkey keyName modifiers keyFunction
+Set up a binding between a keyboard key, and a Tcl script.
+keyName is the system dependent name of the key to bind.
+	(in X windows, it is the keysym name)
+modifiers is a string of 11 characters that tell e93 which
+	modifier keys should be in which states for this binding to
+	take effect. The string can contain X, 0, or 1 in each character
+	position.
+		X - don't care which state the modifier is in.
+		0 - modifier must not be pressed.
+		1 - modifier must be pressed.
+	The 11 modifier keys are (in order:)
+		Caps lock
+		Shift
+		Control
+		Mod 0	- system dependent modifiers
+		Mod 1
+		Mod 2
+		Mod 3
+		Mod 4
+		Mod 5
+		Mod 6
+		Mod 7
+For example: binding the combination Control-F5 to beep:
+bindkey F5 00100000000 {beep}
+
+	unbindkey keyName modifiers
+Remove binding of keyName, modifiers.
+Example:
+unbindkey F5 00100000000
+
+	keybindings
+Report current list of keys, modifiers, and what they are bound to.
+
+	waitkey
+Wait for user to type a key, report keyName, and modifiers.
+
+	getkey
+See if a key has been pressed, if so, return keyName and modifiers
+if not, return error.
+
+
+Undo and Clipboard
+---- --- ---------
+	undotoggle bufferName
+If there is redo information for bufferName, redo. If not, then if
+there is undo information for bufferName, undo. If not, return an
+error.
+
+	undo bufferName
+Perform a undo on bufferName. If there are no undos, return an error.
+
+	redo bufferName
+Perform a redo on bufferName. If there are no redos, return an error.
+
+	breakundo bufferName
+Put a break into the flow of undo information for bufferName.
+
+	flushundos bufferName
+Throw away all undo-redo information for bufferName.
+
+	cut bufferName ?clipboardbuffer?
+Cut the selected text from bufferName into the current clipboard, or
+clipboardbuffer if specified.
+
+	copy bufferName ?clipboardbuffer?
+Copy the selected text from bufferName into the current clipboard,
+or clipboardbuffer if specified.
+
+	paste bufferName ?clipboardbuffer?
+Paste the contents of the current clipboard, or clipboardbuffer if
+specified into bufferName in a columnar fashion.
+
+	getclipboard
+Report the buffer which is currently assigned as the clipboard.
+
+	setclipboard clipboardbuffer
+Set the current clipboard as the buffer given by clipboardbuffer.
+
+
+Dialogs
+-------
+	textdialog dialogTitle ?initialText?
+Open a text entry dialog, with dialogTitle, and if specified, place
+initialText into the dialog. If the user exits the dialog with Ok,
+return the text that was entered. If he exits with cancel, return an
+error.
+
+	listdialog dialogTitle inputList
+Open a list selection dialog, with dialogTitle, and place inputList
+(which is a Tcl list) into the dialog. If the user exits the dialog
+with Ok, return the sub-list (which is a Tcl list) of items that were
+selected. If he exits with cancel, return an error.
+
+	opendialog dialogTitle ?initialText?
+Open a file open dialog, with dialogTitle, and if specified, place
+initialText into the dialog. If the user exits the dialog with Ok,
+return the list of files that were selected. If he exits with cancel,
+return an error.
+
+	savedialog dialogTitle ?initialText?
+Open a file save dialog, with dialogTitle, and if specified, place
+initialText into the dialog. If the user exits the dialog with Ok,
+return the file name that was selected. If he exits with cancel,
+return an error.
+
+	pathdialog dialogTitle ?initialText?
+Open a path choose dialog, with dialogTitle, and if specified, place
+initialText into the dialog. If the user exits the dialog with Ok,
+return the path name that was selected. If he exits with cancel,
+return an error.
+
+	okdialog dialogText
+Open a dialog with just one button, containing dialogText.
+
+	okcanceldialog dialogText
+Open a dialog with Ok, and Cancel buttons, containing dialogText. If
+the user exits the dialog with Ok, return without error. If he exits
+with cancel, return an error.
+
+	yesnodialog dialogText
+Open a dialog with Yes, No, and Cancel buttons, containing dialogText.
+If the user exits the dialog with Yes, return 1, if he exits with No,
+return 0. If he exits with cancel, return an error.
+
+	fontdialog dialogTitle ?initialFont?
+Open a font selection dialog, with dialogTitle, and if specified,
+place initialFont into the dialog. If the user exits the dialog with
+Ok, return the font that was entered. If he exits with cancel, return
+an error.
+
+	searchdialog dialogTitle findbuffer replacebuffer backwardsVar wrapAroundVar selectionExprVar ignoreCaseVar limitScopeVar replaceProcVar
+Open a search/replace dialog, with dialogTitle.
+findbuffer is the name of the buffer that find text will be placed into.
+replacebuffer is the name of the buffer that replace text will be placed into.
+backwardsVar is the name of a variable which contains a boolean that tells
+	if search should be done in reverse.
+wrapAroundVar tells if search should wrap around.
+selectionExprVar tells if find text should be interpreted as a regex.
+ignoreCaseVar tells if case should be ignored during the search.
+limitScopeVar tells if the scope of the search should be limited to the
+	current selection.
+replaceProcVar tells if the replace text should be interpreted as
+	a Tcl script.
+This dialog has 5 buttons which can be clicked on to exit
+Find        - returns string "find".
+Find all    - returns string "findall".
+Replace     - returns string "replace".
+Replace all - returns string "replaceall".
+Cancel      - returns Tcl error.
+
+
+Search and Replace
+------ --- -------
+the following options are available (see the command to know which options may apply):
+	-backward		search backwards.
+	-wrap			wrap the search or replace around the end of searchInbuffer.
+	-regex			treat findbuffer as a regular expression.
+		NOTE on replace:
+		also, treat the contents of replacebuffer as a selection expression
+		replacement string (unless -replacescript is present).
+	-ignorecase		ignore case during the search.
+	-limitscope		search only the selected text of searchInbuffer.
+		NOTE: when limiting the search scope by the selected text of searchInbuffer,
+		the regular expression characters ^, and $ will match the ends of a
+		selection segment.
+	-replacescript		treat the contents of replacebuffer as a Tcl
+		script that should be executed when a match is found, the results
+		of which will be placed into searchInbuffer. NOTE: when a match
+		is found, the text that matched is copied to a Tcl global variable
+		called $found, this variable can be referenced by the replace procedure.
+
+	find searchInbuffer findbuffer [options]
+Attempt to locate the text contained in findbuffer in searchInbuffer.
+	options: -backward, -wrap, -regex, -ignorecase
+
+	findall searchInbuffer findbuffer [options]
+Attempt to locate all occurrences of the text contained in findbuffer
+	in searchInbuffer.
+	options: -backward, -wrap, -regex, -ignorecase, -limitscope
+
+	replace searchInbuffer findbuffer replacebuffer [options]
+Attempt to locate the text contained in findbuffer in searchInbuffer,
+	if it is found, replace it with the contents of replacebuffer.
+	options: -backward, -wrap, -regex, -ignorecase, -replacescript
+
+	replaceall searchInbuffer findbuffer replacebuffer [options]
+Attempt to locate all occurrences of the text contained in findbuffer
+	in searchInbuffer, when each is found, replace it with the contents
+	of replacebuffer.
+	options: -backward, -wrap, -regex, -ignorecase, -limitscope, -replacescript
+
+
+Cursors and Selection
+------- --- ---------
+	selectall bufferName
+Select all of the text in the given buffer.
+
+	selectedtextlist bufferName
+Return a Tcl list, each element of which is a segment of the selection
+in bufferName.
+
+	selectline bufferName lineNumber
+Select lineNumber in bufferName. If lineNumber is out of range, select
+the line closest to the one given.
+
+	getselectionends bufferName
+Return the start and end positions (in characters) of the current
+selection in bufferName. If there is no selection, the cursor position
+is reported as both the start, and the end.
+
+	setselectionends bufferName startPosition endPosition
+Set the start and end positions of the selection in bufferName. If the
+start and end positions are the same, place the cursor at that
+position. If either position is out of range, it will be substituted
+with the position nearest it.
+
+	getselectionendlist bufferName
+return offsets of the ends of each selection segment
+if there is no selection, an empty list is returned
+
+	addselectionendlist bufferName list
+add list of ends given to the selection
+if any position is out of range, it will be forced in range
+if there is any overlap, the new segment boundaries will remain
+
+	getselectionatposition bufferName position
+return information about the selection at the given character position in the text
+The result is a value (0 if no selection, 1 if selection) and the position <= the given
+one where the current selection begins, and the position just after the end of the selection
+
+	setmark bufferName markName
+Create a mark with the given name in bufferName. If there is already a
+mark in bufferName with markName, it will be overwritten.
+
+	clearmark bufferName markName
+Delete markName from bufferName. If either the mark, or buffer
+specified does not exist, and error is returned.
+
+	gotomark bufferName markName
+Set the selection in bufferName to the one marked by markName. If
+either the mark, or buffer specified does not exist, and error is
+returned.
+
+	marklist bufferName
+Return a Tcl list, each element of which contains the name of a mark
+in bufferName.
+
+	homewindow windowName ?position? ?STRICT|SEMISTRICT|LENIENT?
+Move the view of windowName so that position (in characters) is
+showing, if position is not specified, the current cursor position, or
+start of the current selection is used.
+STRICT     - Forces the view to change so that the given position is
+	1/3 the way down the window.
+SEMISTRICT - If the given position is off the view, this does the same
+	thing as STRICT, else it does nothing.
+LENIENT    - Move the view as little as possible to get the given
+	position to be displayed.
+
+	gettopleft windowName
+Report the line number that is currently positioned at the top of
+windowName, and the offset in pixels from the left.
+
+	settopleft windowName topLine leftPixel
+Set the line number to display at the top of windowName, and the
+number of pixels from the left that windowName should display. NOTE:
+if any value is out of range, it will be set to the nearest allowable
+value.
+
+	textinfo bufferName
+Return the total number of lines and characters contained in
+bufferName. NOTE: the total number of lines is actually the total
+number of newline characters.
+
+	selectioninfo bufferName
+Return the following information about the selection in bufferName:
+startPosition      - position where selection starts (in characters).
+endPosition        - position where selection ends (in characters).
+startLine          - line number where selection starts.
+endLine            - line number where selection ends.
+startLinePosition  - offset into startLine where selection starts.
+endLinePosition    - offset into endLine where selection ends.
+totalSegments      - total number of selection segments.
+totalSpan          - total number of character selected.
+
+	positiontolineoffset bufferName position
+Given a character position within bufferName this will return the line
+number which contains that position, and the offset into the line of
+that position. NOTE: if position is out of range, it will be set to
+the nearest legal position.
+
+	lineoffsettoposition bufferName lineNumber offset
+Inverse of positiontolineoffset. Given a line number, and a character
+offset within the line, return the position in bufferName. NOTE: if
+lineNumber, or offset is out of range, they will be set to the nearest
+legal value.
+
+	movecursor windowName relativeMode
+Move the cursor in windowName in the direction given by relativeMode.
+Valid modes are:
+	LEFTCHAR       - move left by one (wrap to previous line if needed).
+	RIGHTCHAR      - move right by one (wrap to next line if needed).
+	LEFTWORD       - move left by one word (wrap lines as needed).
+	RIGHTWORD      - move right by one word (wrap lines as needed).
+	UPLINE         - move up by one line, attempt to stay at same horizontal offset.
+	DOWNLINE       - move down by one line, attempt to stay at same horizontal offset.
+	STARTLINE      - move to the start of the current line.
+	ENDLINE        - move to the end of the current line.
+	STARTPARAGRAPH - move to the start of the current paragraph.
+	ENDPARAGRAPH   - move to the end of the current paragraph.
+	UPPAGE         - move up by one page (as defined by the window size).
+	DOWNPAGE       - move down by one page (as defined by the window size).
+	STARTDOC       - move to the start of the document.
+	ENDDOC         - move to the end of the document.
+
+	delete windowName relativeMode
+Delete the characters in windowName between the cursor, and relative
+mode away from it. relativeModes are the same as in movecursor.
+
+	expandselection windowName relativeMode
+Expand the selection in windowName, by growing in relativeMode.
+relativeModes are the same as in movecursor.
+
+	reduceselection windowName relativeMode
+Reduce the selection in windowName, by shrinking in relativeMode.
+relativeModes are the same as in movecursor.
+
+
+Editing functions
+------- ---------
+	clear bufferName
+Delete all selected characters in bufferName.
+
+	insert bufferName textToInsert
+Delete all selected characters in bufferName, then insert textToInsert
+at the cursor position.
+
+	insertfile bufferName pathName
+Delete all selected characters in bufferName, then insert the contents
+of the file given by pathName at the cursor position.
+
+	autoindent bufferName
+Delete all selected characters in bufferName, insert a new line, then
+move over by the amount of white space that is contained at the start
+of the previous line.
+
+
+Styles and Syntax highlighting
+------ --- ------ ------------
+Information on e93's styles and syntax highlighting is contained in the
+file 'README.syntaxmaps'.
+
+	getstyleatposition bufferName position
+return information about the style at the given character position in the text
+The result is a value (style index) and the position <= the given
+one where the style begins, and the position just after the end of the
+style
+
+	setstyle bufferName startPosition endPosition styleNum
+set the style of text of the passed buffer
+if the given end position is < the start position,
+the positions will be reversed
+if any position is out of range, it will be forced in range
+
+	selectiontostyle bufferName styleNum
+Set the style of a buffer to a given value anywhere text is selected
+
+	styletoselection bufferName styleNum
+Set the selection in a buffer everywhere a given style is in the buffer
+NOTE: this does not clear the old selection, it will just add to it
+
+	addsyntaxmap syntaxMapName syntaxMap
+create a syntax highlighting map from a list of expressions and a list of
+mappings from expressions to styles
+NOTE: this can be used to replace an existing syntax map, but
+if the existing map is in use by any buffer which is busy, this will fail
+before it does anything
+
+	deletesyntaxmap syntaxMap
+delete a syntax map that was created by "syntaxmap"
+Remove the map from all buffers which are using it
+NOTE: if any buffer which is using the map is currently busy, this will
+fail before it does anything.
+
+	syntaxmaps
+return the list of currently defined syntax maps
+
+	setsyntaxmap bufferName syntaxMapName
+Set the syntax map in use for the given buffer
+If an empty map string is specified, then remove any map from the current buffer
+
+	getsyntaxmap bufferName
+read back the syntax map in use for the given buffer
+
+	syntaxmapbuffers syntaxMapName
+Return the list of buffer names which are currently using the given syntax map
+
+
+Misc
+----
+	setwordchars wordCharacters
+Set the editor's understanding of which characters are considered part
+of words, and which are not. wordCharacters is a string containing all
+of the characters to be considered parts of words. The editor uses
+this information when double clicking, and when moving the cursor in a
+relative direction by word.
+
+	getwordchars
+Get the string which lists all the characters which are parts of words.
+
+	execute bufferName script
+Execute the given Tcl script, place the results in bufferName if it still
+exists after the script is finished, otherwise throw them away.
+
+	task bufferName taskData
+If there is no task running in bufferName, start one running by passing
+taskData to a shell. If there is a task running, place taskData on its
+stdin.
+
+	updatetask bufferName
+If there is a task running in bufferName, see if it has any output
+ready, and if so, get it, and place it into bufferName.
+
+	eoftask bufferName
+If there is a task running in bufferName, send it an EOF.
+
+	killtask bufferName
+If there is a task running in bufferName, send it a Kill signal.
+
+	taskbytes bufferName
+return the number of characters the last/current task has dumped into the given buffer
+NOTE: this count is only reset when a task is launched
+
+	hastask bufferName
+Return TRUE if there is a task running in bufferName.
+
+	beep
+Make e93 emit an annoying beep sound.
+
+	checkbuffer bufferName
+Run a sanity check on bufferName. If there is no problem (which there
+never should be unless there is a bug in e93) report some statistics
+about bufferName. If there is a problem, e93 may CRASH, or if you are
+lucky, it will tell you what is wrong. This should NEVER report any
+problems. If it does, please let me know!
+
+	forceQUIT
+Rude unforgiving command which will make e93 QUIT without saving, or
+asking to save any modified buffers. This is the only way to ask e93
+to quit, so Tcl scripts must take care of the niceties of asking to
+save modified buffers before this is executed.
+
+	version
+Report the version number of the e93 that you are running.
+
+	settclstdout
+set the buffer to be used for Tcl's stdout
+if the buffer does not exist, complain, but if it is deleted while it
+is being used as the output, that's ok -- the output is just discarded
+
+	gettclstdout
+return the buffer being used for Tcl's stdout
+if the buffer does not exist, fail
+
+	settclstderr bufferName
+set the buffer to be used for Tcl's stderr
+if the buffer does not exist, complain, but if it is deleted while it
+is being used as the output, that's ok -- the output is just discarded
+
+	gettclstderr
+return the buffer being used for Tcl's stderr
+if the buffer does not exist, fail
+
+
+Environment-specific commands
+-------------------- --------
+There are some commands in e93 which are specific to the environment
+it was compiled for. These commands allow for a more fine-grained
+integration of e93 into various OSs and windowing systems.
+
+X-Windows:
+
+	raiserootmenu
+Force the root menu window to the top of the window hierarchy.
+
+	scrollbarplacement where
+sets the scrollbar position to the left (where="left") or right
+(where="right") for the next opened document/dialog windows. Default
+is "right".
+
+
+M$ Windows:
+(these will be documented in detail later)
+	windowscascade
+	windowstilehorz
+	windowstilevert
+	windowsarrangeicons
+	windowsprint
+	windowssetglobalstatusfield
+	windowssetglobalstatusbutton
+	windowssetglobalstatusbarfont
+	windowssetwindowstatusbarfont
+	windowsgetstatusbarstringwidth
+	windowsgetlocaltime
+	windowswinhelp
+	windowsgetregistrystringvalue
+	windowssetregistrystringvalue
+	windowssettaskseperator
+	windowsdopopupmenu
+	windowssetfiletranslationmode
+	windowsgetfiletranslationmode
+	windowsgetmousescrollspeed
+	windowssetmousescrollspeed
+	windowsgetscrollbarspeed
+	windowssetscrollbarspeed
+	windowsopenanothere93
+	windowssetwindowtitle
+	windowsrunapplication
+
+
+
+                                Appendix B
+                                -------- -
+e93 can be customized by creating scripts that are executed when the
+editor starts up. By default, e93 locates and executes the script
+"e93rc.tcl". This script contains the base information for a typical
+e93 setup. Although it is possible to modify this script to change
+e93's configuration, it is not generally recommended, since with each
+update of e93, you will have to reintegrate your changes with the new
+version.
+
+To help reduce the need to modify the "e93rc.tcl" script, and to allow
+each user on a given machine to have a customized version of the
+editor, the base startup script attempts to locate and execute various
+user-specific script files.
+
+In Unix, these files reside in the user's home directory (in the
+directory ~/.e93), and allow the user to add to e93's functionality in
+a convenient way.
+
+The user's ".e93" directory may contain the following sub-directories:
+
+syntaxmaps
+syntaxmaps_aux
+highlightschemes
+highlightschemes_aux
+modules
+modules_aux
+prefs
+
+If the "syntaxmaps" directory is present, e93 will use the syntax map
+definition files it contains in preference to the defaults it would
+normally load. When this directory exists, e93 will NOT load its
+default syntax maps. All syntax map definition files contained in this
+subdirectory must have a name which ends in ".tcl" to be recognized.
+
+If the "syntaxmaps_aux" directory is present, e93 will add the syntax
+map definitions it contains to the defaults it normally loads. All
+syntax map definition files contained in this subdirectory must have
+a name which ends in ".tcl" to be recognized.
+
+If the "highlightschemes" directory is present, e93 will use the
+highlight schemes it contains in preference to the defaults it would
+normally load. When this directory exists, e93 will NOT load its
+default highlight schemes. All highlight scheme definition files
+contained in this subdirectory must have a name which ends in ".tcl"
+to be recognized.
+
+If the "highlightschemes_aux" directory is present, e93 will add the
+highlight schemes it contains to the defaults it normally loads. All
+highlight scheme definition files contained in this subdirectory must
+have a name which ends in ".tcl" to be recognized.
+
+If the "modules" directory is present, e93 will use the modules (just
+additional Tcl scripts, menu items, or whatever) it contains in
+preference to the modules it would normally load. When this directory
+exists, e93 will NOT load its default modules. All modules contained
+in this subdirectory must have a name which ends in ".tcl" to be
+recognized. Modules are typically used to define functions specific
+to any given user's tasks.
+
+If the "modules_aux" directory is present, e93 will add the modules it
+contains to the defaults it normally loads. All modules contained in
+this subdirectory must have a name which ends in ".tcl" to be
+recognized.
+
+Finally, if the "prefs" directory is present, e93 will execute all the
+scripts contained within it as the last step in the initialization
+procedure. It is at this point, that you can alter any preferences
+that you desire before the editor opens any files.

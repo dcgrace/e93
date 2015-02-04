@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>
+About e93
+</TITLE>
+
+<SUMMARY>
+Information about e93
+</SUMMARY>
+
+<BODY>
+<P>e93 is a portable window based text editor oriented to the needs of
+programmers. It was written to take advantage of the windowing systems
+found on today's workstations, and high-end PCs. e93 is based on the
+Tcl scripting language, and relys on this language for most of its
+high level functionality.
+</P>
+<P>e93 supports a model of editing which emphasizes limiting the number
+of modes, and maximizing the use of a small, easily learned set of
+editing commands.
+</P>
+<P>
+News about e93 and the latest version can be found at <a href="http://www.e93.org">e93.org</a>
+</P>
+<P>
+<B>NOTE:</B> Since e93 is portable, I have attempted to keep this manual
+machine/OS independent to a reasonable extent. However, since e93 was
+first written for UN*X machines, there is a slight bias towards them
+in this documentation.
+</P>
+</BODY>
+</CHAPTER>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>getcolors</NAME>
+    <SUMMARY>Report the colors of a window</SUMMARY>
+   <PARAMETER>
+      <NAME>windowName</NAME>
+The name of the e93 window this command will act upon.
+</PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>styleNum</NAME>
+        The style in the window that the colors will be returned from. The default is 0.  
+   </PARAMETER>
+	<DESCRIPTION>
+	Report the <A HREF="../colors.html">colors</A> for a style in <VAR>windowName</VAR>.
+	The format is two sets, representing foreground and background respectively, of three, one for
+	each color channel, hexadecimal byte values <CODE>RRGGBB RRGGBB</CODE>.
+	</DESCRIPTION>
+   <STATUS>
+		This command will return an error in the following cases:
+		<P>
+         <VAR>windowName</VAR> is not provided.<BR/>
+         <VAR>windowName</VAR> is not an e93 window.</P>
+   </STATUS>
+   <SEEALSO>
+      <CODE>
+         <A HREF="setcolors.html">setcolors</A>
+         <A HREF="../colors.html">ColorNames</A>
+      </CODE>
+   </SEEALSO>
+</COMMAND>

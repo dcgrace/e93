@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>bindkey</NAME>
+    <SUMMARY>Establish a binding between a keyboard key and a Tcl script</SUMMARY>
+   <PARAMETER>
+      <NAME>keyName</NAME>
+      <A HREF="../keynames.html"><VAR>keyName </VAR></A> identifies the key to which e93 is to bind a command.
+</PARAMETER>
+<PARAMETER>
+    <NAME>modifiers</NAME>
+    <A NAME="modifiers"/>
+    <P>is a string of 11 characters that tell e93 which modifier keys should be in which states
+    for this binding to take effect.<BR/>The string can contain <CODE>X, 0,</CODE> or <CODE>1</CODE> 
+    in each character position with the following meanings:
+       <BLOCKQUOTE>
+            <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>X</CODE>
+                    </TD>
+                    <TD>don't care which state the modifier is in</TD>
+                </TR>
+                <TR>
+                    <TD>
+                        <CODE>0</CODE>
+                    </TD>
+                    <TD>modifier must not be pressed</TD>
+                </TR>
+                <TR>
+                    <TD>
+                        <CODE>1</CODE>
+                    </TD>
+                    <TD>modifier must be pressed</TD>
+                </TR>
+            </TABLE>
+        </BLOCKQUOTE>
+    </P>
+    <P>The 11 modifier keys are (in order):<BLOCKQUOTE>
+            <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Caps_Lock</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Shift</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Control</CODE>
+                    </TD>
+                    <TD>Alt on Windows</TD>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Mod 0</CODE>
+                    </TD>
+                    <TD>system dependent modifiers</TD>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Mod 1</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Mod 2</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Mod 3</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Mod 4</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Mod 5</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Mod 6</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+                <TR>
+                    <TD WIDTH="50">
+                        <CODE>Mod 7</CODE>
+                    </TD>
+                    <TD/>
+                </TR>
+            </TABLE>
+        </BLOCKQUOTE>
+    </P>
+</PARAMETER>
+   <PARAMETER>
+      <NAME>keyFunction</NAME>
+is a Tcl script to run when the key is pressed.
+</PARAMETER>
+   <DESCRIPTION>
+Establish a binding between a keyboard key and a Tcl script.
+</DESCRIPTION>
+   <STATUS>
+	The bindkey command will return an error in the following cases:
+	<P>
+         <CODE>Invalid modifiers</CODE>
+         <BR/>
+	The <A href="#modifiers">
+            <VAR>modifiers</VAR>
+         </A> string contains characters other than 0, 1, or X.</P>
+      <P>
+         <CODE>Invalid modifiers(incorrect length)</CODE>
+         <BR/>
+	The <A href="#modifiers">
+            <VAR>modifiers</VAR>
+         </A> string is not 11 characters in length.</P>
+      <P>
+         <CODE>Invalid key code</CODE>
+         <BR/>
+	The <A href="#keyName">
+            <VAR>keyName</VAR>
+         </A> provided was not found. (MSWindows only)</P>
+      <P>
+         <CODE>wrong # args: should be "bindkey keyName modifiers keyFunction"</CODE>
+         <BR/>
+	If any of the three required arguments is ommitted, or more than three are provided.</P>
+   </STATUS>
+   <EXAMPLES>
+	binding the combination Alt-F5 to beep:<BR/>
+      <CODE>bindkey F5 00100000000 {beep}</CODE>
+   </EXAMPLES>
+   <SEEALSO>
+      <A HREF="unbindkey.html">unbindkey</A>
+      <A HREF="waitkey.html">waitkey</A>
+      <A HREF="addmenu.html">addmenu</A>
+      <A HREF="../keyNames.html">key names</A>
+   </SEEALSO>
+</COMMAND>

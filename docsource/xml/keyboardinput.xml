@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>Keyboard Input</TITLE>
+
+<SUMMARY>
+Key types
+</SUMMARY>
+
+<BODY>
+<P>e93 separates the keyboard into three types of keys: modifiers, characters, and functions.</P>
+<BLOCKQUOTE>
+	<H3>Modifiers</H3>
+	<BLOCKQUOTE>
+		<P>There are 11 modifier keys defined by e93:</P>
+		<BLOCKQUOTE>
+			<P>caps-lock<BR />
+			shift<BR />
+			control<BR />
+			modifier 0 (<A HREF="standardkeyboardlayout.html#CommandKey">Command Key</A>)<BR />
+			modifier 1 - modifier 7(implementation specific)</P>
+		</BLOCKQUOTE>
+	</BLOCKQUOTE>
+
+	<H3>Characters</H3>
+	<BLOCKQUOTE>
+		<P>The character keys are a-z, numbers, tab, escape, return, etc...<BR />
+		These are the keys that would be expected to insert a character when typed.<BR />
+		On MSWindows this includes characters that require multiple keystrokes to produce on some keyboards.
+		e.g. "Alt+ 0 2 5 2" on the numeric keypad, which produces '&#252;'.</P>
+		<!--
+			I messed around for a while before I found out that umlaut u was &#252 in SGML,
+			the Windows escape sequence might have been a clue, duh.
+		-->
+	</BLOCKQUOTE>
+
+	<H3>Function keys</H3>
+	<BLOCKQUOTE>
+		<P>The function keys are:<BR />
+		Arrows, Backspace, F1, F2, Undo, Help, Break, etc... These are keys that do not insert characters, but instead, perform actions.</P>
+	</BLOCKQUOTE>
+</BLOCKQUOTE>
+
+
+<P>When no keys are bound (See the section on Key binding below), e93 relies on a default set of bindings that are "hardwired" into the code.</P>
+<P><B>NOTE:</B> Key bindings can be used to override this default behavior.</P>
+
+<P>Here is a list of keys, and default actions:</P>
+
+<P>All unmodified, or shift modified characters are inserted into the active window.</P>
+
+<P>Unmodified Arrows move the cursor up/down by line, left/right by character.<BR />
+Control Left/Right Arrow moves cursor by word left/right.<BR />
+Control Up/Down Arrow scrolls the document down/up without moving the cursor.<BR />
+<!--
+Control is Alt (for some things) on Windows if Control is mapped to command
+-->
+<A HREF="standardkeyboardlayout.html#CommandKey">Command</A> Left/Right moves to start or end of line.<BR />
+<A HREF="standardkeyboardlayout.html#CommandKey">Command</A> Up/Down moves up or down by page.<BR />
+Shift can be used with the above combinations to expand the selection.</P>
+
+<P>Page up, Page down move the cursor up or down by a page.<BR />
+Shift can be used with the page up/down to expand the selection.</P>
+
+<P>Home, and End move the cursor to the start or end of a line.<BR />
+<A HREF="standardkeyboardlayout.html#CommandKey">Command</A> Home/End moves to start/end of the document.<BR />
+Shift can be used with the home/end to expand the selection.</P>
+
+<P>Unmodified Backspace deletes the character to the left of the cursor.</P>
+<!--
+Backspace is not working on Windows. Windows has no "option" key. WinKey isn't working as option yet (perhaps never).
+
+Command Backspace deletes to end of line.
+Command Shift Backspace deletes to beginning of line.
+Command Option Backspace deletes to end of buffer.
+Command Shift Option Backspace deletes to beginning of buffer.
+Control Backspace deletes word left.
+Control Shift Backspace deletes word right.
+-->
+
+<P>Unmodified Delete deletes the character to the right of the cursor.<BR />
+<A HREF="standardkeyboardlayout.html#CommandKey">Command</A> Delete deletes to beginning of line.<BR />
+<!--
+Command Option Delete deletes to beginning of buffer.
+Command Shift Option Delete deletes to end of buffer.
+-->
+<A HREF="standardkeyboardlayout.html#CommandKey">Command</A> Shift Delete deletes to end of line.</P>
+<!--
+Escape inserts an escape (except in some dialogs windows where it
+selects the "Cancel" option). NOTE: if you wish to insert an escape
+character into the text of a dialog window, type Control [.
+-->
+
+<P>Return does an autoindent (except in some dialog windows where it selects the "Ok" option.)</P>
+
+<BLOCKQUOTE>
+	<P><B>NOTE:</B> If you wish to place a new-line character into the text of a dialog window, type Control J.</P>
+</BLOCKQUOTE>
+
+<P>Tab inserts a tab (except in some dialog windows where it may move between fields.)</P>
+
+<BLOCKQUOTE>
+	<P><B>NOTE:</B> If you wish to insert a tab character into the text of a dialog window, type Control I.</P>
+</BLOCKQUOTE>
+
+<P>Escape inserts an escape (except in some dialog windows where it selects the "Cancel" option.)</P>
+
+<BLOCKQUOTE>
+	<P><B>NOTE:</B> If you wish to insert an escape character into the text of a dialog window, type Control [.</P>
+</BLOCKQUOTE>
+
+<P>Cut, Copy, Paste, Undo, and Redo (if you have these keys) perform their respective actions.</P>
+
+</BODY>
+</CHAPTER>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>getwordchars</NAME>
+   <DESCRIPTION>
+Get the string that lists all the characters that are parts of words.<BR/>
+   </DESCRIPTION>
+</COMMAND>

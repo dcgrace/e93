@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+    <NAME>flushundos</NAME>
+    <SUMMARY>Throw away all undo-redo information for a buffer</SUMMARY>
+    <PARAMETER>
+        <NAME>bufferName</NAME>
+    </PARAMETER>
+    <DESCRIPTION>Throw away all undo-redo information for<VAR>bufferName</VAR>
+    </DESCRIPTION>
+    <STATUS>This command will return an error in the following cases:<P>
+            <VAR>bufferName</VAR>
+            <BR/>
+            <VAR>bufferName</VAR>
+        </P>
+    </STATUS>
+   <SEEALSO>
+      <A HREF="undo.html">undo</A>
+      <A HREF="breakundo.html">breakundo</A>
+      <A HREF="undotoggle.html">undotoggle</A>
+      <A HREF="../undoredo.html">undoredo</A>
+   </SEEALSO>
+</COMMAND>

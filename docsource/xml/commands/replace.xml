@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>replace</NAME>
+   <PARAMETER>
+      <NAME>searchInBuffer</NAME>
+The name of the e93 buffer the replace will effect
+</PARAMETER>
+   <PARAMETER>
+      <NAME>findBuffer</NAME>
+The name of the e93 buffer that contains the search text or expression
+</PARAMETER>
+   <PARAMETER>
+      <NAME>replaceBuffer</NAME>
+The name of the e93 buffer that contains the replacement text or expression
+</PARAMETER>
+   <OPTION optional="true">
+      <NAME>-backward</NAME>
+search backwards
+</OPTION>
+   <OPTION optional="true">
+      <NAME>-wrap</NAME>
+wraps the search or replace around the end of <VAR>searchInBuffer</VAR>
+   </OPTION>
+   <OPTION optional="true">
+      <NAME>-ignorecase</NAME>
+ignores case during the search.
+</OPTION>
+   <OPTION optional="true">
+      <NAME>-regex</NAME>
+treats <VAR>findBuffer</VAR> as a regular expression. Also, treat the contents of <VAR>replaceBuffer</VAR>
+as a selection expression replacement strings (unless <VAR>-replaceScript</VAR> is present).
+</OPTION>
+   <OPTION optional="true">
+      <NAME>-replacescript</NAME>
+      <P>treat the contents of <VAR>replaceBuffer</VAR> as a Tcl script that should be executed when a match is found,
+the results of which will be placed into <VAR>searchInBuffer</VAR>
+      </P>
+      <P>
+         <B>NOTE:</B>when a match is found, the text that matched is copied to a Tcl global variable called $found,
+this variable can be referenced by the replace procedure.</P>
+   </OPTION>
+   <DESCRIPTION>
+Attempt to locate the text contained in <VAR>findBuffer</VAR> in <VAR>searchInBuffer</VAR> if it is found,
+replace it with the contents of <VAR>replaceBuffer</VAR>.
+</DESCRIPTION>
+</COMMAND>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+
+<COMMAND>
+   <NAME>findall</NAME>
+   
+	<SUMMARY>
+	Search for all occurrences text in a buffer
+	</SUMMARY>
+
+   <PARAMETER>
+      <NAME>searchInBuffer</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>findBuffer</NAME>
+   </PARAMETER>
+   <PARAMETER optional="true">
+      <NAME>flags</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+      <P>Attempt to locate all occurrences of the text contained in findbuffer
+in <VAR>searchInBuffer</VAR>
+         <BR/>
+The following <VAR>flags</VAR> are available:<BR/>
+-backwardsearch backwards.<BR/>
+-wrapwraps the search or
+replace around the end of <VAR>searchInBuffer</VAR>
+         <BR/>
+-regextreats
+findbuffer as a regular expression.<BR/>
+-ignorecaseignores case during
+the search.<BR/>
+-limitscopesearches only the selected text of <VAR>searchInBuffer</VAR>
+      </P>
+      <P>
+         <B>NOTE:</B> when limiting the search scope by the selected text of
+<VAR>searchInBuffer</VAR> the regular expression characters ^, and $
+will match the ends of a selection segment.</P>
+   </DESCRIPTION>
+</COMMAND>

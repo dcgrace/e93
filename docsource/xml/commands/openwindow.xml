@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>openwindow</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+		The unique name of an e93 buffer.
+		</PARAMETER>
+   <PARAMETER>
+      <NAME>x</NAME>
+      The horizontal position of the left side of the window.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>y</NAME>
+      The vertical position of the top of the window.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>w</NAME>
+      The width of the window.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>h</NAME>
+      The height of the window.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>fontName</NAME>
+      The text will be displayed in font <A HREF="../xlfd.html">fontName</A>.<BR/>
+      <B>NOTE:</B>: if e93 cannot locate the specified font, it will default to one of its own choosing.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>tabSize</NAME>
+      The initial tab size.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>foregroundColor</NAME>
+      Specifies the default (style 0) foreground <A HREF="../colors.html">color</A> of the window.
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>backgroundColor</NAME>
+      Specifies the default (style 0) background <A HREF="../colors.html">color</A> of the window.
+   </PARAMETER>
+   <DESCRIPTION>
+	Open a window with a view onto <VAR>bufferName</VAR> . Place the window at x, y and give it
+	size w, h.
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+   <SEEALSO>
+      <CODE>
+         <A HREF="../windows_buffer.html">Color Names</A>
+         <A HREF="../colors.html">Color Names</A>
+         <A HREF="../syntaxmaps.html">Syntax Maps</A>
+         <A HREF="closewindow.html">closewindow</A>
+         <A HREF="setcolors.html">setcolors</A>
+         <A HREF="settopleft.html">settopleft</A>
+         <A HREF="setrect.html">setrect</A>
+         <A HREF="setfont.html">setfont</A>
+         <A HREF="activewindow.html">activewindow</A>
+         <A HREF="settopwindow.html">settopwindow</A>
+         <A HREF="windowlist.html">windowlist</A>
+      </CODE>
+   </SEEALSO>
+</COMMAND>

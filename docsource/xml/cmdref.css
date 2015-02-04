@@ -1,0 +1,20 @@
+body			{color:#000000; font-family:arial,futurtmed,helvetica,verdana; font-size:10pt;}
+
+p, td, a		{font-size:9pt;}
+sup				{font-family:helvetica, sans-serif; font-weight: normal; font-size:9pt;}
+
+h1 				{font-weight:bold; font-size:14pt;}
+h2 				{font-weight:bold; font-size:12pt;}
+h3 				{font-weight:bold; font-size:10pt;}
+
+td.booktitle	{text-align: center; color: white; font-size:20pt;}
+p.pageheading	{font-weight:bold; font-size:15pt;}
+p.date			{text-align:center;}
+
+a				{color:#008080;}
+a:hover			{color:#ffce00;}
+a:active		{color:#002020;}
+
+code			{color:#2994b5; font-family:courier, monospace; font-size:10pt;}
+pre				{color:#2994b5; font-family:courier, monospace; font-size:8pt;}
+var 			{color:#2994b5; font-family:courier, monospace; text-style:italic;}

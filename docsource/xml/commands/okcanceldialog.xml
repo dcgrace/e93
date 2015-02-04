@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>okcanceldialog</NAME>
+   <PARAMETER>
+      <NAME>dialogText</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Open a dialog with Ok, and Cancel buttons, containing<VAR>dialogText</VAR>.
+</DESCRIPTION>
+   <STATUS>
+If the user exits the dialog with Ok, return without error. If he exits with cancel, return an error.<BR/>
+   </STATUS>
+</COMMAND>

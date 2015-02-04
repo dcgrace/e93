@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>fromfile</NAME>
+    <SUMMARY>Return true if a buffer is associated with a file</SUMMARY>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <DESCRIPTION>
+Return a boolean value that tells if <VAR>bufferName</VAR> is associated with a file.
+A buffer is associated with a file, if e93 has read the buffer from a file, or has done a savebufferas.<BR/>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:
+<P>
+         <VAR>bufferName</VAR> is not provided.<BR/>
+         <VAR>bufferName</VAR> is not an e93 buffer.</P>
+   </STATUS>
+</COMMAND>

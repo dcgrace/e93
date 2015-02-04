@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>getkey</NAME>
+    <SUMMARY>Return keyName and modifiers of a pressed key</SUMMARY>
+   <DESCRIPTION>
+See if a key has been pressed, if so, return <A HREF="../keynames.html">keyName</A> and modifiers if not, return error.<BR/>
+   </DESCRIPTION>
+</COMMAND>

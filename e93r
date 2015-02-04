@@ -1,0 +1,84 @@
+#! /bin/sh
+#
+# editor '93
+# Copyright (C) 2000 Core Technologies.
+#
+# This file is part of e93.
+#
+# e93 is free software; you can redistribute it and/or modify
+# it under the terms of the e93 LICENSE AGREEMENT.
+#
+# e93 is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# e93 LICENSE AGREEMENT for more details.
+#
+# You should have received a copy of the e93 LICENSE AGREEMENT
+# along with e93; see the file "LICENSE.TXT".
+#
+
+#
+# The goal of this Tcl/Tk script is to open files in an already running
+# e93 editor.
+# NOTE: if no editor is currently running, one will be started.
+#
+
+# NOTE: you may have to adjust the wish to e.g. /usr/local/bin/wish8.3
+# restart using wish \
+exec wish "$0" "$@"
+
+# check presence of another e93
+set e93present ""
+foreach i [winfo interps] \
+{
+	# there might be more than one: e.g. e93 and e93#1
+	# we take the first one in the list
+	if {[string range $i 0 3] == "e93"} \
+	{
+		set e93present "$i"
+		break
+	}
+}
+
+# check if only "-" is passed then read the files from stdin pipe
+# "\\-" will disable this
+# e.g. ls *.c | e93r -
+# NOTE: it blocks until killed if no data from stdin can be read
+if {$argc == 1} \
+{
+	if {[lindex $argv 0] == "-"} \
+	{
+		set argv ""
+		# read all files in
+		set fd [open "/dev/stdin" "r"]
+		while {![eof $fd]} \
+		{
+			append argv "[gets $fd] "
+		}
+		close $fd
+	}
+}
+
+if {$e93present == ""} \
+{
+	catch {eval "exec e93 $argv &"}
+	exit 0
+}
+
+# no files passed then exit
+if {$argc < 1} \
+{
+	exit 1
+}
+
+# send the list $newlist to the other app. it may fail.
+# for windoze use dde.
+catch {send $e93present "set PWD \[pwd\];cd [pwd];OpenList [list $argv];cd \$PWD"} txt
+if {$txt != ""} \
+{
+	puts "$txt"
+	puts "To make the 'e93r' command work, you have to enable access control"
+	puts "and remove all authorized clients from the list."
+	puts "(xhost command)"
+}
+exit 0

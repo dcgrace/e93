@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>searchdialog</NAME>
+   <PARAMETER>
+      <NAME>dialogTitle</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>findbuffer</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>replacebuffer</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>backwardsVar</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>wrapAroundVar</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>selectionExprVar</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>ignoreCaseVar</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>limitScopeVar</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>replaceProcVar</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Open a search/replace dialog, with <VAR>dialogTitle</VAR>
+      <BR/>findbuffer is the name of the buffer that find text will be placed into.<BR/>replacebuffer is the name of the buffer that replace text will be placed into.<BR/>backwardsVar is the name of a variable that contains a boolean that tells if search should be done in reverse.<BR/>wrapAroundVar tells if search should wrap around.<BR/>selectionExprVar tells if find text should be interpreted as a regex.<BR/>ignoreCaseVar tells if case should be ignored during the search.<BR/>limitScopeVar tells if the scope of the search should be limited to the current selection.<BR/>This dialog has 5 buttons that can be clicked on to exit<BR/>Find- returns string "find".<BR/>Find all- returns string "findall".<BR/>Replace- returns string "replace".<BR/>Replace all- returns string "replaceall".<BR/>Cancel- returns Tcl error.<BR/>
+   </DESCRIPTION>
+</COMMAND>

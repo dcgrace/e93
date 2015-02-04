@@ -1,0 +1,40 @@
+TODO:
+
+Add options to many commands to allow them to work in marks
+
+Add menus to 'expand', 'unexpand', and 'fmt' text
+
+Tk
+{
+	Replace most dialogs with Tk equivalents.
+
+	Add directory changing/saving with the open file dialog
+
+	> If I remember correctly, the save dialog on OPENSTEP would leave the text box alone
+	> as you selected directories (allowing you to navigate), but enter the selection in
+	> the text box if you selected a filename.  This was very handy when you wanted to
+	> save as a name similar to one already present (creating a .h for an existing .c, for
+	> example).
+}
+
+Fix prototype recognition for:
+
+void QuantizeFrame(Frame *pFrame,mbInfo *pInfo,INT16 (*pBlocks)[64],int yStart,int yEnd)
+{
+}
+
+void UnQuantizeFrame(mbInfo *pInfo,INT16 (*pBlocks)[64],const UINT8 *pIntraQ, const UINT8 *pNonIntraQ,int yStart,int yEnd)
+{
+if(this==4)
+{
+}
+}
+
+int
+aa(int test,			// this is a test
+	char blah
+	) {		/* this is a test */
+}
+
+
+

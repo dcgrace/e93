@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>windowlist</NAME>
+   <DESCRIPTION>
+Return a Tcl list of all of the currently open window names.<BR/>
+   </DESCRIPTION>
+   <SEEALSO>
+      <CODE>
+         <A HREF="activewindow.html">activewindow</A>
+         <A HREF="settopwindow.html">settopwindow</A>
+         <A HREF="openwindow.html">openwindow</A>
+         <A HREF="closewindow.html">closewindow</A>
+      </CODE>
+   </SEEALSO>
+</COMMAND>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>bufferlist</NAME>
+    <SUMMARY>Return a Tcl list of all of the currently open buffers</SUMMARY>
+   <DESCRIPTION>
+Return a Tcl list of all of the currently open buffers.
+</DESCRIPTION>
+   <OUTPUT>
+A Tcl list containing the names of all of the currently open e93 buffers.
+</OUTPUT>
+</COMMAND>

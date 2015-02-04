@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>styletoselection</NAME>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+The unique name of an e93 buffer.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>styleNum</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+      <P>Set the selection in a buffer everywhere a given style is in the buffer</P>
+      <P>
+         <B>NOTE:</B> this does not clear the old selection, it will just add to it.</P>
+   </DESCRIPTION>
+   <STATUS>
+This command will return an error in the following cases:<BR/>
+      <VAR>bufferName</VAR> is not provided.<BR/>
+      <VAR>bufferName</VAR> is not an e93 buffer.
+</STATUS>
+</COMMAND>

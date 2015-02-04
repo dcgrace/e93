@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>setchannelbuffer</NAME>
+   <PARAMETER>
+      <NAME>channelId</NAME>
+Identifies the channel for which the query is being applied.
+</PARAMETER>
+   <PARAMETER>
+      <NAME>bufferName</NAME>
+      <P>Specifies the name of the e93 buffer to be attached to the Tcl channel.</P>
+      <P>
+         <B>NOTE:</B>The buffer must already exist; setchannelbuffer does not create buffers.</P>
+   </PARAMETER>
+   <DESCRIPTION>
+Attaches an e93 buffer to a Tcl output channel. The Tcl channel will
+be created if necessary. From that point on, data written to that Tcl
+channel will be inserted in the e93 buffer. If no
+<VAR>bufferName</VAR> is given the Tcl channel will be attached to the
+buffer of the e93 Window that is active at the time data is written to
+the channel. Only one buffer may be attached to any given channel. Any
+e93 buffer that was attached to the Tcl channel prior to this call
+will disconnected.
+</DESCRIPTION>
+   <STATUS>
+The setchannelbuffer command will return an error in the following cases:<BR/>
+No <VAR>channelId</VAR> parameter is given.<BR/>
+No e93 buffer matching <VAR>bufferName</VAR> is found.
+</STATUS>
+   <SEEALSO>
+      <A HREF="getchannelbuffer.html">getchannelbuffer</A>
+   </SEEALSO>
+</COMMAND>

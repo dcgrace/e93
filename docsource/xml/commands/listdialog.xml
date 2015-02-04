@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND>
+   <NAME>listdialog</NAME>
+   <PARAMETER>
+      <NAME>dialogTitle</NAME>
+   </PARAMETER>
+   <PARAMETER>
+      <NAME>inputList</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Open a list selection dialog, with <VAR>dialogTitle</VAR>  and place <VAR>inputList</VAR> (which is a Tcl list) into the dialog. If the user exits the dialog with Ok, return the sub-list (which is a Tcl list) of items that were selected. If he exits with cancel, return an error. <BR/>
+   </DESCRIPTION>
+</COMMAND>

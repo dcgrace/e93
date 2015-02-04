@@ -1,0 +1,79 @@
+TODO:
+	Better doc generation method + better XML + DTD (Schema)
+	
+	Tasks don't seem to update output often enough
+	
+	Break scripts into their own project, make simple e93 rc files for release
+	
+	Still have stange event problems, either due to Tcl interaction or wgui/events.c
+	Command keys coming through as chars, track this down.
+	
+	shell.c SetUpTclAbortHandling works on Windows, check on X
+	
+	HOTKEY as Ctrl-Break doesn't work, because Windows generates a VK_CANCEL
+	when it see that key combo, apparently before it checks for HOTKEY.
+	I'm now using VK_ESCAPE unmodified as UNIX does
+	
+	Tcl/Tk events
+	
+	Fix the backspace text motion commands
+	"Option" key, use the WinKey? (not working)
+	
+	Make sure bindkey works as advertized
+	
+	make open dialog file filter settable from rc files
+
+	Get rid of MDI
+
+	Better file icons
+
+	Support \\F change font in menus in addmenu
+		
+	JBuilder style text completion
+	
+	add popup menu over the cursor support on both versions
+	
+	Boundkeys command
+	
+	Menus command
+		
+	user home solution
+	
+Stuff for X:
+
+	X windows position windows bug
+
+	dim inactive menus on X
+
+Open questions:
+	
+	the SCRIPTPATH var should go away in favor of tcl_rcFileName
+
+	I think task should die by default unless explicitly detached from the buffer
+	New command detatch task (like bg)
+
+	Should bad keynames be ignored on X? (They are not in Windows)
+
+	I rather like the bindkey/addmenu blend in Windows. Should this concept move to X?
+
+	exit:
+		should it be deleted, or just no-op'ed?
+
+	Can we remove the the programName string in
+		e93.c
+		globals.c
+		shellcmd.c
+			same as "info nameofexecutable"
+
+	fromfile:
+		same as "file exists"
+
+	insert:
+		could be same as puts if each buffer had its own channel
+
+	add an optional arg to task (completion proc)
+		task bufferName taskData ?completionProc?
+
+	What dialog commands can be removed since Tk provides them?
+	
+	Use Tclsh?

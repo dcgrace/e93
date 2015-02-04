@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+
+	<TITLE>Environment variables</TITLE>
+
+	<SUMMARY>
+	Environment variables
+	</SUMMARY>
+
+	<BODY>
+		<H2>
+		On X Windows
+		</H2>
+			<BLOCKQUOTE>
+				<P>There is one environment variable that will affect the operation of e93 on X Windows.</P>
+				
+				<P>This is the <CODE>E93_COLORMAP</CODE> environment variable.
+				If this variable is defined, e93 will attempt to allocate its own
+				color map at start-up. This may allow it to work better on 256-color
+				displays.</P>
+				
+				
+				<P>If it is not defined, e93 will attempt to share the system's default
+				colormap.</P>
+			</BLOCKQUOTE>
+		<H2>
+		On MSWindows
+		</H2>
+			<BLOCKQUOTE>
+				<BLOCKQUOTE>
+					<P>You must set the <CODE>TCL_LIBRARY</CODE> environment variable to point
+					to the directory containing <CODE>init.tcl</CODE> and the other base Tcl
+					scripts.</P>
+				</BLOCKQUOTE>
+			<H2>
+			On Windows NT
+			</H2>
+				<BLOCKQUOTE>
+					<P>Bring up the Control Panel (e.g., by selecting Settings|Control Panel off the Start
+					menu), and select System. Go to the Environment tab, and enter <CODE>TCL_LIBRARY</CODE>
+					as the Variable, and the name of the directory containing init.tcl for
+					the Value, e.g.,<BR />
+					<CODE>%SystemDrive%&#092;Program Files&#092;Tcl&#092;lib&#092;tcl8.3</CODE><BR />
+					Click Set and OK to finish.</P>
+				</BLOCKQUOTE>
+
+			<H2>
+			On Windows 95/98
+			</H2>
+				<BLOCKQUOTE>
+					<P>Edit the file <CODE>autoexec.bat</CODE>. Add a line such as the following:<BR />
+					<CODE>set TCL_LIBRARY=C:&#092;Program Files&#092;Tcl&#092;lib&#092;tcl8.3</CODE><BR />
+					...and then reboot</P>
+				</BLOCKQUOTE>
+			</BLOCKQUOTE>
+	</BODY>
+</CHAPTER>

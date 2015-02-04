@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+
+<COMMAND type="Proc">
+    <NAME>AboutBox</NAME>
+    <SUMMARY>Display the e93 About box</SUMMARY>
+    <DESCRIPTION>Display the e93 About box. The standard e93 About dialog box, showing some information, is displayed.</DESCRIPTION>
+    <LOCATION>e93lib/e93rc.tcl</LOCATION>
+</COMMAND>

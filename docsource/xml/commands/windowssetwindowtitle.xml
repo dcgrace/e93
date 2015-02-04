@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowssetwindowtitle</NAME>
+   <PARAMETER>
+      <NAME>title</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Sets the <VAR>title</VAR> for the main e93 window.<BR/>
+   </DESCRIPTION>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

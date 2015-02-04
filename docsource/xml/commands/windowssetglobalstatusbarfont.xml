@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="commands.css"?>
+<?xml-stylesheet type="text/xsl" href="commands.xsl"?>
+<COMMAND type="Built-in">
+   <NAME>windowssetglobalstatusbarfont</NAME>
+   <PARAMETER>
+      <NAME>fontName</NAME>
+   </PARAMETER>
+   <DESCRIPTION>
+Set the font for the global status bar.<BR/>
+   </DESCRIPTION>
+   <LIMITATIONS>
+MSWindows Only
+</LIMITATIONS>
+</COMMAND>

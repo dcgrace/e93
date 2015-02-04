@@ -1,0 +1,19 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=..\e93.chm
+Contents file=TOC.hhc
+Default Font=Arial,8,0
+Default Window=Command
+Default topic=html/commands.html
+Display compile progress=No
+Full-text search=Yes
+Index file=e93.hhk
+Language=0x409 English (United States)
+Title=e93 Help
+
+[WINDOWS]
+Command="e93 Manual and Command Referance","TOC.hhc","e93.hhk","html/commands.html",,,,,,0x2120,,0x3006,[24,8,1263,704],,,,,,,0
+
+
+[INFOTYPES]
+

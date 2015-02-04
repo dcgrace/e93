@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>
+Key Names
+</TITLE>
+
+<SUMMARY>
+Dictionary of special characters and key names
+</SUMMARY>
+
+<BODY>
+<P>The simplest way to determine what keyName e93 uses for any given key on your keyboard is to use the <A HREF="commands/waitkey.html">waitkey</A> command.</P>
+
+<BLOCKQUOTE>
+<P>a through z</P>
+
+<P>A through Z</P>
+
+<P>0 through 9</P>
+
+<P>space</P>
+
+BackSpace<BR />
+Tab<BR />
+Clear<BR />
+Return<BR />
+Pause<BR />
+Scroll_Lock<BR />
+Sys_Req<BR />
+Escape<BR />
+<P>Delete</P>
+
+<P>The "F" keys:</P>
+<P>F1 through F24</P>
+</BLOCKQUOTE>
+
+<H3>Cursor control &amp; motion:</H3>
+<BLOCKQUOTE>
+	Home<BR />
+	Left<BR />
+	Up<BR />
+	Right<BR />
+	Down<BR />
+	Prior<BR />
+	Page_Up<BR />
+	Next<BR />
+	Page_Down<BR />
+	End<BR />
+	<P>Begin</P>
+</BLOCKQUOTE>
+
+<H3>Misc Functions:</H3>
+<BLOCKQUOTE>
+	Select<BR />
+	Print<BR />
+	Execute<BR />
+	Insert<BR />
+	Undo<BR />
+	Redo<BR />
+	Menu<BR />
+	Find<BR />
+	Cancel<BR />
+	Help<BR />
+	Break<BR />
+	<P>Num_Lock</P>
+</BLOCKQUOTE>
+<A NAME="KeyPad"></A>
+<H3>Keypad Functions:</H3>
+<BLOCKQUOTE>
+	KP_Divide<BR />
+	KP_Multiply<BR />
+	KP_Subtract<BR />
+	KP_Add<BR />
+	KP_Enter<BR />
+	Execute<BR />
+	KP_Home<BR />
+	KP_Up<BR />
+	KP_Prior<BR />
+	KP_Page_Up<BR />
+	KP_Left<BR />
+	KP_Right<BR />
+	KP_End<BR />
+	KP_Down<BR />
+	KP_Next<BR />
+	KP_Page_Dow<BR />
+	KP_Insert<BR />
+	KP_Delete<BR />
+	KP_Separato<BR />
+
+	<P>KP_Decimal</P>
+
+	<P>With numlock on:</P>
+	<P>KP_0 through KP_9</P>
+</BLOCKQUOTE>
+
+<H3>Modifiers:</H3>
+<BLOCKQUOTE>
+	Shift<BR />
+	Ctrl<BR />
+	Alt<BR />
+	Shift_L<BR />
+	Shift_R<BR />
+	Control_L<BR />
+	Control_R<BR />
+	Caps_Lock<BR />
+	Shift_Lock<BR />
+	Alt_L<BR />
+	<P>Alt_R</P>
+</BLOCKQUOTE>
+
+<H3>MSWindows specific:</H3>
+<BLOCKQUOTE>
+	Snapshot<BR />
+	WinKey<BR />
+	LeftWin<BR />
+	RightWin<BR />
+	Attention<BR />
+	Crsel<BR />
+	Exsel<BR />
+	Ereof<BR />
+	Play<BR />
+	Zoom<BR />
+	No Name<BR />
+	PA1<BR />
+	<P>OEM Clr</P>
+</BLOCKQUOTE>
+
+<P>This table gives names to keys that produce a single character, but which may also be known by a name such as "space" or "comma"</P>
+<BLOCKQUOTE>
+<A NAME="CharNames"></A>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+	<TR>
+		<TD WIDTH="200">exclam</TD><TD>!</TD>
+	</TR>
+	<TR>
+		<TD>quotedbl</TD><TD>"</TD>
+	</TR>
+	<TR>
+		<TD>numbersign</TD><TD>#</TD>
+	</TR>
+	<TR>
+		<TD>dollar</TD><TD>$</TD>
+	</TR>
+	<TR>
+		<TD>percent</TD><TD>%</TD>
+	</TR>
+	<TR>
+		<TD>ampersand</TD><TD>&amp;</TD>
+	</TR>
+	<TR>
+		<TD>apostrophe</TD><TD>'</TD>
+	</TR>
+	<TR>
+		<TD>parenleft </TD><TD>(</TD>
+	</TR>
+	<TR>
+		<TD>parenright</TD><TD>)</TD>
+	</TR>
+	<TR>
+		<TD>asterisk</TD><TD>*</TD>
+	</TR>
+	<TR>
+		<TD>plus</TD><TD>+</TD>
+	</TR>
+	<TR>
+		<TD>comma</TD><TD>,</TD>
+	</TR>
+	<TR>
+		<TD>minus</TD><TD>-</TD>
+	</TR>
+	<TR>
+		<TD>period</TD><TD>.</TD>
+	</TR>
+	<TR>
+		<TD>slash</TD><TD>/</TD>
+	</TR>
+	<TR>
+		<TD>colon</TD><TD>:</TD>
+	</TR>
+	<TR>
+		<TD>semicolon</TD><TD>;</TD>
+	</TR>
+	<TR>
+		<TD>less</TD><TD>&lt;</TD>
+	</TR>
+	<TR>
+		<TD>equal</TD><TD>=</TD>
+	</TR>
+	<TR>
+		<TD>greater</TD><TD>&gt;</TD>
+	</TR>
+	<TR>
+		<TD>question</TD><TD>?</TD>
+	</TR>
+	<TR>
+		<TD>bracketleft</TD><TD>[</TD>
+	</TR>
+	<TR>
+		<TD>backslash</TD><TD>&#092;</TD>
+	</TR>
+	<TR>
+		<TD>bracketright</TD><TD>]</TD>
+	</TR>
+	<TR>
+		<TD>underscore</TD><TD>_</TD>
+	</TR>
+	<TR>
+		<TD>grave</TD><TD>`</TD>
+	</TR>
+	<TR>
+		<TD>braceleft</TD><TD>{</TD>
+	</TR>
+	<TR>
+		<TD>bar</TD><TD>|</TD>
+	</TR>
+	<TR>
+		<TD>braceright</TD><TD>}</TD>
+	</TR>
+	<TR>
+		<TD>asciitilde</TD><TD>&#126;</TD>
+	</TR>
+	<TR>
+		<TD>umlaut</TD><TD>&#168;</TD>
+	</TR>
+</TABLE>
+</BLOCKQUOTE>
+</BODY>
+</CHAPTER>

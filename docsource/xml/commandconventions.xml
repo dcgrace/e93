@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="chapters.css"?>
+<?xml-stylesheet type="text/xsl" href="chapters.xsl"?>
+
+<CHAPTER>
+<TITLE>
+About the e93 Command Reference
+</TITLE>
+
+<SUMMARY>
+An explanation of the conventions used in this document
+</SUMMARY>
+
+<BODY>
+	<P>The <I>e93 Command Reference</I> is a command dictionary that describes each of the built-in commands and many of the procs available for use with e93.</P>
+	<H3>
+	<A NAME="sections"></A>
+	Sections of the Reference
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		For each entry, the reference begins with a heading line that includes
+		the command name and a label indicating whether the command is a proc,
+		or built-in command.
+		</P>
+		<P>
+		For each command, the reference provides the following information:<BR />
+		<!-- Table Start -->
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+			<TR>
+				<TH WIDTH="200">
+					Section Title
+				</TH>
+				<TH>
+					Description
+				</TH>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#syntax">SYNOPSIS</A></B>
+				</TD>
+				<TD>
+					a concise listing of the syntax for invoking the command
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#description">DESCRIPTION</A></B>
+				</TD>
+				<TD>
+					an explanation of the command's function
+				</TD>
+			</TR>
+			<!-- no input sections for now
+			<TR>
+				<TD>
+					<B><A HREF="#input">INPUT</A></B>
+				</TD>
+				<TD>
+					information on the command's input, if any
+				</TD>
+			</TR>
+			-->
+			<TR>
+				<TD>
+					<B><A HREF="#output">OUTPUT</A></B>
+				</TD>
+				<TD>
+					information on the command's output, if any
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#status">STATUS</A></B>
+				</TD>
+				<TD>
+					a list of possible status codes and their meanings
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#parameters">PARAMETERS</A></B>
+				</TD>
+				<TD>
+					a description of each of the command's parameters
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#options">OPTIONS</A></B>
+				</TD>
+				<TD>
+					a description of each of the command's options
+				</TD>
+			</TR>
+		</TABLE>
+		<!-- Table End -->
+		</P>
+
+		<P>For some commands, the reference also includes these sections:
+		<!-- Table Start -->
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+			<TR>
+				<TH WIDTH="200">
+					Section Title
+				</TH>
+				<TH>
+					Description
+				</TH>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#examples">EXAMPLES</A></B>
+				</TD>
+				<TD>
+					examples of how to use the command
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#limitations">LIMITATIONS</A></B>
+				</TD>
+				<TD>
+					a list of limitations, special cases, or warnings
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#seealso">SEE ALSO</A></B>
+				</TD>
+				<TD>
+					references to related commands or information
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+					<B><A HREF="#location">LOCATION</A></B>
+				</TD>
+				<TD>
+					the .tcl file that contains the proc
+				</TD>
+			</TR>
+		</TABLE>
+		<!-- Table End -->
+		</P>
+	</BLOCKQUOTE>
+	<H3>
+	<A NAME="syntax"></A>
+	SYNOPSIS
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section lists the complete syntax for the command, in the general form
+		</P>
+		<CODE>
+		Command <VAR>?parameter...? ?option...?</VAR>
+		</CODE>
+		<P>
+		where <CODE>Command</CODE> is the name of the proc, or built-in command; <VAR>parameter...</VAR>
+		is a list of one or more parameters; and <VAR>option...</VAR> is a list of one or more options.
+		</P>
+		
+		<P />
+
+		<P CLASS="TableTitle">
+		e93 syntax conventions</P>
+		<!-- Table Start -->
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+			<TR>
+				<TD WIDTH="200">
+				<CODE>
+				? ?
+				</CODE>
+				</TD>
+				<TD>
+				Question marks indicate optional elements; other elements must be specified.
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+				...
+				</TD>
+				<TD>
+				Ellipses (...) indicate the preceding item can be repeated one or more times in a list separated by spaces or tabs.
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+				<VAR>italics</VAR>
+				</TD>
+				<TD>
+				Italics indicate a parameter that you must replace with anything that matches the parameter's definition.
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+				<CODE>
+				|
+				</CODE>
+				</TD>
+				<TD>
+				A vertical bar (<CODE>|</CODE>) indicates an either/or choice.
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+				<CODE>
+				literal
+				</CODE>
+				</TD>
+				<TD>
+				Courier text indicates a word that must appear exactly as shown.
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+				<CODE>
+				<B>off</B>
+				</CODE>
+				</TD>
+				<TD>
+				Bold elements indicate the default setting of the command or option.
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+				<CODE>
+				<P>-</P>
+				</CODE>
+				</TD>
+				<TD>
+				A hyphen (<CODE>-</CODE>) always precedes an option and is a required part of the option.
+				</TD>
+			</TR>
+		</TABLE>
+		<!-- Table End -->
+		
+		</BLOCKQUOTE>
+	<H3>
+	<A NAME="description"></A>
+	DESCRIPTION
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section takes a task-oriented approach to describing the function
+		of the proc, or built-in command. In general, the section describes
+		the default behavior and then discusses notable options that modify
+		the default behavior. These options often appear in a bulleted list of
+		alternative or additional ways to use the command that allow you to
+		customize its function to fit your needs.</P>
+
+	</BLOCKQUOTE>
+	<!-- no input sections for now
+	<H3>
+	<A NAME="input"></A>
+	INPUT
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		Currently no e93 commands accept input from stdin.
+		</P>
+		
+	</BLOCKQUOTE>
+	-->
+	<H3>
+	<A NAME="output"></A>
+	OUTPUT
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section describes the output of the command.
+		Output can include none (no output), one or more files, or standard output.
+		</P>
+
+	</BLOCKQUOTE>
+	<H3>
+	<A NAME="status"></A>
+	STATUS
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section lists the status codes that the command returns and their meanings.
+		Note that these status codes are returned in the <VAR>errorInfo</VAR> variable
+		and can be retrieved by using the command line</P>
+		<P><CODE>
+		puts $errorInfo
+		</CODE></P>
+		<P>
+		A value of 0 indicates that no errors occurred; anything else indicates an error. </P>
+		<P>
+		Typical values are:<BR /><BR />
+		</P>
+		<P>
+		<!-- Table Start -->
+		<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+			<TR>
+				<TD ROWSPAN="3" COLSPAN="1" WIDTH="51" ALIGN="left">
+				</TD>
+				<TD>
+				<P>
+				0</P>
+				</TD>
+				<TD>
+				<P>
+				no errors</P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+				<P>
+				1 </P>
+				</TD>
+				<TD>
+				<P>
+				syntax error</P>
+				</TD>
+			</TR>
+			<TR>
+				<TD>
+				<P>
+				2</P>
+				</TD>
+				<TD>
+				<P>
+				execution error</P>
+				</TD>
+			</TR>
+		</TABLE>
+		<!-- Table End -->
+		</P>
+		<P>
+		In general, .</P>
+	</BLOCKQUOTE>
+
+	<H3>
+	<A NAME="parameters"></A>
+	PARAMETERS
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section describes all the parameters that can be used with a particular proc, or built-in command.
+		Parameters are position dependent, they appear in the order in which they must appear on the command line.
+		</P>
+		<P>
+		Be careful not to confuse a parameter type with a specific instance of that parameter.
+		A parameter such as <VAR>file1 ?file2?...</VAR>, which indicates that you can specify more than one file,
+		is considered to be a single parameter type; <VAR>myFile</VAR> and <VAR>yourFile</VAR>
+		are specific instances of that parameter.
+		</P>
+		
+		<P>Some parameters may only have a one value from a mutualy exclusive list of values.
+		Parameter values such as this are always shown in all capital letters.
+		e.g. in the <VAR>relationship</VAR> parmeter to the
+		<A HREF="commands/addmenu.html#relationship">addmenu</A> command.</P>
+	</BLOCKQUOTE>
+	<H3>
+	<A NAME="options"></A>
+	OPTIONS
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section describes all the command line options that can be used with a particular proc, or built-in command.
+		You use them to tailor a command to your needs.
+		</P>
+		<P>
+		You can distinguish options to the commands from parameters (which are most frequently buffer or window names) by the hyphen (<VAR>-</VAR>)
+		that immediately precedes an option. This hyphen is part of the option and must always be included. </P>
+		<P>
+		Options can have their own parameters, which are also described in this section. In general, if you specify an option that has parameters,
+		you must also specify at least one of its parameters.</P>
+	</BLOCKQUOTE>
+	<H3>
+	<A NAME="examples"></A>
+	EXAMPLES
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		Using one or more examples, this section illustrates the uses of a proc, or built-in command,
+		either alone or within enclosing procs. Examples proceed from relatively easy tasks (often the default behavior)
+		to more complicated ones (using multiple options) that are custom designed for a specific purpose.</P>
+	</BLOCKQUOTE>
+	<H3>
+	<A NAME="limitations"></A>
+	LIMITATIONS
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section is included for some commands to point out certain limitations,
+		warnings, or special cases of which you should be aware. </P>
+	</BLOCKQUOTE>
+	<H3>
+	<A NAME="seealso"></A>
+	SEE ALSO
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section provides references to other relevant information.</P>
+	</BLOCKQUOTE>
+	<H3>
+	<A NAME="location"></A>
+	LOCATION
+	</H3>
+	<BLOCKQUOTE>
+		<P>
+		This section, in the case of Tcl procedures (procs), list the name of the .tcl file that contains the proc.</P>
+	</BLOCKQUOTE>
+</BODY>
+</CHAPTER>
