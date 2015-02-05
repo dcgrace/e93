@@ -12,77 +12,55 @@
 #	along with e93; see the file "LICENSE.TXT".
 #
 
-NAME=e93
+NAME				= e93
+VERSION				= 2.8r2
 
-VERSION=2.8r2
+!IF "$(PLATFORM)" == ""
+PLATFORM			= Win32
+#// Options:
+#//		Win32
+!ENDIF
 
-INST_DIR=C:\Program Files (x86)\e93
+!IF "$(CFG)" == ""
+CFG					= Release
+#// Options:
+#//		Debug
+#//		Release
+!ENDIF
 
-DIST_DIR=C:\public_html\e93
+INST_DIR			= C:\Program Files (x86)\e93
+DIST_DIR			= C:\public_html\e93
 
-TCL_DIR=..\Tcl
+TCL_DIR				= ..\Tcl
+TCL					= $(TCL_DIR)\bin\tclsh86t.exe
 
-TCL=$(TCL_DIR)\bin\tclsh86t.exe
-
-TCL_LIB=$(TCL_DIR)\lib\tcl86t.lib
-
-TK_LIB=$(TCL_DIR)\lib\tk86t.lib
+BUILDER_SETUP		= $(VS120COMNTOOLS)\vsvars32.bat
+BUILDER_TOOL		= MSBuild.exe
+BUILDER_OPTIONS		= /nologo /m /clp:NoSummary;NoItemAndPropertyList /v:minimal
+BUILDER_SOLUTION	= e93.sln
 
 !include e93make.mak
 
-GUI_LIB=.\wgui\wgui.lib
-HELP_LIB=.\wgui\htmlhelp.lib
-RES_FILE=.\wgui\e93.res
+GUI_LIB				= .\wgui\wgui.lib
+HELP_LIB			= .\wgui\htmlhelp.lib
+RES_FILE			= .\wgui\e93.res
 
 #	http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/vsconHH1Start.asp
-HELPC=C:\PROGRA~1\HTMLHE~1\hhc.exe
+HELPC				= C:\PROGRA~1\HTMLHE~1\hhc.exe
 
-ZIP=zip
-ZIPOPTS=-r
-
-LINK32LIBS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib comctl32.lib winmm.lib\
-advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib \
-$(GUI_LIB) "$(HELP_LIB)" "$(TCL_LIB)" "$(TK_LIB)" "$(RES_FILE)"
-
-OBJS=\
-	buffer.obj\
-	carray.obj\
-	clipbrd.obj\
-	docwin.obj\
-	e93.obj\
-	edit.obj\
-	errors.obj\
-	globals.obj\
-	keybind.obj\
-	regex.obj\
-	search.obj\
-	select.obj\
-	shell.obj\
-	shellcmd.obj\
-	sparsearray.obj\
-	style.obj\
-	syntax.obj\
-	text.obj\
-	undo.obj\
-	channels.obj\
-	varbind.obj\
-	dictionary.obj\
-	list.obj
+ZIP					= zip
+ZIPOPTS				= -r
 
 all : $(name).exe
 
-$(name).exe : $(OBJS) wguilib $(RES_FILE)
-	$(LINK32) @<<
-		$(LINK32OPTS) $(LINK32LIBS) $(OBJS)
-<<
-
-wguilib :
-	cd wgui
-	nmake /S /NOLOGO DEBUGGING=$(DEBUGGING)
-	cd ..
-
-.c.obj :
-	@$(CC) $(CCOPTS) $<
+$(name).exe :
+	@echo Building $(NAME) - $(PLATFORM) $(CFG)
+	@cmd /C <<all.bat
+@call "$(BUILDER_SETUP)"
+@"$(BUILDER_TOOL)" "$(BUILDER_SOLUTION)" $(BUILDER_OPTIONS) /p:Configuration="$(CFG)" /p:Platform=$(PLATFORM) /t:Build
+@if errorlevel 1 exit /B 1
+@echo Done.
+<<NOKEEP
 
 docs ::
 	cd docsource
@@ -102,21 +80,20 @@ install : $(name).exe
 	-@xcopy /y /e .\e93lib $(INST_DIR)\e93lib
 
 clean:
-    -@del *.obj
-    -@del .\wgui\*.obj
-    -@del *.pdb
-    -@del *.sbr
-    -@del .\wgui\*.pdb
-    -@del .\wgui\*.sbr
-    -@del $(GUI_LIB)
-    -@del e93.map
-    -@del *.fts
-    -@del *.gid
-	-@del .\e93lib\worksht.e93
-	-@del .\e93lib\statewindows.e93
-	-@del .\e93lib\packages\tclindex
-    -@rmdir  /S /Q .\docs
-    -@rmdir  /S /Q .\docsource\html
+	@echo Cleaning $(NAME) - $(PLATFORM) $(CFG)
+	@cmd /C <<clean.bat
+@call "$(BUILDER_SETUP)"
+@"$(BUILDER_TOOL)" "$(BUILDER_SOLUTION)" $(BUILDER_OPTIONS) /p:Configuration="$(CFG)" /p:Platform=$(PLATFORM) /t:Clean
+@if errorlevel 1 exit /B 1
+@rmdir /s /q $(CFG) >NUL 2>NUL
+@rmdir /s /q .\wgui\$(CFG) >NUL 2>NUL
+@del .\e93lib\worksht.e93 >NUL 2>NUL
+@del .\e93lib\statewindows.e93 >NUL 2>NUL
+@del .\e93lib\packages\tclindex >NUL 2>NUL
+@rmdir /S /Q .\docs >NUL 2>NUL
+@rmdir /S /Q .\docsource\html >NUL 2>NUL
+@echo Clean.
+<<NOKEEP
 
 pristine : clean
 	-@del e93.exe
