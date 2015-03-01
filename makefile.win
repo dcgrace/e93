@@ -31,8 +31,8 @@ CFG					= Release
 INST_DIR			= C:\Program Files (x86)\e93
 DIST_DIR			= C:\public_html\e93
 
-TCL_DIR				= ..\Tcl
-TCL					= $(TCL_DIR)\bin\tclsh86t.exe
+TCL_DIR				= c:\Program Files\Tcl
+TCL					= $(TCL_DIR)\bin\tclsh86.exe
 
 BUILDER_SETUP		= $(VS120COMNTOOLS)\vsvars32.bat
 BUILDER_TOOL		= MSBuild.exe
